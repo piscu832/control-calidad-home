@@ -712,8 +712,22 @@
               <div class="sig-line inspector-line" id="inspector-signature" contenteditable="true" spellcheck="false" data-placeholder="Hacer clic para ingresar firma / matrícula...">C. Villalba - Mat. QC-104</div>
               <span>FIRMA Y MATRÍCULA DEL INSPECTOR</span>
             </div>
-            <div class="sig-block">
-              <div class="sig-line date-line" id="inspector-date" contenteditable="true" spellcheck="false" data-placeholder="Fecha y hora...">29/09/2026 - 10:45 hs</div>
+            <div class="sig-block sig-block-datetime">
+              <div class="sig-datetime-wrapper" id="sig-datetime-container">
+                <input type="text" id="inspector-date-input" class="sig-line-input sig-date-text" value="29/09/2026" maxlength="10" placeholder="DD/MM/AAAA" spellcheck="false" inputmode="numeric" title="Fecha registrada (solo números)">
+                <button type="button" id="btn-sig-calendar" class="btn-sig-calendar" title="Elegir fecha del calendario interactivo" aria-label="Abrir calendario">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                </button>
+                <input type="date" id="sig-native-date" class="sig-native-date" tabindex="-1" aria-hidden="true">
+                <span class="sig-sep">-</span>
+                <input type="text" id="inspector-time-input" class="sig-line-input sig-time-text" value="10:45" maxlength="5" placeholder="HH:MM" spellcheck="false" inputmode="numeric" title="Hora registrada (solo números)">
+                <span class="sig-unit">hs</span>
+              </div>
               <span>FECHA / HORA REGISTRADA</span>
             </div>
           </div>

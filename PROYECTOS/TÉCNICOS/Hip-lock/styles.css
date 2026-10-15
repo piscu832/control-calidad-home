@@ -1236,6 +1236,117 @@ body.theme-blueprint .sig-line:focus {
   color: var(--text-main);
 }
 
+/* Línea de firma para Fecha / Hora Registrada (Escritorio PC y Móvil) */
+.sig-datetime-wrapper {
+  width: 100%;
+  min-height: 28px;
+  border-bottom: 1.5px solid var(--text-muted);
+  margin-bottom: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: var(--text-main);
+  transition: all 0.2s ease;
+  padding: 2px 6px;
+  border-radius: 3px 3px 0 0;
+  position: relative;
+}
+
+.sig-datetime-wrapper:hover {
+  border-bottom-color: var(--cyan-primary);
+  background-color: rgba(2, 132, 199, 0.05);
+}
+
+.sig-datetime-wrapper:focus-within {
+  border-bottom-color: var(--cyan-primary);
+  background-color: var(--cyan-soft);
+  box-shadow: 0 1px 0 var(--cyan-primary);
+}
+
+body.theme-blueprint .sig-datetime-wrapper:focus-within {
+  background-color: rgba(14, 165, 233, 0.15);
+}
+
+.sig-line-input {
+  border: none !important;
+  background: transparent !important;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-main);
+  outline: none;
+  padding: 0;
+  text-align: center;
+}
+
+body.theme-blueprint .sig-line-input {
+  color: #f8fafc;
+}
+
+.sig-date-text {
+  width: 82px;
+}
+
+.sig-time-text {
+  width: 44px;
+}
+
+.sig-sep {
+  color: var(--text-muted);
+  padding: 0 2px;
+}
+
+.sig-unit {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.btn-sig-calendar {
+  background: transparent;
+  border: none;
+  color: var(--cyan-primary);
+  padding: 1px 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.15s ease;
+}
+
+.btn-sig-calendar:hover {
+  background: rgba(2, 132, 199, 0.15);
+  transform: scale(1.1);
+  color: #0284c7;
+}
+
+body.theme-blueprint .btn-sig-calendar {
+  color: #38bdf8;
+}
+
+body.theme-blueprint .btn-sig-calendar:hover {
+  background: rgba(56, 189, 248, 0.25);
+  color: #7dd3fc;
+}
+
+.sig-native-date {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
 .sig-block span {
   font-family: var(--font-mono);
   font-size: 0.58rem;
@@ -1660,17 +1771,19 @@ html, body {
    ========================================================================== */
 @media print {
   .btn-calendar-trigger,
-  .trace-native-date {
+  .trace-native-date,
+  .btn-sig-calendar,
+  .sig-native-date {
     display: none !important;
   }
-  .date-input-container {
+  .date-input-container,
+  .sig-datetime-wrapper {
     background: transparent !important;
-    border: none !important;
+    border-color: #000000 !important;
     box-shadow: none !important;
-    padding: 0 !important;
   }
-  .trace-date-text {
-    padding: 0 !important;
+  .trace-date-text,
+  .sig-line-input {
     color: #000000 !important;
   }
 }

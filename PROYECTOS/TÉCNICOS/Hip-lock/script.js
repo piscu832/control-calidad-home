@@ -175,10 +175,123 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. Persistencia en LocalStorage para inspectores de planta
+  // 5. Campo FECHA / HORA REGISTRADA (Editable, solo números y calendario interactivo)
+  const inspectorDateInput = document.getElementById('inspector-date-input');
+  const btnSigCalendar = document.getElementById('btn-sig-calendar');
+  const sigNativeDate = document.getElementById('sig-native-date');
+  const inspectorTimeInput = document.getElementById('inspector-time-input');
+
+  function syncSigTextToNativeDate() {
+    if (!inspectorDateInput || !sigNativeDate) return;
+    const text = inspectorDateInput.value.trim();
+    const parts = text.split('/');
+    if (parts.length === 3 && parts[0].length === 2 && parts[1].length === 2 && parts[2].length === 4) {
+      const day = parts[0];
+      const month = parts[1];
+      const year = parts[2];
+      const iso = `${year}-${month}-${day}`;
+      if (!isNaN(Date.parse(iso))) {
+        sigNativeDate.value = iso;
+      }
+    }
+  }
+
+  if (inspectorDateInput) {
+    // Bloqueo estricto de letras en fecha registrada
+    inspectorDateInput.addEventListener('keydown', (e) => {
+      const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter', 'Home', 'End'];
+      if (allowedKeys.includes(e.key) || e.ctrlKey || e.metaKey) return;
+      if (!/^[0-9\/]$/.test(e.key)) e.preventDefault();
+    });
+
+    inspectorDateInput.addEventListener('input', () => {
+      let raw = inspectorDateInput.value.replace(/[^0-9\/]/g, '');
+      const digits = raw.replace(/\D/g, '').slice(0, 8);
+      if (raw.indexOf('/') === -1 && digits.length >= 2) {
+        let formatted = digits.slice(0, 2);
+        if (digits.length >= 4) {
+          formatted += '/' + digits.slice(2, 4) + '/' + digits.slice(4, 8);
+        } else if (digits.length > 2) {
+          formatted += '/' + digits.slice(2);
+        }
+        raw = formatted;
+      } else {
+        raw = raw.slice(0, 10);
+      }
+      inspectorDateInput.value = raw;
+      syncSigTextToNativeDate();
+      saveState();
+    });
+
+    inspectorDateInput.addEventListener('paste', (e) => {
+      e.preventDefault();
+      const pasted = (e.clipboardData || window.clipboardData).getData('text');
+      const clean = pasted.replace(/[^0-9\/]/g, '').slice(0, 10);
+      inspectorDateInput.value = clean;
+      syncSigTextToNativeDate();
+      saveState();
+    });
+  }
+
+  // Selector de calendario para Fecha Registrada
+  if (btnSigCalendar && sigNativeDate && inspectorDateInput) {
+    btnSigCalendar.addEventListener('click', (e) => {
+      e.preventDefault();
+      syncSigTextToNativeDate();
+      try {
+        if (typeof sigNativeDate.showPicker === 'function') {
+          sigNativeDate.showPicker();
+        } else {
+          sigNativeDate.focus();
+          sigNativeDate.click();
+        }
+      } catch (err) {
+        sigNativeDate.focus();
+        sigNativeDate.click();
+      }
+    });
+
+    sigNativeDate.addEventListener('change', () => {
+      if (sigNativeDate.value) {
+        const [year, month, day] = sigNativeDate.value.split('-');
+        inspectorDateInput.value = `${day}/${month}/${year}`;
+        saveState();
+      }
+    });
+  }
+
+  // Validación numérica para Hora Registrada
+  if (inspectorTimeInput) {
+    inspectorTimeInput.addEventListener('keydown', (e) => {
+      const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter', 'Home', 'End'];
+      if (allowedKeys.includes(e.key) || e.ctrlKey || e.metaKey) return;
+      if (!/^[0-9:]$/.test(e.key)) e.preventDefault();
+    });
+
+    inspectorTimeInput.addEventListener('input', () => {
+      let raw = inspectorTimeInput.value.replace(/[^0-9:]/g, '');
+      const digits = raw.replace(/\D/g, '').slice(0, 4);
+      if (raw.indexOf(':') === -1 && digits.length >= 2) {
+        raw = digits.slice(0, 2) + ':' + digits.slice(2, 4);
+      } else {
+        raw = raw.slice(0, 5);
+      }
+      inspectorTimeInput.value = raw;
+      saveState();
+    });
+
+    inspectorTimeInput.addEventListener('paste', (e) => {
+      e.preventDefault();
+      const pasted = (e.clipboardData || window.clipboardData).getData('text');
+      const clean = pasted.replace(/[^0-9:]/g, '').slice(0, 5);
+      inspectorTimeInput.value = clean;
+      saveState();
+    });
+  }
+
+  // 6. Persistencia en LocalStorage para inspectores de planta
   const STORAGE_KEY = 'hip_lock_qc_state_v1';
   const sigField = document.getElementById('inspector-signature');
-  const dateField = document.getElementById('inspector-date');
   const qtyConforme = document.getElementById('qty-conforme');
   const qtyNoConforme = document.getElementById('qty-no-conforme');
   const obsField = document.querySelector('.obs-lines');
@@ -190,7 +303,8 @@ document.addEventListener('DOMContentLoaded', () => {
       qtyNoConforme: qtyNoConforme ? qtyNoConforme.value : '0',
       obs: obsField ? obsField.innerText : '',
       signature: sigField ? sigField.innerText : '',
-      date: dateField ? dateField.innerText : '',
+      sigDate: inspectorDateInput ? inspectorDateInput.value : '29/09/2026',
+      sigTime: inspectorTimeInput ? inspectorTimeInput.value : '10:45',
       traceDate: traceDateInput ? traceDateInput.value : '29/09/2026'
     };
     try {
@@ -224,8 +338,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (state.signature && sigField) {
           sigField.innerText = state.signature;
         }
-        if (state.date && dateField) {
-          dateField.innerText = state.date;
+        if (state.sigDate && inspectorDateInput) {
+          inspectorDateInput.value = state.sigDate;
+          syncSigTextToNativeDate();
+        }
+        if (state.sigTime && inspectorTimeInput) {
+          inspectorTimeInput.value = state.sigTime;
         }
         if (state.traceDate && traceDateInput) {
           traceDateInput.value = state.traceDate;
@@ -242,9 +360,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (qtyNoConforme) qtyNoConforme.addEventListener('input', saveState);
   if (obsField) obsField.addEventListener('input', saveState);
   if (sigField) sigField.addEventListener('input', saveState);
-  if (dateField) dateField.addEventListener('input', saveState);
+  if (inspectorDateInput) inspectorDateInput.addEventListener('input', saveState);
+  if (inspectorTimeInput) inspectorTimeInput.addEventListener('input', saveState);
 
-  // 6. Reiniciar Puntos
+  // 7. Reiniciar Puntos
   btnReset.addEventListener('click', () => {
     if (confirm('¿Desea reiniciar todas las marcas de verificación de los 9 puntos?')) {
       checkboxes.forEach(cb => cb.checked = false);

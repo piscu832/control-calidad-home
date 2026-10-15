@@ -59,6 +59,7 @@
    - **Campos de Aprobación Interactivos**: Campo de 'FIRMA Y MATRÍCULA DEL INSPECTOR' totalmente editable (`contenteditable="true"`), con placeholder visual, efectos focus/hover y persistencia en `localStorage`.
     - **Registro de Cantidades de Piezas (2026-10-15)**: Incorporación de campos numéricos dedicados con ambos sellos de dictamen permanentemente activos/encendidos (sin exclusión mutua de radio) (CANT. CONFORME y CANT. NO CONFORME), con estilo metrológico con borde guía verde/rojo, visualización de unidad (piezas), soporte en modo Blueprint / Taller e impresión A4, y persistencia automática en localStorage (qtyConforme, qtyNoConforme, obs).
     - **Campo FECHA DE INSPECCIÓN Interactivo (2026-10-15)**: Campo editable con validación estricta que no admite letras (solo dígitos y `/`, con máscara automática DD/MM/AAAA) y botón con icono interactivo de calendario para seleccionar fechas del selector visual, con sincronización bidireccional y persistencia en localStorage.
+    - **Campo FECHA / HORA REGISTRADA Interactivo (2026-10-15)**: Integración en el bloque de firmas de escritorio PC y móvil de la fecha editable sin letras con disparador de calendario interactivo (`📅`) y hora numérica (`HH:MM hs`), perfectamente alineado sobre la línea de firma horizontal simétrica con la firma del inspector, con preservación estética en PC, modo Blueprint e impresión A4 sin controles visibles.
 
 
 ## Decisiones de Despliegue y Adaptabilidad
