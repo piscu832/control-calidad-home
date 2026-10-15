@@ -61,7 +61,7 @@ Toda infografía debe incorporar de forma estructurada las siguientes 7 seccione
 ### Sección 6: Verificación Visual Final (100%) y Dictamen de Calidad
 - **Sellos de Dictamen y Registro de Cantidades por Categoría:**
   - Sellos de dictamen (*✓ CONFORME* en verde esmeralda y *✕ NO CONFORME* en carmesí de alerta) **permanentemente activos y encendidos simultáneamente** (con bordes sólidos, fondo coloreado tenue y 100% de opacidad). No deben utilizarse selectores excluyentes (radios), ya que en cada lote o auditoría conviven piezas aprobadas y piezas rechazadas.
-  - **Campos Numéricos de Conteo Obligatorios:** Cada columna de dictamen debe incluir un campo numérico interactivo vinculado (**`CANT. CONFORME`** y **`CANT. NO CONFORME`**), con indicación de unidad (`piezas`), borde guía lateral cromático, tipografía de precisión monospace (`JetBrains Mono`) y persistencia automática en `localStorage`.
+  - **Campos Numéricos de Conteo Obligatorios:** Cada columna de dictamen debe incluir un campo numérico interactivo vinculado (**`CANT. CONFORME`** y **`CANT. NO CONFORME`**), con indicación de unidad (`piezas`), borde guía lateral cromático, tipografía de precisión `Inter` con cifras tabulares (`font-feature-settings: "tnum" on`), dígitos en peso destacado (`Inter Black` o semibold) y persistencia automática en `localStorage`.
 - **Observaciones Técnicas:** Campo editable para registrar valores medidos o notas de auditoría.
 - **Bloque de Cierre Formal Interactivo:** Campos editables directos (`contenteditable="true"`) para *Firma y Matrícula del Inspector* y *Fecha/Hora Registrada*, con placeholder de ayuda (`data-placeholder`), respuesta visual a la interacción (hover, focus iluminado) e integración con el guardado en planta.
 
@@ -117,10 +117,14 @@ Toda infografía debe incorporar de forma estructurada las siguientes 7 seccione
 - **Rechazos y No Conformidades:** Carmesí de alta visibilidad (`#dc2626` / fondo `#fef2f2`).
 - **Conformidad y Aprobación:** Verde esmeralda de certificación (`#16a34a` / fondo `#f0fdf4`).
 
-### Sistema Tipográfico
-- **Títulos, Balizas y Códigos:** Fuentes geométricas de corte industrial como `Chakra Petch`.
-- **Cuerpo de Texto y Listas:** Sans-serif neutral y legible como `Inter`.
-- **Cotas, Tolerancias, Trazabilidad e Instrumental:** Tipografía monospace técnica como `JetBrains Mono`.
+### Sistema Tipográfico Exclusivo (Familia Inter e Inter Black)
+- **Familia Tipográfica Única y Obligatoria:** Todos los textos de la infografía deben utilizar **exclusivamente la tipografía `Inter`** en sus distintos pesos, o **`Inter Black`** (`font-weight: 900`). Queda expresamente desestimado el uso de familias tipográficas adicionales como *Chakra Petch* o *JetBrains Mono*.
+- **Títulos Principales, Razón Social, Balizas, Códigos y Sellos de Dictamen:** Utilizar **`Inter Black`** (`font-weight: 900`) para lograr un impacto visual sobrio, robusto y de máxima jerarquía institucional (ej. encabezado de empresa `VILLALBA HNOS. IMPLANTES S.A.`, título de infografía, números de puntos de control, estampillas *CONFORME* / *NO CONFORME*, rótulos de vistas SVG).
+- **Subtítulos, Nombres de Puntos y Encabezados Secundarios:** `Inter` en pesos intermedios o fuertes (`font-weight: 600` / `700` / `800`).
+- **Cuerpo de Texto, Listas, Instrucciones y Párrafos:** `Inter` regular y medium (`font-weight: 400` / `500`).
+- **Cotas, Tolerancias, Trazabilidad, Cifras Numéricas e Instrumental:** `Inter` con activación de cifras tabulares OpenType (`font-feature-settings: "tnum" on, "zero" on;`). Esto garantiza que los números mantengan un ancho constante y alineación vertical estricta como en fuentes monospace técnicas, preservando la coherencia visual con la familia Inter.
+- **Carga en HTML:** Enlace oficial de Google Fonts con el rango completo de pesos:
+  `<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">`
 
 ---
 

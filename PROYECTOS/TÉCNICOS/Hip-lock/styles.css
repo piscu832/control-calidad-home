@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
 /* ==========================================================================
    INFOGRAFÍA TÉCNICA CONTROL DE CALIDAD - HIP LOCK
    Estilos CSS Premium para Pantalla de Alta Resolución e Impresión A4
@@ -35,10 +37,11 @@
   --success-green-bg: #f0fdf4;
   --success-border: #86efac;
 
-  /* Tipografías */
+  /* Tipografías Oficiales: Familia Inter e Inter Black */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-tech: 'Chakra Petch', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-tech: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-black: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   --shadow-sheet: 0 25px 50px -12px rgba(15, 23, 42, 0.35);
   --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
@@ -76,6 +79,10 @@ body.theme-blueprint {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
 }
 
 body {
@@ -117,9 +124,9 @@ body {
 }
 
 .badge-tech {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 800;
   background: #0284c7;
   color: #ffffff;
   padding: 4px 8px;
@@ -128,9 +135,10 @@ body {
 }
 
 .system-title {
-  font-family: var(--font-tech);
+  font-family: var(--font-sans);
   font-size: 0.85rem;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
+  font-weight: 800;
   color: #e2e8f0;
 }
 
@@ -236,10 +244,10 @@ body.theme-blueprint .brand-img {
 }
 
 .logo-company {
-  font-family: var(--font-tech);
+  font-family: var(--font-sans);
   font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
   color: var(--text-main);
 }
 
@@ -259,14 +267,15 @@ body.theme-blueprint .brand-img {
 }
 
 .doc-badge, .doc-rev, .doc-status {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.7rem;
   padding: 3px 8px;
   border-radius: 4px;
   border: 1px solid var(--border-subtle);
   background: var(--cyan-soft);
   color: var(--cyan-primary);
-  font-weight: 600;
+  font-weight: 800;
+  font-feature-settings: "tnum" on;
 }
 
 .doc-status {
@@ -285,11 +294,11 @@ body.theme-blueprint .doc-status {
 }
 
 .main-title {
-  font-family: var(--font-tech);
+  font-family: var(--font-sans);
   font-size: 1.6rem;
-  font-weight: 700;
+  font-weight: 900;
   color: var(--cyan-primary);
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   margin-bottom: 4px;
 }
@@ -314,18 +323,19 @@ body.theme-blueprint .doc-status {
 
 .trace-field label {
   display: block;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.62rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--cyan-primary);
   margin-bottom: 2px;
   letter-spacing: 0.5px;
 }
 
 .trace-input {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.8rem;
   font-weight: 600;
+  font-feature-settings: "tnum" on;
   color: var(--text-main);
   background: rgba(255, 255, 255, 0.7);
   padding: 4px 6px;
@@ -380,9 +390,10 @@ body.theme-blueprint .date-input-container:focus-within {
   width: 100%;
   border: none !important;
   background: transparent !important;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.8rem;
   font-weight: 600;
+  font-feature-settings: "tnum" on;
   color: var(--text-main);
   padding: 4px 6px;
   outline: none;
@@ -459,9 +470,10 @@ body.theme-blueprint .btn-calendar-trigger:hover {
 }
 
 .intro-content strong {
-  font-family: var(--font-tech);
+  font-family: var(--font-sans);
   font-size: 0.85rem;
-  letter-spacing: 0.8px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
   color: var(--cyan-primary);
   display: block;
   margin-bottom: 2px;
@@ -484,16 +496,16 @@ body.theme-blueprint .btn-calendar-trigger:hover {
 }
 
 .section-tag {
-  font-family: var(--font-tech);
+  font-family: var(--font-sans);
   font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
   color: var(--cyan-primary);
   text-transform: uppercase;
 }
 
 .section-note {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.68rem;
   color: var(--text-muted);
 }
@@ -530,10 +542,10 @@ body.theme-blueprint .stem-blueprint-canvas {
 }
 
 .svg-label-title {
-  font-family: var(--font-tech);
+  font-family: var(--font-sans);
   font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
   fill: var(--text-muted);
 }
 
@@ -563,9 +575,9 @@ body.theme-blueprint .stem-blueprint-canvas {
 }
 
 .callout-text {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 900;
   fill: #ffffff;
   pointer-events: none;
 }
@@ -576,9 +588,9 @@ body.theme-blueprint .stem-blueprint-canvas {
 }
 
 .callout-label {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 700;
   fill: #0369a1;
   letter-spacing: 0.3px;
   paint-order: stroke fill;
@@ -610,8 +622,9 @@ body.theme-blueprint .callout-label {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-tech);
+  font-family: var(--font-sans);
   font-size: 0.88rem;
+  font-weight: 900;
   color: var(--alert-amber);
   margin-bottom: 12px;
   letter-spacing: 0.8px;
@@ -643,9 +656,9 @@ body.theme-blueprint .callout-label {
 
 .badge-alert {
   display: inline-block;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.6rem;
-  font-weight: 700;
+  font-weight: 800;
   background: var(--alert-amber);
   color: #ffffff;
   padding: 1px 5px;
@@ -734,9 +747,9 @@ body.theme-blueprint .point-card {
 }
 
 .point-number {
-  font-family: var(--font-tech);
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 900;
   color: var(--cyan-primary);
   line-height: 1;
   margin-right: 8px;
@@ -755,7 +768,7 @@ body.theme-blueprint .point-card {
 }
 
 .point-zone {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.62rem;
   color: var(--text-muted);
 }
@@ -809,9 +822,9 @@ body.theme-blueprint .custom-checkbox {
 }
 
 .info-row .label {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.62rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-muted);
   display: block;
   margin-bottom: 2px;
@@ -837,9 +850,9 @@ body.theme-blueprint .custom-checkbox {
 }
 
 .tool-tag {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.68rem;
-  font-weight: 500;
+  font-weight: 600;
   background: var(--cyan-soft);
   color: var(--cyan-primary);
   padding: 3px 6px;
@@ -915,9 +928,9 @@ body.theme-blueprint .workflow-steps {
   border-radius: 50%;
   background: var(--cyan-soft);
   color: var(--cyan-primary);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 900;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -973,9 +986,9 @@ body.theme-blueprint .approval-card {
 }
 
 .box-title {
-  font-family: var(--font-tech);
+  font-family: var(--font-sans);
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: 900;
   color: var(--cyan-primary);
   letter-spacing: 0.8px;
   border-bottom: 1px solid var(--border-light);
@@ -1024,10 +1037,10 @@ body.theme-blueprint .approval-card {
   justify-content: center;
   padding: 8px 12px;
   border-radius: 6px;
-  font-family: var(--font-tech);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 900;
+  letter-spacing: 1.2px;
   border: 1.5px solid transparent;
   transition: all 0.2s ease;
   opacity: 1;
@@ -1073,9 +1086,9 @@ body.theme-blueprint .verdict-qty-box {
 }
 
 .qty-field-label {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.62rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-muted);
   letter-spacing: 0.3px;
   white-space: nowrap;
@@ -1094,9 +1107,10 @@ body.theme-blueprint .qty-field-label {
 .verdict-qty-input {
   width: 54px;
   padding: 3px 6px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 900;
+  font-feature-settings: "tnum" on;
   text-align: right;
   border: 1px solid var(--border-light);
   border-radius: 4px;
@@ -1133,10 +1147,10 @@ body.theme-blueprint .verdict-qty-input {
 }
 
 .qty-unit-tag {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.62rem;
   color: var(--text-light);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 body.theme-blueprint .qty-unit-tag {
@@ -1148,16 +1162,16 @@ body.theme-blueprint .qty-unit-tag {
 }
 
 .observations-box label {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.62rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-muted);
   display: block;
   margin-bottom: 4px;
 }
 
 .obs-lines {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.72rem;
   background: #f8fafc;
   border: 1px solid var(--border-subtle);
@@ -1191,7 +1205,7 @@ body.theme-blueprint .obs-lines {
   border-bottom: 1.5px solid var(--text-muted);
   margin-bottom: 4px;
   outline: none;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.74rem;
   font-weight: 600;
   display: flex;
@@ -1228,8 +1242,9 @@ body.theme-blueprint .sig-line:focus {
 }
 
 .date-line {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.7rem;
+  font-feature-settings: "tnum" on;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -1242,9 +1257,10 @@ body.theme-blueprint .sig-line:focus {
   min-height: 28px;
   border-bottom: 1.5px solid var(--text-muted);
   margin-bottom: 4px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.74rem;
   font-weight: 600;
+  font-feature-settings: "tnum" on;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1274,9 +1290,10 @@ body.theme-blueprint .sig-datetime-wrapper:focus-within {
 .sig-line-input {
   border: none !important;
   background: transparent !important;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.74rem;
   font-weight: 600;
+  font-feature-settings: "tnum" on;
   color: var(--text-main);
   outline: none;
   padding: 0;
@@ -1348,7 +1365,7 @@ body.theme-blueprint .btn-sig-calendar:hover {
 }
 
 .sig-block span {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.58rem;
   color: var(--text-muted);
   text-align: center;
@@ -1361,7 +1378,7 @@ body.theme-blueprint .btn-sig-calendar:hover {
   align-items: center;
   border-top: 1px solid var(--border-light);
   padding-top: 10px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.65rem;
   color: var(--text-muted);
 }

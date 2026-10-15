@@ -40,7 +40,7 @@ Cada infografía técnica o divulgativa creada en este entorno debe estructurars
    - Checklist de verificación visual al 100% de la pieza (rebabas, rayones, acabado superficial, falta de llenado, óxido o contaminación).
    - **Sellos de Dictamen y Cantidades por Categoría:**
      - Sellos de dictamen (*✓ CONFORME* en verde esmeralda y *✕ NO CONFORME* en carmesí) **permanentemente activos y encendidos simultáneamente** (con bordes sólidos, fondo coloreado tenue y 100% de opacidad), sin exclusión mutua de radio buttons, ya que en una inspección de lote conviven piezas conformes y no conformes.
-     - **Campos numéricos interactivos de cantidad:** Cada categoría debe incluir obligatoriamente su campo numérico para registrar piezas (**`CANT. CONFORME`** y **`CANT. NO CONFORME`**), con etiqueta de unidad (`piezas`), borde guía lateral cromático, tipografía monospace de precisión (`JetBrains Mono`) y persistencia en `localStorage`.
+     - **Campos numéricos interactivos de cantidad:** Cada categoría debe incluir obligatoriamente su campo numérico para registrar piezas (**`CANT. CONFORME`** y **`CANT. NO CONFORME`**), con etiqueta de unidad (`piezas`), borde guía lateral cromático, tipografía de precisión `Inter` con cifras tabulares (`font-feature-settings: "tnum" on`), dígitos en peso destacado (`Inter Black` o semibold) y persistencia en `localStorage`.
    - Bloque de observaciones técnicas.
    - Campos formales interactivos y editables (`contenteditable="true"`) para *Firma y Matrícula del Inspector* y *Fecha/Hora Registrada*, con placeholder de ayuda, efectos visuales de edición y guardado automático.
 7. **Pie de Página Normativo:**
@@ -72,10 +72,11 @@ Cada infografía técnica o divulgativa creada en este entorno debe estructurars
   - *Alertas y Precauciones:* Amarillo / Ámbar técnico (`#d97706`).
   - *Rechazos y No Conformidades:* Carmesí de alta visibilidad (`#dc2626`).
   - *Conformidad y Aprobación:* Verde esmeralda (`#16a34a`).
-- **Tipografía:**
-  - *Títulos y códigos de sección:* Fuente industrial geométrica (ej. `Chakra Petch`).
-  - *Cuerpo de texto y listas:* Sans-serif legible y limpia (ej. `Inter`).
-  - *Cotas, tolerancias y metadatos:* Fuente monospace de precisión (ej. `JetBrains Mono`).
+- **Tipografía (Familia Inter e Inter Black):**
+  - *Familia única y obligatoria:* Todos los textos deben ser exclusivamente `Inter` o `Inter Black` (`font-weight: 900`). Queda desestimado el uso de familias adicionales (Chakra Petch, JetBrains Mono).
+  - *Títulos, balizas SVG, códigos y sellos de dictamen:* `Inter Black` (`font-weight: 900`) para máxima jerarquía visual.
+  - *Cuerpo de texto, subtítulos y listas:* `Inter` en pesos regular (400), medium (500) y semibold (600/700).
+  - *Cotas, tolerancias, trazabilidad e instrumental:* `Inter` con cifras tabulares OpenType activadas (`font-feature-settings: "tnum" on, "zero" on;`) para asegurar alineación vertical estricta.
 
 ---
 
