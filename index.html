@@ -844,27 +844,16 @@
       </div>
     </section>
 
-    <!-- BARRA DE CATEGORÍAS Y BÚSQUEDA -->
+    <!-- BARRA DE FILTROS Y BÚSQUEDA TÉCNICA -->
     <div class="controls-strip">
       <div class="category-tabs">
-        <button class="tab-btn active" id="tab-tecnicos" onclick="filterCategory('tecnicos')">
+        <button class="tab-btn active" id="tab-tecnicos">
           <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
             <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
           </svg>
-          <span>TÉCNICOS</span>
+          <span>PROTOCOLOS Y HOJAS TÉCNICAS</span>
           <span class="tab-count">1</span>
-        </button>
-        <button class="tab-btn" id="tab-artisticos" onclick="filterCategory('artisticos')">
-          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-          </svg>
-          <span>ARTÍSTICOS</span>
-          <span class="tab-count">2</span>
-        </button>
-        <button class="tab-btn" id="tab-todos" onclick="filterCategory('todos')">
-          <span>TODOS</span>
-          <span class="tab-count">3</span>
         </button>
       </div>
 
@@ -872,7 +861,7 @@
         <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
-        <input type="text" id="searchInput" class="search-input" placeholder="Buscar por código, pieza, material..." oninput="handleSearch()">
+        <input type="text" id="searchInput" class="search-input" placeholder="Buscar por código, cota, tolerancia, material..." oninput="handleSearch()">
       </div>
     </div>
 
@@ -886,7 +875,7 @@
       <div class="cards-grid" id="cardsGridTecnicos">
         
         <!-- TARJETA: TALLO HIP-LOCK -->
-        <article class="tech-card" data-category="tecnicos" data-keywords="hip-lock tallo cadera cono 12/14 qc-hl-08 titanio acero metrologia forjado mecanizado">
+        <article class="tech-card" data-category="tecnicos" data-keywords="hip-lock tallo cadera cono 12/14 qc-hl-08 titanio acero metrologia forjado mecanizado runout tolerancia">
           <div class="card-top-accent"></div>
           
           <div class="card-content">
@@ -968,159 +957,6 @@
               </svg>
               <span>PDF Original</span>
             </a>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- SECCIÓN DE INFOGRAFÍAS ARTÍSTICAS (ACCESIBLE MEDIANTE TABS) -->
-    <section id="section-artisticos-wrapper" style="display: none;">
-      <div class="section-header">
-        <h2 class="section-title">Infografías Institucionales y Divulgativas (PROYECTOS / ARTÍSTICOS)</h2>
-        <span class="section-subtitle">Líneas de Tiempo & Red Nacional de Distribución</span>
-      </div>
-
-      <div class="cards-grid" id="cardsGridArtisticos">
-        
-        <!-- TARJETA: LÍNEA DE TIEMPO -->
-        <article class="tech-card" data-category="artisticos" data-keywords="linea de tiempo historia villalba 1966 fundacion fases hitos sucursales mar del plata bahia blanca la plata rosario">
-          <div class="card-top-accent" style="background: linear-gradient(90deg, #5ea88d, #45c4c0, #4ea6dc, #598de6, #8485db);"></div>
-          
-          <div class="card-content">
-            <div class="card-header-meta">
-              <span class="doc-pill">DOC: HIST-VLL-01</span>
-              <span class="status-badge" style="background:rgba(56,189,248,0.12); color:var(--primary); border:1px solid rgba(56,189,248,0.3);">
-                INSTITUCIONAL
-              </span>
-            </div>
-
-            <div class="card-title-group">
-              <h3>Línea de Tiempo Histórica & Procesos</h3>
-              <p class="card-family">
-                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                60 Años de Trayectoria (1966 — Actualidad)
-              </p>
-            </div>
-
-            <div class="card-preview-thumb">
-              <div class="thumb-blueprint-visual">
-                <div class="blueprint-row">
-                  <span class="label">Estructura:</span>
-                  <span class="val">5 Fases en Degradé Continuo</span>
-                </div>
-                <div class="blueprint-row">
-                  <span class="label">Interactividad:</span>
-                  <span class="val">Hover dinámico & Panel lateral</span>
-                </div>
-                <div class="blueprint-row">
-                  <span class="label">Soporte:</span>
-                  <span class="val">Web, WordPress & Print A4</span>
-                </div>
-              </div>
-              <div class="thumb-icon-box" style="background:rgba(94,168,141,0.15); color:#5ea88d; border-color:#5ea88d;">
-                <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                  <path d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
-              </div>
-            </div>
-
-            <div class="card-tags">
-              <span class="tech-tag">Línea Continua</span>
-              <span class="tech-tag">Caseros 1966</span>
-              <span class="tech-tag">CNC & ANMAT</span>
-              <span class="tech-tag">Workshops</span>
-            </div>
-          </div>
-
-          <div class="card-actions">
-            <a href="PROYECTOS/ARTÍSTICOS/Línea de tiempo/index.html" class="btn-action-primary" target="_blank">
-              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-              </svg>
-              <span>Abrir Línea de Tiempo</span>
-            </a>
-
-            <button class="btn-action-secondary" onclick="openPreviewModal('PROYECTOS/ARTÍSTICOS/Línea de tiempo/index.html', 'Línea de Tiempo Histórica — Villalba Hnos.')">
-              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-              </svg>
-              <span>Vista Rápida</span>
-            </button>
-          </div>
-        </article>
-
-        <!-- TARJETA: MAPA DE DISTRIBUIDORES -->
-        <article class="tech-card" data-category="artisticos" data-keywords="mapa distribuidores sucursales logistica argentina buenos aires cordoba santa fe mendoza tucuman chaco neuquen">
-          <div class="card-top-accent" style="background: linear-gradient(90deg, #0284c7, #38bdf8, #818cf8);"></div>
-          
-          <div class="card-content">
-            <div class="card-header-meta">
-              <span class="doc-pill">DOC: RED-LOG-01</span>
-              <span class="status-badge" style="background:rgba(56,189,248,0.12); color:var(--primary); border:1px solid rgba(56,189,248,0.3);">
-                RED NACIONAL
-              </span>
-            </div>
-
-            <div class="card-title-group">
-              <h3>Mapa de Distribuidores & Red Logística</h3>
-              <p class="card-family">
-                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                  <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                </svg>
-                Cobertura Integral en las 23 Provincias
-              </p>
-            </div>
-
-            <div class="card-preview-thumb">
-              <div class="thumb-blueprint-visual">
-                <div class="blueprint-row">
-                  <span class="label">Puntos Clave:</span>
-                  <span class="val">8 Nodos Logísticos Auditados</span>
-                </div>
-                <div class="blueprint-row">
-                  <span class="label">Visual:</span>
-                  <span class="val">Canal Alfa Puro & Badges Neón</span>
-                </div>
-                <div class="blueprint-row">
-                  <span class="label">Empaquetado:</span>
-                  <span class="val">Autocontenido listo para CMS</span>
-                </div>
-              </div>
-              <div class="thumb-icon-box" style="background:rgba(56,189,248,0.15); color:#38bdf8; border-color:#38bdf8;">
-                <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                  <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
-                </svg>
-              </div>
-            </div>
-
-            <div class="card-tags">
-              <span class="tech-tag">SVG Interactivo</span>
-              <span class="tech-tag">Alpha Puro</span>
-              <span class="tech-tag">Hover Cyber</span>
-              <span class="tech-tag">Embed Seguro</span>
-            </div>
-          </div>
-
-          <div class="card-actions">
-            <a href="PROYECTOS/ARTÍSTICOS/Mapa de Distribuidores/index.html" class="btn-action-primary" target="_blank">
-              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-              </svg>
-              <span>Abrir Mapa de Red</span>
-            </a>
-
-            <button class="btn-action-secondary" onclick="openPreviewModal('PROYECTOS/ARTÍSTICOS/Mapa de Distribuidores/index.html', 'Mapa de Distribuidores — Red Nacional Villalba')">
-              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-              </svg>
-              <span>Vista Rápida</span>
-            </button>
           </div>
         </article>
 
@@ -1211,48 +1047,19 @@
       applyTheme(isBlueprint ? 'light' : 'blueprint');
     });
 
-    // FILTRADO POR CATEGORÍA
-    let currentCategory = 'tecnicos';
-
-    function filterCategory(cat) {
-      currentCategory = cat;
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      
-      const secTecnicos = document.getElementById('section-tecnicos-wrapper');
-      const secArtisticos = document.getElementById('section-artisticos-wrapper');
-
-      if (cat === 'tecnicos') {
-        document.getElementById('tab-tecnicos').classList.add('active');
-        secTecnicos.style.display = 'block';
-        secArtisticos.style.display = 'none';
-      } else if (cat === 'artisticos') {
-        document.getElementById('tab-artisticos').classList.add('active');
-        secTecnicos.style.display = 'none';
-        secArtisticos.style.display = 'block';
-      } else {
-        document.getElementById('tab-todos').classList.add('active');
-        secTecnicos.style.display = 'block';
-        secArtisticos.style.display = 'block';
-      }
-
-      handleSearch();
-    }
-
-    // BÚSQUEDA EN TIEMPO REAL
+    // BÚSQUEDA EN TIEMPO REAL (HOJAS TÉCNICAS)
     function handleSearch() {
       const query = document.getElementById('searchInput').value.trim().toLowerCase();
       const allCards = document.querySelectorAll('.tech-card');
       let visibleCount = 0;
 
       allCards.forEach(card => {
-        const cardCategory = card.getAttribute('data-category');
         const keywords = card.getAttribute('data-keywords') || '';
         const cardText = card.textContent.toLowerCase() + ' ' + keywords;
 
-        const matchesCategory = (currentCategory === 'todos') || (currentCategory === cardCategory);
         const matchesQuery = query === '' || cardText.includes(query);
 
-        if (matchesCategory && matchesQuery) {
+        if (matchesQuery) {
           card.style.display = 'flex';
           visibleCount++;
         } else {
