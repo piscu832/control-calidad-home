@@ -25,3 +25,11 @@
    - Eslogan: *"Innovación, liderazgo y experiencia al servicio de la salud."*
    - Selector de modo: Modo Hoja Clara / Modo Blueprint Taller persistente en `localStorage`.
    - Buscador en tiempo real de cotas, tolerancias, materiales y códigos documentales.
+
+4. **Diseño y Adaptabilidad 100% Responsiva (Móviles y Tablets):**
+   - **Zero Horizontal Overflow:** `html, body { overflow-x: hidden; max-width: 100vw; width: 100%; }`.
+   - **Breakpoints calibrados:**
+     - `≤ 960px` (Tablets apaisadas): Grilla fluida y paddings adaptados.
+     - `≤ 768px` (Tablets verticales y phablets): Banner superior apilado, métricas en 3 columnas fluidas, controles al 100% de ancho.
+     - `≤ 640px` (Smartphones estándar): Encabezado vertical ergonómico, botones de acción táctiles de mínimo 44px de alto apilados verticalmente, buscador táctil amplio.
+     - `≤ 480px` (Smartphones compactos 360-412px): Tarjetas de previsualización técnica en columna y modal a pantalla completa adaptativa.
