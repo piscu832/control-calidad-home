@@ -61,8 +61,9 @@
 
 
 ## Decisiones de Despliegue y Adaptabilidad
-- **Publicación Online**: `https://github.com/piscu832/control-calidad-tallo-hip-lock.git` desplegado en GitHub Pages (`https://piscu832.github.io/control-calidad-tallo-hip-lock/`).
-- **Archivo Crítico**: Se incluye `.nojekyll` para bypass de Jekyll y asegurar despliegue estático sin errores 404.
+- **Portal Central HOME Publicado**: Repositorio `https://github.com/piscu832/control-calidad-tallo-hip-lock.git` desplegado en GitHub Pages ([https://piscu832.github.io/control-calidad-tallo-hip-lock/](https://piscu832.github.io/control-calidad-tallo-hip-lock/)).
+- **Estructura Integral de Despliegue**: El portal raíz actúa como índice general que centraliza el acceso tanto a proyectos **TÉCNICOS** (`PROYECTOS/TÉCNICOS/Hip-lock/index.html`) como **ARTÍSTICOS** (`PROYECTOS/ARTÍSTICOS/Línea de tiempo/` y `PROYECTOS/ARTÍSTICOS/Mapa de Distribuidores/`).
+- **Archivo Crítico**: Se incluye `.nojekyll` en la raíz para bypass de Jekyll y asegurar despliegue estático sin errores 404.
 - **Diseño Mobile-First**: Layout adaptable en móviles (1 columna vertical, sin scroll horizontal, balizas con `scrollIntoView` al tacto, barra superior en grilla táctil).
 
 ## Skills Registradas
