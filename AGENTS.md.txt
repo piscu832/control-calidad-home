@@ -1,0 +1,76 @@
+# REGLAS Y ESPECIFICACIONES GENERALES DEL AGENTE
+
+## 1. Reglas Fundamentales de Operación
+1. **Si te falta un dato, pregunta en lugar de inventar:**
+   - Ante especificaciones ausentes, formatos no definidos, marcas o tolerancias dudosas, consultar siempre al usuario antes de asumir o generar contenido arbitrario.
+2. **Apunta por tu cuenta todo lo que te convenga recordar:**
+   - Mantener actualizada la carpeta `MEMORIA/` con notas estructuradas, requerimientos confirmados por el usuario, decisiones de diseño tomadas y datos técnicos de cada proyecto.
+
+---
+
+## 2. Especificaciones Generales para Definir una Infografía
+
+Cada infografía técnica o divulgativa creada en este entorno debe estructurarse conforme a los siguientes estándares de diseño, metrología y desarrollo web:
+
+### A. Estructura y Distribución de Secciones
+1. **Encabezado Institucional y Metadatos de Trazabilidad:**
+   - **Logotipo y Empresa Obligatorios:** Usar **SIEMPRE** la imagen oficial del logotipo (`logo_villalba.png`, respaldada en `CONTEXTO/logo_villalba.png`). La empresa se llama **SIEMPRE** `VILLALBA HNOS. IMPLANTES S.A.` en el cuadrante superior izquierdo, acompañada debajo por el eslogan: *"Innovación, liderazgo y experiencia al servicio de la salud."*.
+   - Código de documento normativo, versión/revisión y estado de auditoría (ej. `QC-HL-08 REV. 04 / 2026`).
+   - Título principal en mayúsculas destacado a color y subtítulo con la especificación técnica/materiales.
+   - Grilla editable de trazabilidad: Pieza/Lote, Fecha de inspección, Inspector responsable, Orden de compra, Remito/Despacho.
+2. **Introducción y Fundamento Técnico:**
+   - Tarjeta destacada con el concepto clave: qué es la pieza/procedimiento, objetivos de control y relevancia biomecánica o funcional.
+3. **Cuerpo Visual Central / Diagrama Anatómico o Blueprint:**
+   - Gráfico vectorial SVG de alta definición con múltiples vistas (ej. Frontal A-P y Lateral Perfil).
+   - Fondo técnico milimetrado o retícula con ejes de simetría.
+   - Llamadas visuales numeradas (balizas circulares con flechas guía) conectadas exactamente a cada cota o punto de interés.
+   - Bloque lateral con las directivas ineludibles y reglas de oro del taller.
+4. **Matriz Detallada de Puntos de Control:**
+   - Tarjetas individuales para cada punto numerado en grilla equilibrada.
+   - Contenido estándar por tarjeta:
+     - Número identificador y nombre técnico del punto.
+     - Ubicación o zona anatómica.
+     - *¿Qué se mide?*: parámetros geométricos, cotas y tolerancias explícitas (ej. ángulos, diámetros, profundidades).
+     - *Instrumental necesario*: herramientas metrológicas específicas con su precisión requerida (calibres digitales, micrómetros, bloques patrón, plantillas, V-block, comparadores).
+     - *Criterios de alerta o rechazo*: límites dimensionales críticos y directivas de acción (ej. qué hacer ante holgura, derivación a ingeniería vs. rechazo directo por excentricidad).
+     - Checkbox de verificación para seguimiento operativo.
+5. **Secuencia Estandarizada de Control (Workflow):**
+   - Flujo lineal o cronológico de paso de pieza con números de etapa y flechas indicadoras para optimizar tiempos de inspección.
+6. **Verificación Visual Final y Aprobación:**
+   - Checklist de verificación visual al 100% de la pieza (rebabas, rayones, acabado superficial, falta de llenado, óxido o contaminación).
+   - Sellos de dictamen final (*Conforme* / *No Conforme*).
+   - Bloque de observaciones técnicas.
+   - Campos formales interactivos y editables (`contenteditable="true"`) para *Firma y Matrícula del Inspector* y *Fecha/Hora Registrada*, con placeholder de ayuda, efectos visuales de edición y guardado automático.
+7. **Pie de Página Normativo:**
+   - Normas internacionales aplicables (ISO 13485, ASTM F136 u otras según la industria).
+   - Datos de contacto, web o leyenda de confidencialidad y control interno.
+
+---
+
+### B. Estándares Técnicos y Tecnológicos (Web & Print)
+- **Tecnologías Base:** HTML5 semántico + CSS3 Vanilla (sin frameworks innecesarios) + JavaScript modular y ligero.
+- **Doble Entorno (Pantalla e Impresión):**
+  - **Entorno Pantalla (Interactivo):**
+    - Sincronización hover/click bidireccional entre las llamadas del SVG y las tarjetas de la matriz.
+    - Selector de modo visual: Modo Hoja Técnica Clara (Print) y Modo Taller / Blueprint nocturno de alto contraste.
+    - Persistencia en `localStorage` de marcas de verificación, dictamen final, notas y firma/matrícula del inspector para evitar pérdidas de datos en planta.
+  - **Entorno Impresión / Exportación PDF (`@media print`):**
+    - Configurado para formato A4 vertical (`size: A4 portrait; margin: 8mm;`).
+    - Eliminación de barras de herramientas (`.no-print`).
+    - Protección contra cortes de página indebidos en tarjetas (`page-break-inside: avoid;`).
+    - Forzado de colores y fondos nítidos en impresión (`print-color-adjust: exact;`).
+
+---
+
+### C. Sistema de Diseño, Paleta y Tipografía
+- **Paleta de Colores Metrológica:**
+  - *Fondo hoja:* Blanco puro `#ffffff` (o azul noche profundo `#0b1727` en modo blueprint).
+  - *Color Primario Técnico:* Azul cian / celeste de precisión (`#0284c7` / `#38bdf8`).
+  - *Texto y estructura:* Carbón oscuro `#1e293b` y pizarra `#64748b`.
+  - *Alertas y Precauciones:* Amarillo / Ámbar técnico (`#d97706`).
+  - *Rechazos y No Conformidades:* Carmesí de alta visibilidad (`#dc2626`).
+  - *Conformidad y Aprobación:* Verde esmeralda (`#16a34a`).
+- **Tipografía:**
+  - *Títulos y códigos de sección:* Fuente industrial geométrica (ej. `Chakra Petch`).
+  - *Cuerpo de texto y listas:* Sans-serif legible y limpia (ej. `Inter`).
+  - *Cotas, tolerancias y metadatos:* Fuente monospace de precisión (ej. `JetBrains Mono`).

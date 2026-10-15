@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Línea de Tiempo Histórica & Procesos — VILLALBA HNOS. IMPLANTES S.A.</title>
+  
+  <!-- Tipografías: Inter (300 a 900 Black) & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Hoja de Estilos Modular Separada -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-light">
+
+  <!-- PÁGINA PRINCIPAL FORMATO A4 LANDSCAPE / WEB -->
+  <main class="page-sheet">
+
+    <!-- BANNER DE TÍTULO PRINCIPAL Y CONCEPTO CLAVE -->
+    <section class="infographic-intro">
+      <div class="intro-titles">
+        <h2 class="main-timeline-title">LÍNEA DE TIEMPO: TRAYECTORIA, INNOVACIÓN & PROCESO</h2>
+        <p class="intro-desc">
+          Más de seis décadas dedicadas a la fabricación y desarrollo de soluciones de alta complejidad en cirugía ortopédica, 
+          artroplastia e implantes traumatológicos con ingeniería de precisión y logística federal.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTENEDOR MAESTRO DE LA LÍNEA DE TIEMPO HORIZONTAL -->
+    <section class="timeline-master-container" id="timelineSection">
+
+      <!-- FILA SUPERIOR: HITOS IMPARES (1, 3, 5) -->
+      <div class="timeline-row timeline-row-top">
+        
+        <!-- HITO 1 (Top Left) -->
+        <article class="timeline-card step-1 is-active" data-step="1" id="cardStep1">
+          <div class="card-header">
+            <span class="card-phase-badge badge-step-1">HITO 01</span>
+            <span class="card-year-tag">1966</span>
+          </div>
+          <h3 class="card-title title-step-1">FUNDACIÓN & ORIGEN</h3>
+          <p class="card-desc">
+            Inicia la elaboración de productos marca Villalba por sus fundadores <strong>Arnaldo y Norberto Villalba</strong> en Caseros, sentando las bases de una compañía pionera en tecnología médica y vocación de servicio.
+          </p>
+          <div class="card-footer-meta">
+            <span class="meta-item">📍 Caseros, Bs. As.</span>
+            <span class="meta-item">🛠️ Origen Industrial</span>
+          </div>
+        </article>
+
+        <!-- ESPACIADOR SUPERIOR PARA NODO 2 -->
+        <div class="timeline-spacer" aria-hidden="true"></div>
+
+        <!-- HITO 3 (Top Center) -->
+        <article class="timeline-card step-3" data-step="3" id="cardStep3">
+          <div class="card-header">
+            <span class="card-phase-badge badge-step-3">HITO 03</span>
+            <span class="card-year-tag">2002</span>
+          </div>
+          <h3 class="card-title title-step-3">TECNOLOGÍA CNC & ISO</h3>
+          <p class="card-desc">
+            Modernización con mecanizado multieje computarizado, rigurosos estándares <strong>ANMAT / ISO 13485</strong> y adopción de biomateriales de alta pureza (Titanio Grado 5 y Acero 316L) con tolerancias micrométricas.
+          </p>
+          <div class="card-footer-meta">
+            <span class="meta-item">⚙️ Centros CNC</span>
+            <span class="meta-item">🔬 Biomateriales ASTM</span>
+          </div>
+        </article>
+
+        <!-- ESPACIADOR SUPERIOR PARA NODO 4 -->
+        <div class="timeline-spacer" aria-hidden="true"></div>
+
+        <!-- HITO 5 (Top Right) -->
+        <article class="timeline-card step-5" data-step="5" id="cardStep5">
+          <div class="card-header">
+            <span class="card-phase-badge badge-step-5">HITO 05</span>
+            <span class="card-year-tag">ACTUALIDAD</span>
+          </div>
+          <h3 class="card-title title-step-5">VANGUARDIA & WORKSHOPS</h3>
+          <p class="card-desc">
+            Capacitación continua de esterilización y limpieza de productos médicos, workshops en hospitales (ej. Htal. Mercante) y asistencia quirúrgica directa con instrumental de alta complejidad en todo el país.
+          </p>
+          <div class="card-footer-meta">
+            <span class="meta-item">🏥 Workshops Quirúrgicos</span>
+            <span class="meta-item">🌐 Liderazgo Federal</span>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- PISTA HORIZONTAL CONTINUA EN DEGRADÉ (THE RIBBON BAR) -->
+      <div class="timeline-ribbon-bar" id="ribbonBar">
+
+        <!-- NODO 1: 1966 -->
+        <div class="ribbon-node step-1 is-active" data-step="1" role="button" aria-label="Año 1966: Fundación">
+          <div class="node-arrow arrow-up" aria-hidden="true"></div>
+          <span class="node-year">1966</span>
+        </div>
+
+        <div class="node-separator" aria-hidden="true"></div>
+
+        <!-- NODO 2: 1985 -->
+        <div class="ribbon-node step-2" data-step="2" role="button" aria-label="Año 1985: Especialización Traumatológica">
+          <div class="node-arrow arrow-down" aria-hidden="true"></div>
+          <span class="node-year">1985</span>
+        </div>
+
+        <div class="node-separator" aria-hidden="true"></div>
+
+        <!-- NODO 3: 2002 -->
+        <div class="ribbon-node step-3" data-step="3" role="button" aria-label="Año 2002: Salto Tecnológico CNC">
+          <div class="node-arrow arrow-up" aria-hidden="true"></div>
+          <span class="node-year">2002</span>
+        </div>
+
+        <div class="node-separator" aria-hidden="true"></div>
+
+        <!-- NODO 4: 2015 -->
+        <div class="ribbon-node step-4" data-step="4" role="button" aria-label="Año 2015: Línea ANV II y Logística">
+          <div class="node-arrow arrow-down" aria-hidden="true"></div>
+          <span class="node-year">2015</span>
+        </div>
+
+        <div class="node-separator" aria-hidden="true"></div>
+
+        <!-- NODO 5: ACTUALIDAD -->
+        <div class="ribbon-node step-5" data-step="5" role="button" aria-label="Actualidad: Vanguardia y Workshops">
+          <div class="node-arrow arrow-up" aria-hidden="true"></div>
+          <span class="node-year">2026</span>
+        </div>
+
+      </div>
+
+      <!-- FILA INFERIOR: HITOS PARES (2, 4) -->
+      <div class="timeline-row timeline-row-bottom">
+
+        <!-- ESPACIADOR INFERIOR PARA NODO 1 -->
+        <div class="timeline-spacer" aria-hidden="true"></div>
+
+        <!-- HITO 2 (Bottom Mid-Left) -->
+        <article class="timeline-card step-2" data-step="2" id="cardStep2">
+          <div class="card-header">
+            <span class="card-phase-badge badge-step-2">HITO 02</span>
+            <span class="card-year-tag">1985</span>
+          </div>
+          <h3 class="card-title title-step-2">ESPECIALIZACIÓN & OSTEOSÍNTESIS</h3>
+          <p class="card-desc">
+            Expansión de líneas traumatológicas: diseño de prótesis femorales de cadera, clavos endomedulares, placas y tornillos corticales, consolidando la reputación quirúrgica ante la comunidad médica nacional.
+          </p>
+          <div class="card-footer-meta">
+            <span class="meta-item">🦴 Cadera y Fémur</span>
+            <span class="meta-item">📐 Clavos y Placas</span>
+          </div>
+        </article>
+
+        <!-- ESPACIADOR INFERIOR PARA NODO 3 -->
+        <div class="timeline-spacer" aria-hidden="true"></div>
+
+        <!-- HITO 4 (Bottom Mid-Right) -->
+        <article class="timeline-card step-4" data-step="4" id="cardStep4">
+          <div class="card-header">
+            <span class="card-phase-badge badge-step-4">HITO 04</span>
+            <span class="card-year-tag">2015</span>
+          </div>
+          <h3 class="card-title title-step-4">RODILLA ANV II & RED NACIONAL</h3>
+          <p class="card-desc">
+            Lanzamiento del sistema multicorte <strong>Rodilla ANV II</strong> y vástago <strong>Hip-Lock</strong>. Apertura de sucursales directas en Mar del Plata, Bahía Blanca, La Plata y Rosario para abastecimiento ágil.
+          </p>
+          <div class="card-footer-meta">
+            <span class="meta-item">🦾 Rodilla ANV II</span>
+            <span class="meta-item">🚚 Red de 4 Sucursales</span>
+          </div>
+        </article>
+
+        <!-- ESPACIADOR INFERIOR PARA NODO 5 -->
+        <div class="timeline-spacer" aria-hidden="true"></div>
+
+      </div>
+
+    </section>
+
+    <!-- PANEL EXPANDIBLE / FICHA TÉCNICA DEL HITO SELECCIONADO -->
+    <section class="step-detail-panel" id="stepDetailPanel">
+      <div class="detail-header">
+        <div class="detail-badge-group">
+          <span class="detail-tag" id="detailTag">HITO 01 — ORIGEN HISTÓRICO</span>
+          <h3 class="detail-title" id="detailTitle">1966 — Fundación por Arnaldo y Norberto Villalba</h3>
+        </div>
+        <div class="detail-meta-pill" id="detailPill">Pilar Familiar & Industrial</div>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4 class="detail-subhead">🎯 Hito Estratégico</h4>
+          <p id="detailObjective" class="detail-text">
+            Fundación por Arnaldo y Norberto Villalba en Caseros con foco en instrumental quirúrgico y osteosíntesis de precisión.
+          </p>
+        </div>
+        <div class="detail-box">
+          <h4 class="detail-subhead">📦 Productos & Desarrollo</h4>
+          <p id="detailProducts" class="detail-text">
+            Instrumental quirúrgico especializado, fresas para traumatología y fijaciones óseas tempranas de alta resistencia mecánica.
+          </p>
+        </div>
+        <div class="detail-box">
+          <h4 class="detail-subhead">🔬 Estándar de Calidad</h4>
+          <p id="detailQuality" class="detail-text">
+            Control dimensional al 100%, ajuste micrométrico manual y ensayos funcionales con cirujanos ortopédicos pioneros.
+          </p>
+        </div>
+        <div class="detail-box">
+          <h4 class="detail-subhead">📍 Red & Logística</h4>
+          <p id="detailLogistics" class="detail-text">
+            Planta Matriz en Caseros con abastecimiento inicial a hospitales metropolitanos y clínicas ortopédicas especializadas.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lógica JavaScript Modular Separada -->
+  <script src="app.js"></script>
+</body>
+</html>

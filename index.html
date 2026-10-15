@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Control Técnico y Metrología | VILLALBA HNOS. IMPLANTES S.A.</title>
+  <meta name="description" content="Portal central de infografías técnicas, blueprints metrológicos y hojas de control de calidad de planta.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* VARIABLES DE SISTEMA Y TEMAS */
+    :root {
+      --bg-base: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #f1f5f9;
+      --bg-panel: rgba(255, 255, 255, 0.85);
+      --border-color: #e2e8f0;
+      --border-highlight: #0284c7;
+      
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-sub: #334155;
+      
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-glow: rgba(2, 132, 199, 0.15);
+      --primary-light: #e0f2fe;
+      
+      --accent-tech: #0ea5e9;
+      --accent-success: #10b981;
+      --accent-warning: #f59e0b;
+      --accent-danger: #ef4444;
+      
+      --font-display: 'Chakra Petch', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 4px 16px -2px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 12px 30px -4px rgba(15, 23, 42, 0.12);
+      --grid-pattern: rgba(2, 132, 199, 0.04);
+    }
+
+    body.theme-blueprint {
+      --bg-base: #060d17;
+      --bg-surface: #0b1727;
+      --bg-surface-elevated: #112238;
+      --bg-panel: rgba(11, 23, 39, 0.9);
+      --border-color: #1a314d;
+      --border-highlight: #38bdf8;
+      
+      --text-main: #f8fafc;
+      --text-muted: #8ca3ba;
+      --text-sub: #cbd5e1;
+      
+      --primary: #38bdf8;
+      --primary-hover: #7dd3fc;
+      --primary-glow: rgba(56, 189, 248, 0.2);
+      --primary-light: rgba(56, 189, 248, 0.12);
+      
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 4px 20px -2px rgba(0, 0, 0, 0.6);
+      --shadow-lg: 0 12px 35px -4px rgba(0, 0, 0, 0.8);
+      --grid-pattern: rgba(56, 189, 248, 0.06);
+    }
+
+    /* RESET SEGURO Y BASE */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: 
+        linear-gradient(var(--grid-pattern) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-pattern) 1px, transparent 1px);
+      background-size: 24px 24px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      line-height: 1.5;
+    }
+
+    /* ENCABEZADO INSTITUCIONAL */
+    .portal-header {
+      background: var(--bg-panel);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0.85rem 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .brand-logo-img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    .brand-titles {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .company-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .company-slogan {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .sys-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.75rem;
+      background: var(--primary-light);
+      border: 1px solid var(--border-highlight);
+      border-radius: 9999px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-success);
+      box-shadow: 0 0 8px var(--accent-success);
+      animation: pulseAnim 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseAnim {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .btn-toggle-theme {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.9rem;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-toggle-theme:hover {
+      border-color: var(--border-highlight);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    /* CONTENIDO PRINCIPAL */
+    .portal-main {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2.25rem 1.75rem 3.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* HERO BANNER DE CONTROL METROLÓGICO */
+    .hero-banner {
+      background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-surface-elevated) 100%);
+      border: 1px solid var(--border-color);
+      border-left: 5px solid var(--primary);
+      border-radius: var(--radius-lg);
+      padding: 1.85rem 2.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.75rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::after {
+      content: "";
+      position: absolute;
+      right: -50px;
+      bottom: -50px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-text {
+      max-width: 720px;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 1.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .hero-metrics {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .metric-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 0.9rem 1.3rem;
+      text-align: center;
+      min-width: 130px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .metric-val {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+
+    .metric-lbl {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      margin-top: 0.25rem;
+    }
+
+    /* BARRA DE HERRAMIENTAS, FILTROS Y BÚSQUEDA */
+    .controls-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .category-tabs {
+      display: flex;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 0.25rem;
+      gap: 0.25rem;
+    }
+
+    .tab-btn {
+      padding: 0.55rem 1.25rem;
+      border: none;
+      background: transparent;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 8px var(--primary-glow);
+    }
+
+    .tab-btn:hover:not(.active) {
+      color: var(--text-main);
+      background: var(--bg-surface-elevated);
+    }
+
+    .tab-count {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 9999px;
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    .tab-btn.active .tab-count {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .search-box {
+      position: relative;
+      min-width: 320px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.6rem 1rem 0.6rem 2.5rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--border-highlight);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* SECCIÓN DE GRILLA DE INFOGRAFÍAS */
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 4px;
+      height: 1.1em;
+      background: var(--primary);
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    .section-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 1.75rem;
+    }
+
+    @media (max-width: 640px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .search-box {
+        min-width: 100%;
+      }
+    }
+
+    /* TARJETA TÉCNICA PRINCIPAL (HIP-LOCK) */
+    .tech-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      position: relative;
+    }
+
+    .tech-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-highlight);
+    }
+
+    .card-top-accent {
+      height: 4px;
+      background: linear-gradient(90deg, #0284c7, #38bdf8, #0ea5e9);
+    }
+
+    .card-content {
+      padding: 1.6rem 1.6rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 1.1rem;
+    }
+
+    .card-header-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .doc-pill {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid var(--border-highlight);
+      border-radius: 4px;
+    }
+
+    .status-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .status-active {
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--accent-success);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .card-title-group h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.3;
+      margin-bottom: 0.35rem;
+    }
+
+    .card-family {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .card-preview-thumb {
+      background: var(--bg-surface-elevated);
+      border: 1px dashed var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .thumb-blueprint-visual {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .blueprint-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-sub);
+    }
+
+    .blueprint-row span.label {
+      color: var(--text-muted);
+    }
+
+    .blueprint-row span.val {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .thumb-icon-box {
+      width: 58px;
+      height: 58px;
+      border-radius: var(--radius-md);
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid var(--border-highlight);
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .tech-tag {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+    }
+
+    .card-actions {
+      border-top: 1px solid var(--border-color);
+      padding: 1.1rem 1.6rem;
+      background: var(--bg-surface-elevated);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-action-primary {
+      flex: 1;
+      min-width: 170px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.65rem 1.25rem;
+      background: var(--primary);
+      color: #ffffff;
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px var(--primary-glow);
+    }
+
+    .btn-action-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+
+    .btn-action-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.65rem 0.95rem;
+      background: var(--bg-surface);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-action-secondary:hover {
+      border-color: var(--border-highlight);
+      color: var(--primary);
+      background: var(--bg-surface-elevated);
+    }
+
+    /* MODAL DE PREVISUALIZACIÓN EMBEBIDA */
+    .preview-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .preview-modal.open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-dialog {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 1280px;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      padding: 0.9rem 1.4rem;
+      background: var(--bg-surface-elevated);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .modal-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .modal-btn-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.35rem;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .modal-btn-close:hover {
+      color: var(--text-main);
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    .modal-body {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-base);
+    }
+
+    .modal-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* FOOTER INSTITUCIONAL */
+    .portal-footer {
+      background: var(--bg-panel);
+      border-top: 1px solid var(--border-color);
+      padding: 2rem 1.75rem;
+      margin-top: auto;
+    }
+
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .footer-norms {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+    }
+
+    .footer-norms span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+  </style>
+</head>
+<body class="theme-light">
+
+  <!-- ENCABEZADO INSTITUCIONAL OBLIGATORIO -->
+  <header class="portal-header">
+    <div class="header-inner">
+      <div class="brand-section">
+        <img src="logo_villalba.png" alt="Logo Villalba Hnos. Implantes S.A." class="brand-logo-img">
+        <div class="brand-titles">
+          <span class="company-title">VILLALBA HNOS. IMPLANTES S.A.</span>
+          <span class="company-slogan">Innovación, liderazgo y experiencia al servicio de la salud.</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="sys-badge">
+          <span class="pulse-dot"></span>
+          <span>METROLOGÍA V.04</span>
+        </div>
+        <button id="themeToggleBtn" class="btn-toggle-theme" title="Alternar entre Modo Hoja Técnica y Modo Blueprint / Taller">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+          <span id="themeToggleText">Modo Blueprint</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO DEL PORTAL -->
+  <main class="portal-main">
+    
+    <!-- BANNER DE BIENVENIDA Y RESUMEN TÉCNICO -->
+    <section class="hero-banner">
+      <div class="hero-text">
+        <div class="hero-tagline">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+          </svg>
+          SISTEMA DE GESTIÓN Y HOJAS DE CONTROL METROLÓGICO
+        </div>
+        <h1 class="hero-title">Centro de Infografías Técnicas & Hojas de Calidad</h1>
+        <p class="hero-desc">
+          Acceso centralizado a los protocolos metrológicos, planos técnicos, puntos críticos de control de piezas quirúrgicas forjadas y mecanizadas bajo normas ISO 13485 y registros ANMAT.
+        </p>
+      </div>
+
+      <div class="hero-metrics">
+        <div class="metric-card">
+          <div class="metric-val" id="metric-docs">1</div>
+          <div class="metric-lbl">Hojas Técnicas</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">9</div>
+          <div class="metric-lbl">Puntos Críticos</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">100%</div>
+          <div class="metric-lbl">A4 / Digital</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BARRA DE CATEGORÍAS Y BÚSQUEDA -->
+    <div class="controls-strip">
+      <div class="category-tabs">
+        <button class="tab-btn active" id="tab-tecnicos" onclick="filterCategory('tecnicos')">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+            <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+          <span>TÉCNICOS</span>
+          <span class="tab-count">1</span>
+        </button>
+        <button class="tab-btn" id="tab-artisticos" onclick="filterCategory('artisticos')">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <span>ARTÍSTICOS</span>
+          <span class="tab-count">2</span>
+        </button>
+        <button class="tab-btn" id="tab-todos" onclick="filterCategory('todos')">
+          <span>TODOS</span>
+          <span class="tab-count">3</span>
+        </button>
+      </div>
+
+      <div class="search-box">
+        <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        <input type="text" id="searchInput" class="search-input" placeholder="Buscar por código, pieza, material..." oninput="handleSearch()">
+      </div>
+    </div>
+
+    <!-- SECCIÓN DE INFOGRAFÍAS TÉCNICAS -->
+    <section id="section-tecnicos-wrapper">
+      <div class="section-header">
+        <h2 class="section-title">Hojas de Control Técnico y Metrología (PROYECTOS / TÉCNICOS)</h2>
+        <span class="section-subtitle">Normativa de Taller & Aseguramiento de Calidad</span>
+      </div>
+
+      <div class="cards-grid" id="cardsGridTecnicos">
+        
+        <!-- TARJETA: TALLO HIP-LOCK -->
+        <article class="tech-card" data-category="tecnicos" data-keywords="hip-lock tallo cadera cono 12/14 qc-hl-08 titanio acero metrologia forjado mecanizado">
+          <div class="card-top-accent"></div>
+          
+          <div class="card-content">
+            <div class="card-header-meta">
+              <span class="doc-pill">DOC: QC-HL-08 | REV. 04</span>
+              <span class="status-badge status-active">
+                <span class="pulse-dot" style="width:6px;height:6px;"></span>
+                HOMOLOGADO
+              </span>
+            </div>
+
+            <div class="card-title-group">
+              <h3>Tallo Hip-Lock Semielaborados</h3>
+              <p class="card-family">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path>
+                </svg>
+                Artroplastia de Cadera / Implantes Femorales
+              </p>
+            </div>
+
+            <!-- VISTA RÁPIDA / BLUEPRINT METROLÓGICO -->
+            <div class="card-preview-thumb">
+              <div class="thumb-blueprint-visual">
+                <div class="blueprint-row">
+                  <span class="label">Puntos de control:</span>
+                  <span class="val">9 cotas críticas</span>
+                </div>
+                <div class="blueprint-row">
+                  <span class="label">Cono proximal:</span>
+                  <span class="val">12/14 Ápice estriado</span>
+                </div>
+                <div class="blueprint-row">
+                  <span class="label">Tolerancia runout:</span>
+                  <span class="val">≤ 0.20 mm</span>
+                </div>
+                <div class="blueprint-row">
+                  <span class="label">Materiales:</span>
+                  <span class="val">Titanio / Acero 316L</span>
+                </div>
+              </div>
+              <div class="thumb-icon-box" title="Hoja Metrológica">
+                <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- TAGS TÉCNICOS -->
+            <div class="card-tags">
+              <span class="tech-tag">ISO 13485</span>
+              <span class="tech-tag">ASTM F136</span>
+              <span class="tech-tag">Calibres Digitales</span>
+              <span class="tech-tag">Plantilla de Forma</span>
+              <span class="tech-tag">Doble Entorno A4/Web</span>
+            </div>
+          </div>
+
+          <!-- ACCIONES DE ACCESO -->
+          <div class="card-actions">
+            <a href="PROYECTOS/TÉCNICOS/Hip-lock/index.html" class="btn-action-primary" target="_blank" title="Abrir la infografía técnica interactiva completa">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              </svg>
+              <span>Abrir Hoja Técnica</span>
+            </a>
+
+            <button class="btn-action-secondary" onclick="openPreviewModal('PROYECTOS/TÉCNICOS/Hip-lock/index.html', 'Tallo Hip-Lock — Hoja de Control de Calidad')" title="Previsualizar aquí mismo">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+              <span>Vista Rápida</span>
+            </button>
+
+            <a href="PROYECTOS/TÉCNICOS/Hip-lock/Verificacion_Hip_Lock_Puntos.pdf" class="btn-action-secondary" target="_blank" title="Ver archivo PDF original de verificación de puntos">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+              </svg>
+              <span>PDF Original</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN DE INFOGRAFÍAS ARTÍSTICAS (ACCESIBLE MEDIANTE TABS) -->
+    <section id="section-artisticos-wrapper" style="display: none;">
+      <div class="section-header">
+        <h2 class="section-title">Infografías Institucionales y Divulgativas (PROYECTOS / ARTÍSTICOS)</h2>
+        <span class="section-subtitle">Líneas de Tiempo & Red Nacional de Distribución</span>
+      </div>
+
+      <div class="cards-grid" id="cardsGridArtisticos">
+        
+        <!-- TARJETA: LÍNEA DE TIEMPO -->
+        <article class="tech-card" data-category="artisticos" data-keywords="linea de tiempo historia villalba 1966 fundacion fases hitos sucursales mar del plata bahia blanca la plata rosario">
+          <div class="card-top-accent" style="background: linear-gradient(90deg, #5ea88d, #45c4c0, #4ea6dc, #598de6, #8485db);"></div>
+          
+          <div class="card-content">
+            <div class="card-header-meta">
+              <span class="doc-pill">DOC: HIST-VLL-01</span>
+              <span class="status-badge" style="background:rgba(56,189,248,0.12); color:var(--primary); border:1px solid rgba(56,189,248,0.3);">
+                INSTITUCIONAL
+              </span>
+            </div>
+
+            <div class="card-title-group">
+              <h3>Línea de Tiempo Histórica & Procesos</h3>
+              <p class="card-family">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                60 Años de Trayectoria (1966 — Actualidad)
+              </p>
+            </div>
+
+            <div class="card-preview-thumb">
+              <div class="thumb-blueprint-visual">
+                <div class="blueprint-row">
+                  <span class="label">Estructura:</span>
+                  <span class="val">5 Fases en Degradé Continuo</span>
+                </div>
+                <div class="blueprint-row">
+                  <span class="label">Interactividad:</span>
+                  <span class="val">Hover dinámico & Panel lateral</span>
+                </div>
+                <div class="blueprint-row">
+                  <span class="label">Soporte:</span>
+                  <span class="val">Web, WordPress & Print A4</span>
+                </div>
+              </div>
+              <div class="thumb-icon-box" style="background:rgba(94,168,141,0.15); color:#5ea88d; border-color:#5ea88d;">
+                <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+            </div>
+
+            <div class="card-tags">
+              <span class="tech-tag">Línea Continua</span>
+              <span class="tech-tag">Caseros 1966</span>
+              <span class="tech-tag">CNC & ANMAT</span>
+              <span class="tech-tag">Workshops</span>
+            </div>
+          </div>
+
+          <div class="card-actions">
+            <a href="PROYECTOS/ARTÍSTICOS/Línea de tiempo/index.html" class="btn-action-primary" target="_blank">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              </svg>
+              <span>Abrir Línea de Tiempo</span>
+            </a>
+
+            <button class="btn-action-secondary" onclick="openPreviewModal('PROYECTOS/ARTÍSTICOS/Línea de tiempo/index.html', 'Línea de Tiempo Histórica — Villalba Hnos.')">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+              <span>Vista Rápida</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- TARJETA: MAPA DE DISTRIBUIDORES -->
+        <article class="tech-card" data-category="artisticos" data-keywords="mapa distribuidores sucursales logistica argentina buenos aires cordoba santa fe mendoza tucuman chaco neuquen">
+          <div class="card-top-accent" style="background: linear-gradient(90deg, #0284c7, #38bdf8, #818cf8);"></div>
+          
+          <div class="card-content">
+            <div class="card-header-meta">
+              <span class="doc-pill">DOC: RED-LOG-01</span>
+              <span class="status-badge" style="background:rgba(56,189,248,0.12); color:var(--primary); border:1px solid rgba(56,189,248,0.3);">
+                RED NACIONAL
+              </span>
+            </div>
+
+            <div class="card-title-group">
+              <h3>Mapa de Distribuidores & Red Logística</h3>
+              <p class="card-family">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                Cobertura Integral en las 23 Provincias
+              </p>
+            </div>
+
+            <div class="card-preview-thumb">
+              <div class="thumb-blueprint-visual">
+                <div class="blueprint-row">
+                  <span class="label">Puntos Clave:</span>
+                  <span class="val">8 Nodos Logísticos Auditados</span>
+                </div>
+                <div class="blueprint-row">
+                  <span class="label">Visual:</span>
+                  <span class="val">Canal Alfa Puro & Badges Neón</span>
+                </div>
+                <div class="blueprint-row">
+                  <span class="label">Empaquetado:</span>
+                  <span class="val">Autocontenido listo para CMS</span>
+                </div>
+              </div>
+              <div class="thumb-icon-box" style="background:rgba(56,189,248,0.15); color:#38bdf8; border-color:#38bdf8;">
+                <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                </svg>
+              </div>
+            </div>
+
+            <div class="card-tags">
+              <span class="tech-tag">SVG Interactivo</span>
+              <span class="tech-tag">Alpha Puro</span>
+              <span class="tech-tag">Hover Cyber</span>
+              <span class="tech-tag">Embed Seguro</span>
+            </div>
+          </div>
+
+          <div class="card-actions">
+            <a href="PROYECTOS/ARTÍSTICOS/Mapa de Distribuidores/index.html" class="btn-action-primary" target="_blank">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              </svg>
+              <span>Abrir Mapa de Red</span>
+            </a>
+
+            <button class="btn-action-secondary" onclick="openPreviewModal('PROYECTOS/ARTÍSTICOS/Mapa de Distribuidores/index.html', 'Mapa de Distribuidores — Red Nacional Villalba')">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+              <span>Vista Rápida</span>
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- MENSAJE DE BÚSQUEDA SIN RESULTADOS -->
+    <div id="noResultsMsg" style="display: none; text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
+      <svg width="42" height="42" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="margin-bottom: 0.75rem; opacity: 0.6;">
+        <path d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <p style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 600;">No se encontraron infografías que coincidan con la búsqueda.</p>
+      <p style="font-size: 0.85rem; margin-top: 0.25rem;">Intente con otros términos como "Hip-lock", "Titanio", "12/14" o "Calidad".</p>
+    </div>
+
+  </main>
+
+  <!-- MODAL DE PREVISUALIZACIÓN EMBEBIDA -->
+  <div class="preview-modal" id="previewModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title">
+          <svg width="18" height="18" fill="none" stroke="var(--primary)" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+          </svg>
+          <span id="modalDocTitle">Previsualización de Documento</span>
+        </div>
+        <div class="modal-header-actions">
+          <a id="modalExternalLink" href="#" target="_blank" class="btn-action-secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;">
+            <span>Abrir en nueva pestaña</span>
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+          </a>
+          <button class="modal-btn-close" onclick="closePreviewModal()" title="Cerrar modal">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <iframe id="previewIframe" class="modal-iframe" src="" title="Previsualización de infografía"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIE DE PÁGINA NORMATIVO -->
+  <footer class="portal-footer">
+    <div class="footer-inner">
+      <div>
+        <strong>VILLALBA HNOS. IMPLANTES S.A.</strong> — Departamento de Aseguramiento de Calidad y Metrología.
+        <br>
+        Planta Industrial: Fray Mamerto Esquiú 4548, Caseros, Prov. de Buenos Aires.
+      </div>
+      <div class="footer-norms">
+        <span>✓ ISO 13485:2016</span>
+        <span>✓ ANMAT DISP. 3266/13</span>
+        <span>✓ ASTM F136 / F138</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT DE INTERACTIVIDAD, TEMA Y FILTROS -->
+  <script>
+    // GESTIÓN DE TEMA
+    const body = document.body;
+    const themeBtn = document.getElementById('themeToggleBtn');
+    const themeText = document.getElementById('themeToggleText');
+
+    function applyTheme(theme) {
+      if (theme === 'blueprint') {
+        body.classList.remove('theme-light');
+        body.classList.add('theme-blueprint');
+        themeText.textContent = 'Modo Hoja Clara';
+      } else {
+        body.classList.remove('theme-blueprint');
+        body.classList.add('theme-light');
+        themeText.textContent = 'Modo Blueprint';
+      }
+      localStorage.setItem('vh_portal_theme', theme);
+    }
+
+    const savedTheme = localStorage.getItem('vh_portal_theme') || 'light';
+    applyTheme(savedTheme);
+
+    themeBtn.addEventListener('click', () => {
+      const isBlueprint = body.classList.contains('theme-blueprint');
+      applyTheme(isBlueprint ? 'light' : 'blueprint');
+    });
+
+    // FILTRADO POR CATEGORÍA
+    let currentCategory = 'tecnicos';
+
+    function filterCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      
+      const secTecnicos = document.getElementById('section-tecnicos-wrapper');
+      const secArtisticos = document.getElementById('section-artisticos-wrapper');
+
+      if (cat === 'tecnicos') {
+        document.getElementById('tab-tecnicos').classList.add('active');
+        secTecnicos.style.display = 'block';
+        secArtisticos.style.display = 'none';
+      } else if (cat === 'artisticos') {
+        document.getElementById('tab-artisticos').classList.add('active');
+        secTecnicos.style.display = 'none';
+        secArtisticos.style.display = 'block';
+      } else {
+        document.getElementById('tab-todos').classList.add('active');
+        secTecnicos.style.display = 'block';
+        secArtisticos.style.display = 'block';
+      }
+
+      handleSearch();
+    }
+
+    // BÚSQUEDA EN TIEMPO REAL
+    function handleSearch() {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const allCards = document.querySelectorAll('.tech-card');
+      let visibleCount = 0;
+
+      allCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        const keywords = card.getAttribute('data-keywords') || '';
+        const cardText = card.textContent.toLowerCase() + ' ' + keywords;
+
+        const matchesCategory = (currentCategory === 'todos') || (currentCategory === cardCategory);
+        const matchesQuery = query === '' || cardText.includes(query);
+
+        if (matchesCategory && matchesQuery) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      const noResults = document.getElementById('noResultsMsg');
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    // MODAL DE PREVISUALIZACIÓN EMBEBIDA
+    const modal = document.getElementById('previewModal');
+    const iframe = document.getElementById('previewIframe');
+    const modalTitle = document.getElementById('modalDocTitle');
+    const modalLink = document.getElementById('modalExternalLink');
+
+    function openPreviewModal(url, title) {
+      modalTitle.textContent = title;
+      modalLink.href = url;
+      iframe.src = url;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePreviewModal() {
+      modal.classList.remove('open');
+      iframe.src = '';
+      document.body.style.overflow = '';
+    }
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closePreviewModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) {
+        closePreviewModal();
+      }
+    });
+  </script>
+</body>
+</html>

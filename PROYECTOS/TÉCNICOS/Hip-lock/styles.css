@@ -1,0 +1,1568 @@
+/* ==========================================================================
+   INFOGRAFÍA TÉCNICA CONTROL DE CALIDAD - HIP LOCK
+   Estilos CSS Premium para Pantalla de Alta Resolución e Impresión A4
+   ========================================================================== */
+
+:root {
+  /* Paleta Base Técnica e Industrial */
+  --bg-app: #0b1120;
+  --bg-sheet: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  
+  /* Acentos de Precisión y Metrología */
+  --cyan-primary: #0284c7;
+  --cyan-bright: #38bdf8;
+  --cyan-soft: #e0f2fe;
+  --cyan-border: #bae6fd;
+  
+  --navy-dark: #0f172a;
+  --navy-slate: #1e293b;
+  --border-light: #e2e8f0;
+  --border-subtle: #cbd5e1;
+
+  /* Estados y Alertas */
+  --alert-amber: #d97706;
+  --alert-amber-bg: #fffbeb;
+  --alert-amber-border: #fcd34d;
+  
+  --reject-red: #dc2626;
+  --reject-red-bg: #fef2f2;
+  --reject-border: #fca5a5;
+
+  --success-green: #16a34a;
+  --success-green-bg: #f0fdf4;
+  --success-border: #86efac;
+
+  /* Tipografías */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-tech: 'Chakra Petch', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --shadow-sheet: 0 25px 50px -12px rgba(15, 23, 42, 0.35);
+  --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+/* Modo Blueprint / Taller Nocturno */
+body.theme-blueprint {
+  --bg-app: #030712;
+  --bg-sheet: #0b1727;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-light: #64748b;
+  
+  --cyan-primary: #38bdf8;
+  --cyan-bright: #7dd3fc;
+  --cyan-soft: #082f49;
+  --cyan-border: #0369a1;
+  
+  --navy-dark: #020617;
+  --navy-slate: #0f172a;
+  --border-light: #1e293b;
+  --border-subtle: #334155;
+
+  --alert-amber-bg: #451a03;
+  --alert-amber-border: #b45309;
+  
+  --reject-red-bg: #450a0a;
+  --reject-border: #b91c1c;
+
+  --success-green-bg: #052e16;
+  --success-border: #15803d;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 60px;
+  transition: background-color 0.3s ease;
+}
+
+/* ---------------- Barra Superior No Imprimible ---------------- */
+.top-toolbar {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  margin: 14px auto 18px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #f8fafc;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.toolbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge-tech {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: #0284c7;
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.system-title {
+  font-family: var(--font-tech);
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  color: #e2e8f0;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(2, 132, 199, 0.6);
+}
+
+/* ---------------- Contenedor de Lámina A4 / Folio ---------------- */
+.sheet-container {
+  width: 100%;
+  max-width: 1040px;
+  background-color: var(--bg-sheet);
+  box-shadow: var(--shadow-sheet);
+  border-radius: 8px;
+  padding: 32px 40px;
+  margin: 0 auto;
+  border: 1px solid var(--border-light);
+  position: relative;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ---------------- 1. Encabezado Técnico ---------------- */
+.sheet-header {
+  border-bottom: 2px solid var(--cyan-primary);
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.header-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.header-logo-area {
+  display: flex;
+  align-items: center;
+}
+
+.logo-mark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+}
+
+body.theme-blueprint .brand-img {
+  background: #ffffff;
+  padding: 3px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-company {
+  font-family: var(--font-tech);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text-main);
+}
+
+.logo-division {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--text-muted);
+  letter-spacing: 0.2px;
+}
+
+.header-doc-code {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.doc-badge, .doc-rev, .doc-status {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-subtle);
+  background: var(--cyan-soft);
+  color: var(--cyan-primary);
+  font-weight: 600;
+}
+
+.doc-status {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+body.theme-blueprint .doc-status {
+  background: #1e293b;
+  color: #cbd5e1;
+}
+
+.header-title-box {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.main-title {
+  font-family: var(--font-tech);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--cyan-primary);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.8px;
+}
+
+/* Grilla de Trazabilidad */
+.traceability-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  background: var(--cyan-soft);
+  border: 1px solid var(--cyan-border);
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+.trace-field label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--cyan-primary);
+  margin-bottom: 2px;
+  letter-spacing: 0.5px;
+}
+
+.trace-input {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.7);
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  outline: none;
+  min-height: 24px;
+}
+
+body.theme-blueprint .trace-input {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.trace-input:focus {
+  border-color: var(--cyan-primary);
+  background: #ffffff;
+}
+
+body.theme-blueprint .trace-input:focus {
+  background: #0f172a;
+}
+
+/* ---------------- 2. Introducción Técnica ---------------- */
+.sheet-intro {
+  margin-bottom: 20px;
+}
+
+.intro-alert-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(2, 132, 199, 0.05);
+  border-left: 4px solid var(--cyan-primary);
+  padding: 10px 16px;
+  border-radius: 0 6px 6px 0;
+}
+
+.intro-icon {
+  color: var(--cyan-primary);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.intro-content strong {
+  font-family: var(--font-tech);
+  font-size: 0.85rem;
+  letter-spacing: 0.8px;
+  color: var(--cyan-primary);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.intro-content p {
+  font-size: 0.78rem;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+/* ---------------- Barras de Sección ---------------- */
+.section-badge-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 6px;
+  margin-bottom: 14px;
+}
+
+.section-tag {
+  font-family: var(--font-tech);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--cyan-primary);
+  text-transform: uppercase;
+}
+
+.section-note {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+/* ---------------- 3. Diagrama Central (SVG) ---------------- */
+.sheet-diagram-section {
+  margin-bottom: 24px;
+}
+
+.diagram-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 16px;
+}
+
+.stem-blueprint-canvas {
+  background: #f8fafc;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+body.theme-blueprint .stem-blueprint-canvas {
+  background: #020617;
+  border-color: #1e293b;
+}
+
+.svg-stem-engineering {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.svg-label-title {
+  font-family: var(--font-tech);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  fill: var(--text-muted);
+}
+
+/* Llamadas del diagrama */
+.callout {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.callout:hover {
+  transform: scale(1.04);
+}
+
+.callout-circle {
+  fill: #0284c7;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+  transition: all 0.2s ease;
+}
+
+.callout:hover .callout-circle,
+.callout.active .callout-circle {
+  fill: #38bdf8;
+  stroke: #0f172a;
+  r: 16;
+}
+
+.callout-text {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  fill: #ffffff;
+  pointer-events: none;
+}
+
+.callout:hover .callout-text,
+.callout.active .callout-text {
+  fill: #0f172a;
+}
+
+.callout-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  fill: #0369a1;
+  letter-spacing: 0.3px;
+  paint-order: stroke fill;
+  stroke: #ffffff;
+  stroke-width: 3.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+body.theme-blueprint .callout-label {
+  fill: #38bdf8;
+  stroke: #0b1727;
+}
+
+
+/* Tarjeta de Directivas Ineludibles */
+.critical-rules-card {
+  background: var(--alert-amber-bg);
+  border: 1px solid var(--alert-amber-border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.rules-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-tech);
+  font-size: 0.88rem;
+  color: var(--alert-amber);
+  margin-bottom: 12px;
+  letter-spacing: 0.8px;
+}
+
+.rules-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rules-list li {
+  font-size: 0.74rem;
+  line-height: 1.4;
+  color: var(--text-main);
+  position: relative;
+  padding-left: 12px;
+}
+
+.rules-list li::before {
+  content: "■";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-size: 0.6rem;
+  color: var(--alert-amber);
+}
+
+.badge-alert {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  background: var(--alert-amber);
+  color: #ffffff;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-right: 4px;
+}
+
+/* ---------------- 4. Matriz de los 9 Puntos de Control ---------------- */
+.sheet-points-section {
+  margin-bottom: 24px;
+}
+
+.points-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.point-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 12px 14px;
+  box-shadow: var(--shadow-card);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+body.theme-blueprint .point-card {
+  background: #0f172a;
+}
+
+.point-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--cyan-primary);
+  opacity: 0.6;
+}
+
+.point-card:hover, .point-card.is-targeted {
+  transform: translateY(-2px);
+  border-color: var(--cyan-primary);
+  box-shadow: 0 8px 16px -2px rgba(2, 132, 199, 0.2);
+}
+
+.point-card.is-targeted::before {
+  opacity: 1;
+  background: #38bdf8;
+  width: 6px;
+}
+
+.point-card.highlight-card {
+  border-color: var(--alert-amber-border);
+  background: rgba(254, 243, 199, 0.12);
+}
+
+.point-card.highlight-card::before {
+  background: var(--alert-amber);
+  opacity: 1;
+}
+
+.point-card.alert-critical-card {
+  border-color: var(--reject-border);
+  background: rgba(254, 226, 226, 0.12);
+}
+
+.point-card.alert-critical-card::before {
+  background: var(--reject-red);
+  opacity: 1;
+}
+
+.point-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px dashed var(--border-light);
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+}
+
+.point-number {
+  font-family: var(--font-tech);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cyan-primary);
+  line-height: 1;
+  margin-right: 8px;
+}
+
+.point-meta {
+  flex-grow: 1;
+}
+
+.point-meta h4 {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.point-zone {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--text-muted);
+}
+
+/* Checkbox personalizado de inspección */
+.point-check-wrapper {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-left: 6px;
+}
+
+.point-check-wrapper input {
+  display: none;
+}
+
+.custom-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 1.8px solid var(--border-subtle);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  background: #ffffff;
+}
+
+body.theme-blueprint .custom-checkbox {
+  background: #1e293b;
+}
+
+.point-check-wrapper input:checked + .custom-checkbox {
+  background: var(--success-green);
+  border-color: var(--success-green);
+}
+
+.point-check-wrapper input:checked + .custom-checkbox::after {
+  content: "✓";
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Contenido del Punto */
+.point-body {
+  font-size: 0.73rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-row .label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.sublist {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sublist li {
+  position: relative;
+  padding-left: 10px;
+  margin-bottom: 2px;
+  color: var(--text-main);
+}
+
+.sublist li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--cyan-primary);
+}
+
+.tool-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  background: var(--cyan-soft);
+  color: var(--cyan-primary);
+  padding: 3px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--cyan-border);
+  display: inline-block;
+}
+
+.alert-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  background: var(--alert-amber-bg);
+  border: 1px solid var(--alert-amber-border);
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 0.68rem;
+}
+
+.alert-text strong {
+  color: var(--alert-amber);
+}
+
+.rejection-notice {
+  background: var(--reject-red-bg);
+  border: 1px solid var(--reject-border);
+  color: var(--reject-red);
+  font-size: 0.68rem;
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+
+.step-mini-list {
+  padding-left: 14px;
+  color: var(--text-main);
+}
+
+.step-mini-list li {
+  margin-bottom: 2px;
+}
+
+/* ---------------- 5. Secuencia de Flujo de Control ---------------- */
+.sheet-workflow-section {
+  margin-bottom: 24px;
+}
+
+.workflow-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 10px 14px;
+  overflow-x: auto;
+}
+
+body.theme-blueprint .workflow-steps {
+  background: #0f172a;
+}
+
+.wf-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 80px;
+}
+
+.wf-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--cyan-soft);
+  color: var(--cyan-primary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+  border: 1px solid var(--cyan-border);
+}
+
+.wf-title {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.wf-desc {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
+
+.wf-arrow {
+  color: var(--text-light);
+  font-size: 0.85rem;
+  user-select: none;
+}
+
+.highlight-step .wf-num {
+  background: var(--reject-red);
+  color: #ffffff;
+  border-color: var(--reject-red);
+}
+
+/* ---------------- 6. Verificación Visual & Aprobación ---------------- */
+.sheet-inspection-footer {
+  margin-bottom: 20px;
+}
+
+.footer-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.visual-check-box, .approval-card {
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 14px 16px;
+  background: #ffffff;
+}
+
+body.theme-blueprint .visual-check-box,
+body.theme-blueprint .approval-card {
+  background: #0f172a;
+}
+
+.box-title {
+  font-family: var(--font-tech);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--cyan-primary);
+  letter-spacing: 0.8px;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+
+.check-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.74rem;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.item-checkbox input {
+  accent-color: var(--cyan-primary);
+  width: 15px;
+  height: 15px;
+}
+
+/* Estampillas y Cantidades de Conformidad */
+.verdict-selection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.verdict-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stamp-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: var(--font-tech);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: 1.5px solid transparent;
+  transition: all 0.2s ease;
+  opacity: 1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  user-select: none;
+}
+
+.conform-stamp {
+  background: var(--success-green-bg);
+  border-color: var(--success-green);
+  color: var(--success-green);
+}
+
+.reject-stamp {
+  background: var(--reject-red-bg);
+  border-color: var(--reject-red);
+  color: var(--reject-red);
+}
+
+.verdict-qty-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  border: 1px solid var(--border-subtle);
+  background: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+body.theme-blueprint .verdict-qty-box {
+  background: #020617;
+  border-color: rgba(56, 189, 248, 0.2);
+}
+
+.conform-col .verdict-qty-box {
+  border-left: 3px solid var(--success-green);
+}
+
+.reject-col .verdict-qty-box {
+  border-left: 3px solid var(--reject-red);
+}
+
+.qty-field-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+body.theme-blueprint .qty-field-label {
+  color: #94a3b8;
+}
+
+.qty-input-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.verdict-qty-input {
+  width: 54px;
+  padding: 3px 6px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: right;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  background: #ffffff;
+  color: var(--text-main);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Ocultar botones de flecha molestos de input number para estética limpia */
+.verdict-qty-input::-webkit-outer-spin-button,
+.verdict-qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.verdict-qty-input {
+  -moz-appearance: textfield;
+}
+
+body.theme-blueprint .verdict-qty-input {
+  background: #0f172a;
+  color: #f1f5f9;
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.conform-col .verdict-qty-input:focus {
+  border-color: var(--success-green);
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.15);
+}
+
+.reject-col .verdict-qty-input:focus {
+  border-color: var(--reject-red);
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.15);
+}
+
+.qty-unit-tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+body.theme-blueprint .qty-unit-tag {
+  color: #64748b;
+}
+
+.observations-box {
+  margin-bottom: 12px;
+}
+
+.observations-box label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.obs-lines {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  background: #f8fafc;
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 6px 8px;
+  min-height: 44px;
+  outline: none;
+  color: var(--text-main);
+}
+
+body.theme-blueprint .obs-lines {
+  background: #020617;
+}
+
+.signature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.sig-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sig-line {
+  width: 100%;
+  min-height: 28px;
+  border-bottom: 1.5px solid var(--text-muted);
+  margin-bottom: 4px;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: var(--text-main);
+  transition: all 0.2s ease;
+  padding: 2px 6px;
+  cursor: text;
+  border-radius: 3px 3px 0 0;
+}
+
+.sig-line:hover {
+  border-bottom-color: var(--cyan-primary);
+  background-color: rgba(2, 132, 199, 0.05);
+}
+
+.sig-line:focus {
+  border-bottom-color: var(--cyan-primary);
+  background-color: var(--cyan-soft);
+  box-shadow: 0 1px 0 var(--cyan-primary);
+}
+
+.sig-line[contenteditable="true"]:empty::before {
+  content: attr(data-placeholder);
+  color: var(--text-light);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.68rem;
+}
+
+body.theme-blueprint .sig-line:focus {
+  background-color: rgba(14, 165, 233, 0.15);
+}
+
+.date-line {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: var(--text-main);
+}
+
+.sig-block span {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ---------------- 7. Pie de Página Normativo ---------------- */
+.sheet-bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-light);
+  padding-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   OPTIMIZACIÓN DE IMPRESIÓN Y EXPORTACIÓN PDF EN TAMAÑO A4
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm 8mm 8mm 8mm;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .sheet-container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+  }
+
+  .point-card {
+    box-shadow: none !important;
+    border: 1px solid #cbd5e1 !important;
+    page-break-inside: avoid;
+  }
+
+  .stem-blueprint-canvas {
+    border: 1px solid #cbd5e1 !important;
+    background: #ffffff !important;
+  }
+
+  .traceability-grid {
+    background: #f1f5f9 !important;
+    border: 1px solid #cbd5e1 !important;
+  }
+
+  .custom-checkbox {
+    border-color: #000000 !important;
+  }
+
+  .verdict-qty-box {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+  }
+
+  .verdict-qty-input {
+    border: 1px solid #94a3b8 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  /* Asegurar nitidez de fuentes y colores en PDF */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+/* ==========================================================================
+   ADAPTABILIDAD RESPONSIVE INTEGRAL (TABLETS Y MÓVILES)
+   ========================================================================== */
+
+/* Reglas generales para evitar scroll horizontal indeseado en móviles */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* --- 1. Tablets y Pantallas Medianas (<= 960px) --- */
+@media (max-width: 960px) {
+  .diagram-layout {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  
+  .points-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .traceability-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer-columns {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+/* --- 2. Tablets Pequeñas y Phablets (<= 768px) --- */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 30px;
+  }
+
+  /* Barra superior no imprimible adaptable */
+  .top-toolbar {
+    margin: 8px 10px 14px;
+    padding: 12px 14px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    border-radius: 8px;
+    width: auto;
+  }
+
+  .toolbar-brand {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .system-title {
+    font-size: 0.76rem;
+    text-align: right;
+  }
+
+  .toolbar-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .toolbar-actions .btn-primary {
+    grid-column: 1 / -1;
+  }
+
+  .btn {
+    padding: 10px 12px;
+    font-size: 0.76rem;
+    justify-content: center;
+    text-align: center;
+    min-height: 42px;
+  }
+
+  /* Contenedor de Lámina A4 en móvil */
+  .sheet-container {
+    padding: 18px 14px;
+    border-radius: 6px;
+    box-shadow: none;
+    border-left: none;
+    border-right: none;
+    width: 100%;
+  }
+
+  /* Grilla de Trazabilidad */
+  .traceability-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  /* Flujo de control (Workflow) con swipe horizontal natural */
+  .workflow-steps {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 12px 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .wf-step {
+    flex: 0 0 85px;
+    min-width: 85px;
+  }
+
+  .wf-arrow {
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  /* Firmas y sellos */
+  .signature-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
+
+/* --- 3. Móviles Estándar (<= 640px) --- */
+@media (max-width: 640px) {
+  .header-top-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .header-logo-area {
+    width: 100%;
+  }
+
+  .logo-mark {
+    gap: 10px;
+  }
+
+  .brand-img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .logo-company {
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+  }
+
+  .logo-division {
+    font-size: 0.65rem;
+    line-height: 1.25;
+  }
+
+  .header-doc-code {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .doc-badge, .doc-rev, .doc-status {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+  }
+
+  .main-title {
+    font-size: 1.22rem;
+    letter-spacing: 0.8px;
+    line-height: 1.25;
+  }
+
+  .subtitle {
+    font-size: 0.74rem;
+    line-height: 1.35;
+  }
+
+  /* Grilla de Trazabilidad en 1 columna cómoda para móviles */
+  .traceability-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 8px 10px;
+  }
+
+  /* Sección SVG Canvas */
+  .stem-blueprint-canvas {
+    padding: 8px 6px;
+    border-radius: 6px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .svg-stem-engineering {
+    min-width: 310px;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Puntos de control en una sola columna para lectura vertical cómoda */
+  .points-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .point-card {
+    padding: 12px 12px;
+  }
+
+  /* Encabezados de sección */
+  .section-badge-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .section-tag {
+    font-size: 0.8rem;
+  }
+
+  .section-note {
+    font-size: 0.64rem;
+  }
+
+  /* Introducción */
+  .intro-alert-card {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .intro-content strong {
+    font-size: 0.78rem;
+  }
+
+  .intro-content p {
+    font-size: 0.73rem;
+  }
+}
+
+/* --- 4. Móviles Pequeños y Portrait Estrecho (<= 480px) --- */
+@media (max-width: 480px) {
+  .top-toolbar {
+    margin: 6px 6px 12px;
+    padding: 10px 12px;
+  }
+
+  .toolbar-brand {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .system-title {
+    text-align: left;
+    font-size: 0.72rem;
+  }
+
+  .toolbar-actions {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .sheet-container {
+    padding: 14px 10px;
+    border-radius: 0;
+  }
+
+  .traceability-grid {
+    grid-template-columns: 1fr;
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .trace-input {
+    font-size: 0.78rem;
+    padding: 6px 8px;
+    min-height: 32px;
+  }
+
+  .main-title {
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* Tarjetas de Verificación */
+  .point-header {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .point-meta h4 {
+    font-size: 0.8rem;
+  }
+
+  .point-check-wrapper {
+    min-height: 38px;
+  }
+
+  .custom-checkbox {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Dictamen y sellos de aprobación */
+  .verdict-selection {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .stamp-box {
+    padding: 12px;
+    font-size: 0.82rem;
+    min-height: 44px;
+  }
+
+  /* Firmas */
+  .signature-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .sig-line {
+    min-height: 36px;
+    font-size: 0.78rem;
+  }
+
+  /* Pie normativo */
+  .sheet-bottom-bar {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+    font-size: 0.62rem;
+  }
+}
+

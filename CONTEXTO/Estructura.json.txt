@@ -1,0 +1,60 @@
+{
+  "estructura": {
+    "formato": "Vertical (A4/Flyer divulgativo)",
+    "distribucion": [
+      {
+        "seccion": "Encabezado",
+        "elementos": [
+          "Logotipo superior izquierdo",
+          "Firma profesional y especialidad a la derecha",
+          "Título principal en mayúsculas a color"
+        ]
+      },
+      {
+        "seccion": "Introducción",
+        "elementos": [
+          "Texto explicativo breve en tres párrafos sobre la prótesis de cadera y sus componentes"
+        ]
+      },
+      {
+        "seccion": "Cuerpo visual / Ilustración",
+        "elementos": [
+          "Dibujo anatómico de la pelvis y fémures con la prótesis implantada",
+          "Diagramas desglosados de los componentes protésicos (cotilo, cabeza, vástago) con flechas explicativas y etiquetas manuales"
+        ]
+      },
+      {
+        "seccion": "Recomendaciones y advertencias",
+        "elementos": [
+          "Texto sobre cuidados postoperatorios",
+          "Aviso en negrita sobre variabilidad según el cirujano",
+          "Caja destacada con líneas divisorias azules para las dos complicaciones principales (luxación e infección)"
+        ]
+      },
+      {
+        "seccion": "Pie de página",
+        "elementos": [
+          "Título guía centrado entre líneas tenues",
+          "Sitio web alineado a la derecha"
+        ]
+      }
+    ]
+  },
+  "paleta_de_colores": {
+    "fondo": "#FFFFFF (Blanco)",
+    "colores_principales": {
+      "azul_celeste": "#3ABFE7 (Títulos, líneas divisorias y vástago protésico)",
+      "texto_primario": "#333333 / #4A4A4A (Gris carbón para párrafos y etiquetas)"
+    },
+    "colores_de_acento": {
+      "amarillo_dorado": "#FDCB2F (Componente cotilo)",
+      "rosa_magenta": "#E63A8D (Componente cabeza femoral)"
+    },
+    "estilo_ilustracion": "Boceto a mano alzada en tinta negra/gris con sombreados, complementado con acuarela/rotulador digital a color"
+  },
+  "detalles_tipograficos_y_estilo": {
+    "tipografia_texto": "Sans-serif geométrica, limpia y accesible",
+    "tipografia_etiquetas_diagrama": "Rotulación manual / estilo manuscrito en mayúsculas pequeñas",
+    "tono": "Médico divulgativo, claro y enfocado en la prevención para pacientes"
+  }
+}

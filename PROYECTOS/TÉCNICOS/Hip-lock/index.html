@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control de Calidad — Tallo Hip-Lock Semielaborados (Forjados/Mecanizados) | Hoja Técnica Oficial</title>
+  <meta name="description" content="Infografía técnica y protocolo de inspección dimensional y visual del Tallo Hip-Lock de forja en Titanio o Acero.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-light">
+  <!-- Barra de utilidades superior (no imprimible) -->
+  <header class="top-toolbar no-print">
+    <div class="toolbar-brand">
+      <span class="badge-tech">ISO 13485 / ASTM F136</span>
+      <span class="system-title">SISTEMA DE CONTROL DE CALIDAD DE PLANTA</span>
+    </div>
+    <div class="toolbar-actions">
+      <button id="btn-theme" class="btn btn-secondary" title="Cambiar tema">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+        <span>Modo Blueprint / Taller</span>
+      </button>
+      <button id="btn-reset" class="btn btn-secondary" title="Reiniciar checklist">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+        <span>Reiniciar Puntos</span>
+      </button>
+      <button id="btn-print" class="btn btn-primary" title="Imprimir o guardar como PDF">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+        <span>Imprimir / Exportar PDF A4</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Contenedor de Lámina A4 -->
+  <main class="sheet-container" id="printable-sheet">
+    
+    <!-- ENCABEZADO TÉCNICO -->
+    <section class="sheet-header">
+      <div class="header-top-row">
+        <div class="header-logo-area">
+          <div class="logo-mark">
+            <img src="logo_villalba.png" alt="Logo Villalba Hnos. Implantes S.A." class="brand-img" />
+            <div class="logo-text">
+              <span class="logo-company">VILLALBA HNOS. IMPLANTES S.A.</span>
+              <span class="logo-division">Innovación, liderazgo y experiencia al servicio de la salud.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-doc-code">
+          <span class="doc-badge">DOC: QC-HL-08</span>
+          <span class="doc-rev">REV. 04 / 2026</span>
+          <span class="doc-status">ORIGINAL AUDITADO</span>
+        </div>
+      </div>
+
+      <div class="header-title-box">
+        <h1 class="main-title">CONTROL DE CALIDAD — TALLO HIP LOCK SEMIELABORADOS (FORJADOS/MECANIZADOS)</h1>
+        <p class="subtitle">ESPECIFICACIÓN TÉCNICA Y PROTOCOLO DE CONFORMIDAD DIMENSIONAL (TITANIO GRADO 5 / ACERO INOXIDABLE 316L)</p>
+      </div>
+
+      <!-- Datos de Trazabilidad de Producción -->
+      <div class="traceability-grid">
+        <div class="trace-field">
+          <label>ORDEN DE PRODUCCIÓN:</label>
+          <div class="trace-input" contenteditable="true" spellcheck="false">HL-2026-T4</div>
+        </div>
+        <div class="trace-field">
+          <label>FECHA DE INSPECCIÓN:</label>
+          <div class="trace-input" contenteditable="true" spellcheck="false">29/09/2026</div>
+        </div>
+        <div class="trace-field">
+          <label>INSPECTOR RESPONSABLE:</label>
+          <div class="trace-input" contenteditable="true" spellcheck="false">C. Villalba (QC-104)</div>
+        </div>
+        <div class="trace-field">
+          <label>ORDEN DE COMPRA:</label>
+          <div class="trace-input" contenteditable="true" spellcheck="false">OC-88942-B</div>
+        </div>
+        <div class="trace-field">
+          <label>N° DE REMITO / DESPACHO:</label>
+          <div class="trace-input" contenteditable="true" spellcheck="false">REM-003418</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRODUCCIÓN Y FUNDAMENTO TÉCNICO -->
+    <section class="sheet-intro">
+      <div class="intro-alert-card">
+        <div class="intro-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <div class="intro-content">
+          <strong>PROTOCOLO METROLÓGICO INDIVIDUAL</strong>
+          <p>
+            La verificación se realiza con el plano correspondiente en mano para la toma de medidas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ZONA CENTRAL: DIAGRAMA TÉCNICO ANATOMÍA TALLO (FRONTAL Y LATERAL) -->
+    <section class="sheet-diagram-section">
+      <div class="section-badge-bar">
+        <span class="section-tag">MAPA METROLÓGICO DEL TALLO</span>
+        <span class="section-note">Cotización de los 9 Puntos Críticos de Verificación</span>
+      </div>
+
+      <div class="diagram-layout">
+        <!-- SVG Vectorial de Alta Precisión -->
+        <div class="stem-blueprint-canvas">
+          <svg viewBox="0 0 940 500" class="svg-stem-engineering" id="stem-svg">
+            <defs>
+              <linearGradient id="metalGradFront" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#94a3b8" />
+                <stop offset="45%" stop-color="#cbd5e1" />
+                <stop offset="55%" stop-color="#f8fafc" />
+                <stop offset="80%" stop-color="#64748b" />
+                <stop offset="100%" stop-color="#475569" />
+              </linearGradient>
+              <linearGradient id="metalGradLat" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#475569" />
+                <stop offset="35%" stop-color="#cbd5e1" />
+                <stop offset="60%" stop-color="#f1f5f9" />
+                <stop offset="100%" stop-color="#64748b" />
+              </linearGradient>
+              <pattern id="gridPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(14, 165, 233, 0.08)" stroke-width="0.75"/>
+              </pattern>
+              <marker id="arrowHead" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L6,3 z" fill="#0284c7" />
+              </marker>
+              <filter id="shadowGlow" x="-10%" y="-10%" width="120%" height="120%">
+                <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="rgba(15, 23, 42, 0.25)"/>
+              </filter>
+            </defs>
+
+            <!-- Fondo milimetrado -->
+            <rect width="940" height="500" fill="url(#gridPattern)" rx="8" />
+
+            <!-- Ejes de simetría y referencia -->
+            <line x1="220" y1="35" x2="220" y2="480" stroke="#0ea5e9" stroke-width="1" stroke-dasharray="8 4 2 4" opacity="0.4"/>
+            <line x1="660" y1="35" x2="660" y2="480" stroke="#0ea5e9" stroke-width="1" stroke-dasharray="8 4 2 4" opacity="0.4"/>
+            <!-- Divisoria sutil entre vistas -->
+            <line x1="470" y1="20" x2="470" y2="480" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+
+            <!-- ===================== VISTA FRONTAL (IMAGEN REAL) ===================== -->
+            <g id="vista-frontal">
+              <text x="220" y="30" class="svg-label-title" text-anchor="middle">VISTA FRONTAL (A-P) — PIEZA REAL</text>
+
+              <!-- Imagen Real del Tallo (Vista Frontal) -->
+              <g class="stem-photo-group" filter="url(#shadowGlow)">
+                <image href="Vista%20frontal.jpg" xlink:href="Vista frontal.jpg" x="148" y="52" width="145" height="407" preserveAspectRatio="xMidYMid meet" class="stem-photo" />
+              </g>
+
+              <!-- Marcadores de Puntos de Medición en la Pieza -->
+              <!-- Punto 1: Ápice del Cono -->
+              <circle cx="165" cy="78" r="3.5" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+              <!-- Punto 2: Ø Mayor Cono -->
+              <circle cx="188" cy="116" r="3.5" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+              <!-- Punto 3: Orificio / Rosca Hombro -->
+              <circle cx="255" cy="110" r="3.5" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+              <!-- Punto 4: Perfil Lateral / Curvatura -->
+              <circle cx="288" cy="202" r="3.5" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+              <!-- Punto 5: Ranura de Cementado -->
+              <circle cx="252" cy="345" r="3.5" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+
+              <!-- LLAMADAS VISUALES FRONTAL (PUNTOS 1, 2, 3, 4, 5) -->
+              <!-- Punto 1: Cono 12/14 -->
+              <g class="callout" data-target="point-1">
+                <line x1="165" y1="78" x2="115" y2="60" stroke="#0284c7" stroke-width="1.8" marker-start="url(#arrowHead)"/>
+                <line x1="115" y1="60" x2="35" y2="60" stroke="#0284c7" stroke-width="1.8"/>
+                <circle cx="35" cy="60" r="14" class="callout-circle"/>
+                <text x="35" y="65" class="callout-text" text-anchor="middle">1</text>
+                <text x="56" y="52" class="callout-label">1. Cono 12/14 (Ápice)</text>
+              </g>
+
+              <!-- Punto 2: Ø Mayor del Cono -->
+              <g class="callout" data-target="point-2">
+                <line x1="188" y1="116" x2="118" y2="130" stroke="#0284c7" stroke-width="1.8" marker-start="url(#arrowHead)"/>
+                <line x1="118" y1="130" x2="35" y2="130" stroke="#0284c7" stroke-width="1.8"/>
+                <circle cx="35" cy="130" r="14" class="callout-circle"/>
+                <text x="35" y="135" class="callout-text" text-anchor="middle">2</text>
+                <text x="56" y="122" class="callout-label">2. Ø Mayor Cono</text>
+              </g>
+
+              <!-- Punto 3: Orificio y Rosca -->
+              <g class="callout" data-target="point-3">
+                <line x1="255" y1="110" x2="310" y2="110" stroke="#0284c7" stroke-width="1.8" marker-start="url(#arrowHead)"/>
+                <line x1="310" y1="110" x2="420" y2="110" stroke="#0284c7" stroke-width="1.8"/>
+                <circle cx="420" cy="110" r="14" class="callout-circle"/>
+                <text x="420" y="115" class="callout-text" text-anchor="middle">3</text>
+                <text x="315" y="102" class="callout-label">3. Orificio y Rosca</text>
+              </g>
+
+              <!-- Punto 4: Perfil en Plantilla -->
+              <g class="callout" data-target="point-4">
+                <line x1="288" y1="202" x2="315" y2="202" stroke="#0284c7" stroke-width="1.8" marker-start="url(#arrowHead)"/>
+                <line x1="315" y1="202" x2="420" y2="202" stroke="#0284c7" stroke-width="1.8"/>
+                <circle cx="420" cy="202" r="14" class="callout-circle"/>
+                <text x="420" y="207" class="callout-text" text-anchor="middle">4</text>
+                <text x="315" y="194" class="callout-label">4. Perfil en Plantilla</text>
+              </g>
+
+              <!-- Punto 5: Ranura de Cementado -->
+              <g class="callout" data-target="point-5">
+                <line x1="252" y1="345" x2="310" y2="345" stroke="#0284c7" stroke-width="1.8" marker-start="url(#arrowHead)"/>
+                <line x1="310" y1="345" x2="420" y2="345" stroke="#0284c7" stroke-width="1.8"/>
+                <circle cx="420" cy="345" r="14" class="callout-circle"/>
+                <text x="420" y="350" class="callout-text" text-anchor="middle">5</text>
+                <text x="315" y="337" class="callout-label">5. Ranura Cementado</text>
+              </g>
+            </g>
+
+            <!-- ===================== VISTA LATERAL (IMAGEN REAL) ===================== -->
+            <g id="vista-lateral">
+              <text x="730" y="30" class="svg-label-title" text-anchor="middle">VISTA LATERAL (PERFIL) — PIEZA REAL</text>
+
+              <!-- Imagen Real del Tallo (Vista Lateral) -->
+              <g class="stem-photo-group" filter="url(#shadowGlow)">
+                <image href="Vista%20lateral.jfif" xlink:href="Vista lateral.jfif" x="605" y="52" width="110" height="408" preserveAspectRatio="xMidYMid meet" class="stem-photo" />
+              </g>
+
+              <!-- Marcadores de Puntos de Medición en la Pieza Lateral -->
+              <!-- Punto 9: Simetría de Cabeza / Cono -->
+              <circle cx="668" cy="72" r="3.5" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+              <!-- Punto 6: Espesor Cuello Superior -->
+              <circle cx="672" cy="130" r="3.5" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+              <!-- Punto 7: Espesor Lomo Centro/Medio -->
+              <circle cx="676" cy="245" r="3.5" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+              <!-- Punto 8: Espesor Abajo / Inferior Distal -->
+              <circle cx="680" cy="425" r="3.5" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+
+              <!-- LLAMADAS VISUALES LATERAL (PUNTOS 9, 6, 7, 8) -->
+              <!-- Punto 9: Simetría de Cabeza -->
+              <g class="callout" data-target="point-9">
+                <line x1="668" y1="72" x2="740" y2="72" stroke="#0284c7" stroke-width="1.8" marker-start="url(#arrowHead)"/>
+                <line x1="740" y1="72" x2="885" y2="72" stroke="#0284c7" stroke-width="1.8"/>
+                <circle cx="885" cy="72" r="14" class="callout-circle"/>
+                <text x="885" y="77" class="callout-text" text-anchor="middle">9</text>
+                <text x="745" y="64" class="callout-label">9. Simetría Cabeza</text>
+              </g>
+
+              <!-- Punto 6: Espesor Cuello Superior -->
+              <g class="callout" data-target="point-6">
+                <line x1="672" y1="130" x2="740" y2="130" stroke="#0284c7" stroke-width="1.8" marker-start="url(#arrowHead)"/>
+                <line x1="740" y1="130" x2="885" y2="130" stroke="#0284c7" stroke-width="1.8"/>
+                <circle cx="885" cy="130" r="14" class="callout-circle"/>
+                <text x="885" y="135" class="callout-text" text-anchor="middle">6</text>
+                <text x="745" y="122" class="callout-label">6. Espesor Cuello</text>
+              </g>
+
+              <!-- Punto 7: Espesor Lomo (Centro) -->
+              <g class="callout" data-target="point-7">
+                <line x1="676" y1="245" x2="740" y2="245" stroke="#0284c7" stroke-width="1.8" marker-start="url(#arrowHead)"/>
+                <line x1="740" y1="245" x2="885" y2="245" stroke="#0284c7" stroke-width="1.8"/>
+                <circle cx="885" cy="245" r="14" class="callout-circle"/>
+                <text x="885" y="250" class="callout-text" text-anchor="middle">7</text>
+                <text x="745" y="237" class="callout-label">7. Espesor Lomo</text>
+              </g>
+
+              <!-- Punto 8: Espesor Abajo (Inferior) -->
+              <g class="callout" data-target="point-8">
+                <line x1="680" y1="425" x2="740" y2="425" stroke="#0284c7" stroke-width="1.8" marker-start="url(#arrowHead)"/>
+                <line x1="740" y1="425" x2="885" y2="425" stroke="#0284c7" stroke-width="1.8"/>
+                <circle cx="885" cy="425" r="14" class="callout-circle"/>
+                <text x="885" y="430" class="callout-text" text-anchor="middle">8</text>
+                <text x="745" y="417" class="callout-label">8. Espesor Abajo</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Columna de Reglas Críticas del Taller -->
+        <aside class="critical-rules-card">
+          <h3 class="rules-card-title">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            DIRECTIVAS INELUDIBLES
+          </h3>
+          <ul class="rules-list">
+            <li>
+              <strong>Calibración Obligatoria:</strong> Todos los calibres, micrómetros y comparadores deben tener oblea vigente de calibración.
+            </li>
+            <li>
+              <strong>Patrón de Plantillas:</strong> Comparar plantillas contra patrón de acero templado cada <strong>6 meses</strong> sin excepción.
+            </li>
+            <li>
+              <span class="badge-alert">REGLA DE ORO</span>
+              <strong>Holgura en Plantilla:</strong> NO es descarte automático. Toda holgura se eleva de inmediato a <strong>Ingeniería</strong>.
+            </li>
+            <li>
+              <strong>Tolerancia de Simetría:</strong> Si la excentricidad supera <strong>&gt; 0.20 mm</strong>, la pieza se rechaza automáticamente.
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- MATRIZ DETALLADA DE LOS 9 PUNTOS DE CONTROL -->
+    <section class="sheet-points-section">
+      <div class="section-badge-bar">
+        <span class="section-tag">PROTOCOLO METROLÓGICO INDIVIDUAL</span>
+        <span class="section-note">Tolerancias, Instrumental y Criterios de Aceptación</span>
+      </div>
+
+      <div class="points-grid">
+
+        <!-- PUNTO 1 -->
+        <article class="point-card" id="point-1">
+          <header class="point-header">
+            <span class="point-number">01</span>
+            <div class="point-meta">
+              <h4>CONO 12/14 (Ápice)</h4>
+              <span class="point-zone">Zona Proximal / Cono Morse</span>
+            </div>
+            <label class="point-check-wrapper" title="Marcar conformidad">
+              <input type="checkbox" class="chk-conform" data-point="1">
+              <span class="custom-checkbox"></span>
+            </label>
+          </header>
+          <div class="point-body">
+            <div class="info-row">
+              <span class="label">¿Qué se mide?</span>
+              <ul class="sublist">
+                <li>Ángulo cónico: <strong>12° – 14°</strong></li>
+                <li>Geometría cónica sin defectos ni muescas</li>
+                <li>Terminación rugosa ("rallada" antifricción)</li>
+              </ul>
+            </div>
+            <div class="info-row">
+              <span class="label">Instrumental:</span>
+              <p class="tool-tag">Calibre fijo hembra (12–14°) + Inspección óptica</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- PUNTO 2 -->
+        <article class="point-card" id="point-2">
+          <header class="point-header">
+            <span class="point-number">02</span>
+            <div class="point-meta">
+              <h4>DIÁMETRO MÁXIMO DEL CONO</h4>
+              <span class="point-zone">Base del cono proximal</span>
+            </div>
+            <label class="point-check-wrapper" title="Marcar conformidad">
+              <input type="checkbox" class="chk-conform" data-point="2">
+              <span class="custom-checkbox"></span>
+            </label>
+          </header>
+          <div class="point-body">
+            <div class="info-row">
+              <span class="label">¿Qué se mide?</span>
+              <ul class="sublist">
+                <li>Cota en la zona de mayor espesor de base</li>
+                <li>Concentricidad de la sección circular</li>
+                <li>Cumplimiento estricto de plano nominal</li>
+              </ul>
+            </div>
+            <div class="info-row">
+              <span class="label">Instrumental:</span>
+              <p class="tool-tag">Calibre digital (±0.05 mm)</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- PUNTO 3 -->
+        <article class="point-card" id="point-3">
+          <header class="point-header">
+            <span class="point-number">03</span>
+            <div class="point-meta">
+              <h4>ORIFICIO ROSCADO / RANURA PROXIMAL</h4>
+              <span class="point-zone">Hombro trocantérico</span>
+            </div>
+            <label class="point-check-wrapper" title="Marcar conformidad">
+              <input type="checkbox" class="chk-conform" data-point="3">
+              <span class="custom-checkbox"></span>
+            </label>
+          </header>
+          <div class="point-body">
+            <div class="info-row">
+              <span class="label">¿Qué se mide?</span>
+              <ul class="sublist">
+                <li>Presencia, centrado y profundidad efectiva</li>
+                <li>Geometría de rosca métrica sin melladuras</li>
+                <li>Test de paso: tornillo entra suave sin fricción</li>
+              </ul>
+            </div>
+            <div class="info-row">
+              <span class="label">Instrumental:</span>
+              <p class="tool-tag">Calibre de profundidad (±0.1 mm) + Tornillo patrón</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- PUNTO 4 -->
+        <article class="point-card highlight-card" id="point-4">
+          <header class="point-header">
+            <span class="point-number">04</span>
+            <div class="point-meta">
+              <h4>PERFIL DEL TALLO</h4>
+              <span class="point-zone">Silueta global anatómica</span>
+            </div>
+            <label class="point-check-wrapper" title="Marcar conformidad">
+              <input type="checkbox" class="chk-conform" data-point="4">
+              <span class="custom-checkbox"></span>
+            </label>
+          </header>
+          <div class="point-body">
+            <div class="info-row">
+              <span class="label">¿Qué se mide?</span>
+              <ul class="sublist">
+                <li>Geometría y curvatura anatómica según modelo</li>
+                <li>Ajuste en plantilla sin holgura ni interferencia</li>
+              </ul>
+            </div>
+            <div class="info-row alert-box">
+              <span class="alert-icon">⚠️</span>
+              <div class="alert-text">
+                <strong>¿Hay holgura visual?</strong> No rechazar automáticamente. Enviar pieza a <strong>INGENIERÍA</strong> para dictamen final.
+              </div>
+            </div>
+            <div class="info-row">
+              <span class="label">Instrumental:</span>
+              <p class="tool-tag">Plantilla de forma certificada de acero</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- PUNTO 5 -->
+        <article class="point-card" id="point-5">
+          <header class="point-header">
+            <span class="point-number">05</span>
+            <div class="point-meta">
+              <h4>RANURA DE CEMENTADO</h4>
+              <span class="point-zone">Zona diafisaria distal</span>
+            </div>
+            <label class="point-check-wrapper" title="Marcar conformidad">
+              <input type="checkbox" class="chk-conform" data-point="5">
+              <span class="custom-checkbox"></span>
+            </label>
+          </header>
+          <div class="point-body">
+            <div class="info-row">
+              <span class="label">¿Qué se mide?</span>
+              <ul class="sublist">
+                <li>Presencia íntegra y profundidad constante</li>
+                <li>Perpendicularidad estricta al eje diafisario</li>
+                <li>Ausencia total de rebabas o aristas cortantes</li>
+              </ul>
+            </div>
+            <div class="info-row">
+              <span class="label">Instrumental:</span>
+              <p class="tool-tag">Calibre digital (±0.2 mm) + Lupa de inspección</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- PUNTO 6 -->
+        <article class="point-card" id="point-6">
+          <header class="point-header">
+            <span class="point-number">06</span>
+            <div class="point-meta">
+              <h4>ESPESOR CUELLO (Superior)</h4>
+              <span class="point-zone">Región cervical proximal</span>
+            </div>
+            <label class="point-check-wrapper" title="Marcar conformidad">
+              <input type="checkbox" class="chk-conform" data-point="6">
+              <span class="custom-checkbox"></span>
+            </label>
+          </header>
+          <div class="point-body">
+            <div class="info-row">
+              <span class="label">¿Qué se mide?</span>
+              <ul class="sublist">
+                <li>Espesor del material forjado en cuello proximal</li>
+                <li>Medición perimetral en múltiples puntos críticos</li>
+                <li>Tolerancia dimensional según hoja de cota</li>
+              </ul>
+            </div>
+            <div class="info-row">
+              <span class="label">Instrumental:</span>
+              <p class="tool-tag">Calibre digital calibrado (precisión ±0.1 mm)</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- PUNTO 7 -->
+        <article class="point-card" id="point-7">
+          <header class="point-header">
+            <span class="point-number">07</span>
+            <div class="point-meta">
+              <h4>ESPESOR LOMO (Centro / Medio)</h4>
+              <span class="point-zone">Cuerpo medio diafisario</span>
+            </div>
+            <label class="point-check-wrapper" title="Marcar conformidad">
+              <input type="checkbox" class="chk-conform" data-point="7">
+              <span class="custom-checkbox"></span>
+            </label>
+          </header>
+          <div class="point-body">
+            <div class="info-row">
+              <span class="label">¿Qué se mide?</span>
+              <ul class="sublist">
+                <li>Espesor en la zona de mayor sección resistente</li>
+                <li>Simetría de flancos anteroposteriores</li>
+                <li>Cota nominal según tamaño de tallo (T1 a T6)</li>
+              </ul>
+            </div>
+            <div class="info-row">
+              <span class="label">Instrumental:</span>
+              <p class="tool-tag">Calibre digital en zona de máximo espesor (±0.1 mm)</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- PUNTO 8 -->
+        <article class="point-card" id="point-8">
+          <header class="point-header">
+            <span class="point-number">08</span>
+            <div class="point-meta">
+              <h4>ESPESOR ABAJO (Inferior / Distal)</h4>
+              <span class="point-zone">Punta diafisaria distal</span>
+            </div>
+            <label class="point-check-wrapper" title="Marcar conformidad">
+              <input type="checkbox" class="chk-conform" data-point="8">
+              <span class="custom-checkbox"></span>
+            </label>
+          </header>
+          <div class="point-body">
+            <div class="info-row">
+              <span class="label">¿Qué se mide?</span>
+              <ul class="sublist">
+                <li>Espesor y curvatura en extremo de punta distal</li>
+              </ul>
+            </div>
+            <div class="info-row">
+              <span class="label">Instrumental:</span>
+              <p class="tool-tag">Calibre digital en zona distal (precisión ±0.1 mm)</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- PUNTO 9 -->
+        <article class="point-card alert-critical-card" id="point-9">
+          <header class="point-header">
+            <span class="point-number">09</span>
+            <div class="point-meta">
+              <h4>SIMETRÍA DE CABEZA / CONO</h4>
+              <span class="point-zone">Alineación cervicodiafisaria</span>
+            </div>
+            <label class="point-check-wrapper" title="Marcar conformidad">
+              <input type="checkbox" class="chk-conform" data-point="9">
+              <span class="custom-checkbox"></span>
+            </label>
+          </header>
+          <div class="point-body">
+            <div class="info-row">
+              <span class="label">Método en V-Block:</span>
+              <ol class="step-mini-list">
+                <li>Colocar tallo en bloque en V sobre mesa de planitud.</li>
+                <li>Medir con calibre de altura desde cara plana a cono.</li>
+                <li>Verificar diferencia simétrica en 2–3 puntos.</li>
+              </ol>
+            </div>
+            <div class="info-row rejection-notice">
+              <strong>TOLERANCIA LÍMITE:</strong> Excentricidad máxima permitida: <strong>≤ ±0.20 mm</strong>. Si excentricidad &gt; 0.20 mm ➔ <strong>RECHAZO DIRECTO</strong>.
+            </div>
+            <div class="info-row">
+              <span class="label">Instrumental:</span>
+              <p class="tool-tag">Calibre altura</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SECUENCIA CRONOLÓGICA Y CONTROL VISUAL -->
+    <section class="sheet-workflow-section">
+      <div class="section-badge-bar">
+        <span class="section-tag">ORDEN ESTANDARIZADO DE CONTROL</span>
+        <span class="section-note">Flujo Obligatorio de Paso de Pieza</span>
+      </div>
+
+      <div class="workflow-steps">
+        <div class="wf-step">
+          <div class="wf-num">1</div>
+          <div class="wf-title">Inspección Visual</div>
+          <div class="wf-desc">Rebabas, golpes, óxido</div>
+        </div>
+        <div class="wf-arrow">➔</div>
+        <div class="wf-step">
+          <div class="wf-num">2</div>
+          <div class="wf-title">Cono 12/14</div>
+          <div class="wf-desc">Calibre hembra + acabado</div>
+        </div>
+        <div class="wf-arrow">➔</div>
+        <div class="wf-step">
+          <div class="wf-num">3</div>
+          <div class="wf-title">Diámetro Máx.</div>
+          <div class="wf-desc">Calibre digital</div>
+        </div>
+        <div class="wf-arrow">➔</div>
+        <div class="wf-step">
+          <div class="wf-num">4</div>
+          <div class="wf-title">Orificio / Rosca</div>
+          <div class="wf-desc">Profundidad y test tornillo</div>
+        </div>
+        <div class="wf-arrow">➔</div>
+        <div class="wf-step">
+          <div class="wf-num">5</div>
+          <div class="wf-title">Perfil Plantilla</div>
+          <div class="wf-desc">Ajuste forma (Ingeniería)</div>
+        </div>
+        <div class="wf-arrow">➔</div>
+        <div class="wf-step">
+          <div class="wf-num">6</div>
+          <div class="wf-title">Ranura Cementado</div>
+          <div class="wf-desc">Profundidad y eje</div>
+        </div>
+        <div class="wf-arrow">➔</div>
+        <div class="wf-step">
+          <div class="wf-num">7</div>
+          <div class="wf-title">Espesores (6,7,8)</div>
+          <div class="wf-desc">Cuello, Lomo y Distal</div>
+        </div>
+        <div class="wf-arrow">➔</div>
+        <div class="wf-step highlight-step">
+          <div class="wf-num">8</div>
+          <div class="wf-title">Simetría Cabeza</div>
+          <div class="wf-desc">V-Block (Runout ≤ 0.2)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VERIFICACIÓN VISUAL FINAL Y DICTAMEN DE CONFORMIDAD -->
+    <section class="sheet-inspection-footer">
+      <div class="footer-columns">
+
+        <!-- Checkbox de Criterios Visuales -->
+        <div class="visual-check-box">
+          <h4 class="box-title">VERIFICACIÓN VISUAL FINAL (100% DE LA PIEZA)</h4>
+          <div class="check-items-list">
+            <label class="item-checkbox">
+              <input type="checkbox" checked>
+              <span>Sin rebabas visibles ni filos vivos en toda la pieza</span>
+            </label>
+            <label class="item-checkbox">
+              <input type="checkbox" checked>
+              <span>Superficie libre de daños, rayas de impacto o marcas de matriz</span>
+            </label>
+            <label class="item-checkbox">
+              <input type="checkbox" checked>
+              <span>Sin falta de llenado en secciones críticas y bordes de forja</span>
+            </label>
+            <label class="item-checkbox">
+              <input type="checkbox" checked>
+              <span>Ausencia total de óxido, picaduras o contaminación ferrosa</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Dictamen y Firma -->
+        <div class="approval-card">
+          <h4 class="box-title">DICTAMEN FINAL DE CALIDAD</h4>
+          <div class="verdict-selection">
+            <div class="verdict-col conform-col">
+              <div class="stamp-box conform-stamp">✓ CONFORME</div>
+              <div class="verdict-qty-box">
+                <label for="qty-conforme" class="qty-field-label">CANT. CONFORME:</label>
+                <div class="qty-input-group">
+                  <input type="number" id="qty-conforme" class="verdict-qty-input" min="0" value="1" placeholder="0" spellcheck="false" title="Cantidad de piezas conformes">
+                  <span class="qty-unit-tag">piezas</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="verdict-col reject-col">
+              <div class="stamp-box reject-stamp">✕ NO CONFORME</div>
+              <div class="verdict-qty-box">
+                <label for="qty-no-conforme" class="qty-field-label">CANT. NO CONFORME:</label>
+                <div class="qty-input-group">
+                  <input type="number" id="qty-no-conforme" class="verdict-qty-input" min="0" value="0" placeholder="0" spellcheck="false" title="Cantidad de piezas no conformes">
+                  <span class="qty-unit-tag">piezas</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="observations-box">
+            <label>OBSERVACIONES TÉCNICAS:</label>
+            <div class="obs-lines" contenteditable="true">
+              Pieza dentro de tolerancias dimensionales. Ángulo de cono verificado a 12°30' y runout de simetría en 0.08 mm. Apta para acondicionamiento y esterilización.
+            </div>
+          </div>
+
+          <div class="signature-grid">
+            <div class="sig-block">
+              <div class="sig-line inspector-line" id="inspector-signature" contenteditable="true" spellcheck="false" data-placeholder="Hacer clic para ingresar firma / matrícula...">C. Villalba - Mat. QC-104</div>
+              <span>FIRMA Y MATRÍCULA DEL INSPECTOR</span>
+            </div>
+            <div class="sig-block">
+              <div class="sig-line date-line" id="inspector-date" contenteditable="true" spellcheck="false" data-placeholder="Fecha y hora...">29/09/2026 - 10:45 hs</div>
+              <span>FECHA / HORA REGISTRADA</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PIE DE PÁGINA NORMATIVO -->
+    <footer class="sheet-bottom-bar">
+      <div class="footer-legal">
+        DOCUMENTO TÉCNICO INTERNO DE PRODUCCIÓN — CONTROL METROLÓGICO TALLO HIP-LOCK (FORJA DE ALTA PRECISIÓN)
+      </div>
+      <div class="footer-site">
+        ISO 13485:2016 Dispositivos Médicos Implante Grado Quirúrgico
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

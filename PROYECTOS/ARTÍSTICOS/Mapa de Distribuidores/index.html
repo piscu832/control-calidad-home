@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa de Distribuidores — VILLALBA HNOS. IMPLANTES S.A.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=5">
+</head>
+<body>
+
+  <!-- CONTENEDOR PRINCIPAL: EXCLUSIVAMENTE EL MAPA INTERACTIVO -->
+  <main class="map-viewport">
+    <div class="map-interactive-container" id="map-container">
+      
+      <!-- IMAGEN BASE LIMPIA CON FONDO 100% TRANSPARENTE -->
+      <img src="mapa_base_distribuidores.png?v=transparent1" alt="Mapa de Red de Distribuidores" class="map-base-raster">
+
+      <!-- CAPA SVG VECTORIAL INTERACTIVA DE FLECHAS Y BALIZAS -->
+      <svg class="map-vector-overlay" id="map-svg" viewBox="0 0 896 1200" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <!-- Filtro de Resplandor Neón Cian -->
+          <filter id="neon-glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+
+          <!-- Marcador de Flecha Cian -->
+          <marker id="arrowhead-cyan" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+            <polygon points="0 1, 8 4.5, 0 8, 2.5 4.5" fill="#00e5ff" stroke="#003554" stroke-width="0.8" />
+          </marker>
+        </defs>
+
+        <!-- 1. JUJUY -->
+        <g class="hub-item" id="hub-jujuy" data-hub="jujuy">
+          <path class="hub-arrow-path" d="M 417 197 L 290 92" marker-end="url(#arrowhead-cyan)" />
+          <g class="hub-badge">
+            <rect class="hub-badge-box" x="145" y="58" width="138" height="50" rx="10" />
+            <text class="hub-badge-text" x="214" y="91">Jujuy</text>
+          </g>
+          <circle class="hub-pulse-ring" cx="417" cy="197" r="30" />
+          <circle class="hub-center-core" cx="417" cy="197" r="14" />
+          <circle class="hub-hit-area" cx="417" cy="197" r="45" aria-label="Jujuy" />
+        </g>
+
+        <!-- 2. CHACO -->
+        <g class="hub-item" id="hub-chaco" data-hub="chaco">
+          <path class="hub-arrow-path" d="M 538 265 L 670 156" marker-end="url(#arrowhead-cyan)" />
+          <g class="hub-badge">
+            <rect class="hub-badge-box" x="675" y="125" width="144" height="50" rx="10" />
+            <text class="hub-badge-text" x="747" y="158">Chaco</text>
+          </g>
+          <circle class="hub-pulse-ring" cx="538" cy="265" r="30" />
+          <circle class="hub-center-core" cx="538" cy="265" r="14" />
+          <circle class="hub-hit-area" cx="538" cy="265" r="45" aria-label="Chaco" />
+        </g>
+
+        <!-- 3. CÓRDOBA -->
+        <g class="hub-item" id="hub-cordoba" data-hub="cordoba">
+          <path class="hub-arrow-path" d="M 444 400 L 246 400" marker-end="url(#arrowhead-cyan)" />
+          <g class="hub-badge">
+            <rect class="hub-badge-box" x="72" y="375" width="168" height="50" rx="10" />
+            <text class="hub-badge-text" x="156" y="408">Córdoba</text>
+          </g>
+          <circle class="hub-pulse-ring" cx="444" cy="400" r="30" />
+          <circle class="hub-center-core" cx="444" cy="400" r="14" />
+          <circle class="hub-hit-area" cx="444" cy="400" r="45" aria-label="Córdoba" />
+        </g>
+
+        <!-- 4. ROSARIO -->
+        <g class="hub-item" id="hub-rosario" data-hub="rosario">
+          <path class="hub-arrow-path" d="M 533 450 L 658 358" marker-end="url(#arrowhead-cyan)" />
+          <g class="hub-badge">
+            <rect class="hub-badge-box" x="665" y="325" width="156" height="50" rx="10" />
+            <text class="hub-badge-text" x="743" y="358">Rosario</text>
+          </g>
+          <circle class="hub-pulse-ring" cx="533" cy="450" r="28" />
+          <circle class="hub-center-core" cx="533" cy="450" r="12" />
+          <circle class="hub-hit-area" cx="533" cy="450" r="40" aria-label="Rosario" />
+        </g>
+
+        <!-- 5. JUNÍN -->
+        <g class="hub-item" id="hub-junin" data-hub="junin">
+          <path class="hub-arrow-path" d="M 549 471 L 678 448" marker-end="url(#arrowhead-cyan)" />
+          <g class="hub-badge">
+            <rect class="hub-badge-box" x="684" y="420" width="138" height="50" rx="10" />
+            <text class="hub-badge-text" x="753" y="453">Junín</text>
+          </g>
+          <circle class="hub-pulse-ring" cx="549" cy="471" r="28" />
+          <circle class="hub-center-core" cx="549" cy="471" r="12" />
+          <circle class="hub-hit-area" cx="549" cy="471" r="40" aria-label="Junín" />
+        </g>
+
+        <!-- 6. LA PLATA -->
+        <g class="hub-item" id="hub-laplata" data-hub="laplata">
+          <path class="hub-arrow-path" d="M 588 485 L 684 550" marker-end="url(#arrowhead-cyan)" />
+          <g class="hub-badge">
+            <rect class="hub-badge-box" x="690" y="534" width="168" height="50" rx="10" />
+            <text class="hub-badge-text" x="774" y="567">La Plata</text>
+          </g>
+          <circle class="hub-pulse-ring" cx="588" cy="485" r="32" />
+          <circle class="hub-center-core" cx="588" cy="485" r="15" />
+          <circle class="hub-hit-area" cx="588" cy="485" r="45" aria-label="La Plata" />
+        </g>
+
+        <!-- 7. MAR DEL PLATA -->
+        <g class="hub-item" id="hub-mardelplata" data-hub="mardelplata">
+          <path class="hub-arrow-path" d="M 612 577 L 676 668" marker-end="url(#arrowhead-cyan)" />
+          <g class="hub-badge">
+            <rect class="hub-badge-box" x="600" y="674" width="225" height="50" rx="10" />
+            <text class="hub-badge-text" x="712" y="707">Mar del Plata</text>
+          </g>
+          <circle class="hub-pulse-ring" cx="612" cy="577" r="30" />
+          <circle class="hub-center-core" cx="612" cy="577" r="14" />
+          <circle class="hub-hit-area" cx="612" cy="577" r="45" aria-label="Mar del Plata" />
+        </g>
+
+        <!-- 8. BAHÍA BLANCA -->
+        <g class="hub-item" id="hub-bahiablanca" data-hub="bahiablanca">
+          <path class="hub-arrow-path" d="M 490 604 L 566 774" marker-end="url(#arrowhead-cyan)" />
+          <g class="hub-badge">
+            <rect class="hub-badge-box" x="500" y="780" width="225" height="50" rx="10" />
+            <text class="hub-badge-text" x="612" y="813">Bahía Blanca</text>
+          </g>
+          <circle class="hub-pulse-ring" cx="490" cy="604" r="30" />
+          <circle class="hub-center-core" cx="490" cy="604" r="14" />
+          <circle class="hub-hit-area" cx="490" cy="604" r="45" aria-label="Bahía Blanca" />
+        </g>
+      </svg>
+
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,794 @@
+<!-- ==========================================================================
+     LÍNEA DE TIEMPO HORIZONTAL INTERACTIVA — VILLALBA HNOS. IMPLANTES S.A.
+     CÓDIGO AUTO-CONTENIDO PARA PLANTILLAS DE WORDPRESS (Gutenberg / Elementor / Divi)
+     Totalmente encapsulado (HTML + CSS scoped + JS seguro sin colisiones)
+     ========================================================================== -->
+
+<!-- 1. CARGA DE TIPOGRAFÍAS DE ALTA PRECISIÓN: INTER (300 a 900 Black) & JETBRAINS MONO -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<!-- 2. ESTILOS AISLADOS (SCOPED) PARA NO ALTERAR NI SER ALTERADOS POR EL TEMA DE WORDPRESS -->
+<style>
+/* Reset y aislamiento para el contenedor de la línea de tiempo */
+#wp-villalba-timeline,
+#wp-villalba-timeline * {
+  box-sizing: border-box !important;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+#wp-villalba-timeline {
+  /* Variables cromáticas del gradiente y estructura (Sitio Oficial Villalba) */
+  --tl-step-1: #193f89; /* Azul Marino Corporativo Insignia (1966) */
+  --tl-step-2: #1d58a8; /* Azul Real Médico Quirúrgico (1985) */
+  --tl-step-3: #0284c7; /* Azul Cerúleo / Océano Clínico (2002) */
+  --tl-step-4: #0ea5e9; /* Cian Quirúrgico Radiante (2015) */
+  --tl-step-5: #6366f1; /* Índigo Tecnológico / IA & Vanguardia (2026 / Actualidad) */
+
+  --tl-ribbon-gradient: linear-gradient(
+    90deg,
+    var(--tl-step-1) 0%,
+    var(--tl-step-2) 25%,
+    var(--tl-step-3) 50%,
+    var(--tl-step-4) 75%,
+    var(--tl-step-5) 100%
+  );
+
+  --tl-bg-page: transparent;
+  --tl-text-primary: #0a192f;
+  --tl-text-secondary: #334155;
+  --tl-text-muted: #64748b;
+  --tl-card-bg: #ffffff;
+  --tl-card-border: #e2e8f0;
+  --tl-card-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+  --tl-header-bg: #f8fafc;
+  --tl-panel-bg: #f8fafc;
+  --tl-panel-border: #cbd5e1;
+  --tl-accent-corporate: #193f89;
+  --tl-accent-blue: #0284c7;
+
+  --tl-font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --tl-font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --tl-font-mono: 'JetBrains Mono', monospace;
+
+  width: 100%;
+  max-width: 1320px;
+  margin: 50px auto 20px auto;
+  padding: 40px 16px 24px 16px;
+  box-sizing: border-box;
+  clear: both;
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  font-family: var(--tl-font-body);
+  color: var(--tl-text-primary);
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* Encabezado descriptivo */
+#wp-villalba-timeline .infographic-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 24px;
+}
+
+#wp-villalba-timeline .intro-tag {
+  display: inline-block;
+  background: rgba(25, 63, 137, 0.08);
+  color: var(--tl-accent-corporate);
+  font-family: var(--tl-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+#wp-villalba-timeline .main-timeline-title {
+  font-family: var(--tl-font-heading);
+  font-size: 1.55rem;
+  font-weight: 900; /* Inter Black */
+  color: var(--tl-accent-corporate);
+  letter-spacing: -0.025em;
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+
+#wp-villalba-timeline .intro-desc {
+  font-size: 0.88rem;
+  color: var(--tl-text-secondary);
+  max-width: 860px;
+  line-height: 1.5;
+}
+
+/* Contenedor central de la línea de tiempo */
+#wp-villalba-timeline .timeline-master-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  margin: 12px 0 28px 0;
+  padding: 8px 0;
+}
+
+/* Filas con altura fija e inmovilidad estructural */
+#wp-villalba-timeline .timeline-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  min-height: 215px;
+}
+
+#wp-villalba-timeline .timeline-row-top {
+  align-items: stretch;
+  padding-bottom: 16px;
+}
+
+#wp-villalba-timeline .timeline-row-bottom {
+  align-items: stretch;
+  padding-top: 16px;
+}
+
+#wp-villalba-timeline .timeline-spacer {
+  visibility: hidden;
+  height: 10px;
+}
+
+/* Tarjetas de hito */
+#wp-villalba-timeline .timeline-card {
+  background: var(--tl-card-bg);
+  border: 2px solid var(--tl-card-border);
+  border-radius: 14px;
+  padding: 18px 16px;
+  box-shadow: var(--tl-card-shadow);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  height: 100%;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: none !important; /* Estructura geométrica 100% inmóvil */
+}
+
+#wp-villalba-timeline .timeline-card:hover,
+#wp-villalba-timeline .timeline-card.is-active {
+  transform: none !important;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.18), 0 8px 24px rgba(15, 23, 42, 0.1);
+}
+
+#wp-villalba-timeline .timeline-card.step-1 { border-color: rgba(25, 63, 137, 0.25); }
+#wp-villalba-timeline .timeline-card.step-2 { border-color: rgba(29, 88, 168, 0.25); }
+#wp-villalba-timeline .timeline-card.step-3 { border-color: rgba(2, 132, 199, 0.25); }
+#wp-villalba-timeline .timeline-card.step-4 { border-color: rgba(14, 165, 233, 0.25); }
+#wp-villalba-timeline .timeline-card.step-5 { border-color: rgba(99, 102, 241, 0.25); }
+
+#wp-villalba-timeline .timeline-card.step-1:hover, #wp-villalba-timeline .timeline-card.step-1.is-active { border-color: var(--tl-step-1); }
+#wp-villalba-timeline .timeline-card.step-2:hover, #wp-villalba-timeline .timeline-card.step-2.is-active { border-color: var(--tl-step-2); }
+#wp-villalba-timeline .timeline-card.step-3:hover, #wp-villalba-timeline .timeline-card.step-3.is-active { border-color: var(--tl-step-3); }
+#wp-villalba-timeline .timeline-card.step-4:hover, #wp-villalba-timeline .timeline-card.step-4.is-active { border-color: var(--tl-step-4); }
+#wp-villalba-timeline .timeline-card.step-5:hover, #wp-villalba-timeline .timeline-card.step-5.is-active { border-color: var(--tl-step-5); }
+
+#wp-villalba-timeline .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#wp-villalba-timeline .card-phase-badge {
+  font-family: var(--tl-font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+}
+
+#wp-villalba-timeline .badge-step-1 { background-color: var(--tl-step-1); }
+#wp-villalba-timeline .badge-step-2 { background-color: var(--tl-step-2); }
+#wp-villalba-timeline .badge-step-3 { background-color: var(--tl-step-3); }
+#wp-villalba-timeline .badge-step-4 { background-color: var(--tl-step-4); }
+#wp-villalba-timeline .badge-step-5 { background-color: var(--tl-step-5); }
+
+#wp-villalba-timeline .card-year-tag {
+  font-family: var(--tl-font-heading);
+  font-size: 0.88rem;
+  font-weight: 800; /* Inter ExtraBold */
+  color: var(--tl-text-muted);
+  letter-spacing: -0.01em;
+}
+
+#wp-villalba-timeline .card-title {
+  font-family: var(--tl-font-heading);
+  font-size: 1.05rem;
+  font-weight: 900; /* Inter Black */
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  line-height: 1.25;
+}
+
+#wp-villalba-timeline .title-step-1 { color: var(--tl-step-1); }
+#wp-villalba-timeline .title-step-2 { color: var(--tl-step-2); }
+#wp-villalba-timeline .title-step-3 { color: var(--tl-step-3); }
+#wp-villalba-timeline .title-step-4 { color: var(--tl-step-4); }
+#wp-villalba-timeline .title-step-5 { color: var(--tl-step-5); }
+
+#wp-villalba-timeline .card-desc {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--tl-text-secondary);
+  margin-bottom: 12px;
+}
+
+#wp-villalba-timeline .card-footer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--tl-card-border);
+  font-size: 0.72rem;
+  font-family: var(--tl-font-mono);
+  color: var(--tl-text-muted);
+}
+
+/* Pista central continua en degradé (The Ribbon Bar) */
+#wp-villalba-timeline .timeline-ribbon-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  border-radius: 9999px;
+  background: var(--tl-ribbon-gradient);
+  box-shadow: 0 8px 24px rgba(25, 63, 137, 0.28);
+  position: relative;
+  padding: 0 14px;
+}
+
+#wp-villalba-timeline .ribbon-node {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  cursor: pointer;
+  outline: none;
+}
+
+#wp-villalba-timeline .ribbon-node .node-year {
+  color: #ffffff;
+  font-family: var(--tl-font-heading);
+  font-size: 1.35rem;
+  font-weight: 900; /* Inter Black */
+  letter-spacing: -0.015em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  user-select: none;
+  transition: text-shadow 0.2s ease;
+  transform: none !important;
+}
+
+#wp-villalba-timeline .ribbon-node:hover .node-year,
+#wp-villalba-timeline .ribbon-node.is-active .node-year {
+  transform: none !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+#wp-villalba-timeline .node-separator {
+  width: 24px;
+  height: 24px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.22);
+  flex-shrink: 0;
+  z-index: 2;
+  transition: box-shadow 0.2s ease;
+  transform: none !important;
+  pointer-events: none; /* No interrumpe el barrido continuo */
+}
+
+#wp-villalba-timeline .node-separator:hover {
+  transform: none !important;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+#wp-villalba-timeline .node-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  z-index: 5;
+  transition: filter 0.2s ease;
+  transform: none !important;
+  pointer-events: none; /* No interrumpe el barrido continuo */
+}
+
+#wp-villalba-timeline .node-arrow.arrow-up {
+  bottom: 100%;
+  border-bottom-width: 14px;
+  border-bottom-style: solid;
+}
+
+#wp-villalba-timeline .node-arrow.arrow-down {
+  top: 100%;
+  border-top-width: 14px;
+  border-top-style: solid;
+}
+
+#wp-villalba-timeline .ribbon-node.step-1 .node-arrow.arrow-up { border-bottom-color: var(--tl-step-1); }
+#wp-villalba-timeline .ribbon-node.step-2 .node-arrow.arrow-down { border-top-color: var(--tl-step-2); }
+#wp-villalba-timeline .ribbon-node.step-3 .node-arrow.arrow-up { border-bottom-color: var(--tl-step-3); }
+#wp-villalba-timeline .ribbon-node.step-4 .node-arrow.arrow-down { border-top-color: var(--tl-step-4); }
+#wp-villalba-timeline .ribbon-node.step-5 .node-arrow.arrow-up { border-bottom-color: var(--tl-step-5); }
+
+#wp-villalba-timeline .ribbon-node:hover .node-arrow,
+#wp-villalba-timeline .ribbon-node.is-active .node-arrow {
+  transform: none !important;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.85));
+}
+
+/* Panel inferior de Ficha Técnica */
+#wp-villalba-timeline .step-detail-panel {
+  background: var(--tl-panel-bg);
+  border: 1px solid var(--tl-panel-border);
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-top: 12px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.02);
+  height: 245px;
+  min-height: 245px;
+  max-height: 245px;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#wp-villalba-timeline .detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 52px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--tl-card-border);
+  margin-bottom: 16px;
+}
+
+#wp-villalba-timeline .detail-tag {
+  font-family: var(--tl-font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--tl-accent-corporate);
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 2px;
+}
+
+#wp-villalba-timeline .detail-title {
+  font-family: var(--tl-font-heading);
+  font-size: 1.25rem;
+  font-weight: 900; /* Inter Black */
+  letter-spacing: -0.02em;
+  color: var(--tl-accent-corporate);
+  line-height: 1.25;
+}
+
+#wp-villalba-timeline .detail-meta-pill {
+  background: rgba(25, 63, 137, 0.08);
+  color: var(--tl-accent-corporate);
+  font-family: var(--tl-font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 9999px;
+}
+
+#wp-villalba-timeline .detail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+#wp-villalba-timeline .detail-box {
+  background: var(--tl-card-bg);
+  border: 1px solid var(--tl-card-border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  height: 125px;
+  min-height: 125px;
+  max-height: 125px;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+#wp-villalba-timeline .detail-subhead {
+  font-family: var(--tl-font-heading);
+  font-size: 0.82rem;
+  font-weight: 800; /* Inter ExtraBold */
+  color: var(--tl-accent-corporate);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+#wp-villalba-timeline .detail-text {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--tl-text-secondary);
+}
+
+/* Responsividad para WordPress */
+@media (max-width: 1024px) {
+  #wp-villalba-timeline {
+    padding: 10px 12px;
+  }
+  #wp-villalba-timeline .timeline-row {
+    gap: 10px;
+  }
+  #wp-villalba-timeline .timeline-card {
+    padding: 12px 10px;
+  }
+  #wp-villalba-timeline .detail-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #wp-villalba-timeline .ribbon-node .node-year {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #wp-villalba-timeline .infographic-intro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #wp-villalba-timeline .timeline-master-container {
+    overflow-x: auto;
+    padding-bottom: 20px;
+  }
+  #wp-villalba-timeline .timeline-row,
+  #wp-villalba-timeline .timeline-ribbon-bar {
+    min-width: 850px;
+  }
+  #wp-villalba-timeline .detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<!-- 3. ESTRUCTURA HTML DE LA LÍNEA DE TIEMPO -->
+<div id="wp-villalba-timeline">
+
+  <!-- BANNER DE INTRODUCCIÓN -->
+  <section class="infographic-intro">
+    <div class="intro-titles">
+      <h2 class="main-timeline-title">LÍNEA DE TIEMPO: TRAYECTORIA, INNOVACIÓN & PROCESO</h2>
+      <p class="intro-desc">
+        Más de seis décadas dedicadas a la fabricación y desarrollo de soluciones de alta complejidad en cirugía ortopédica, 
+        artroplastia e implantes traumatológicos con ingeniería de precisión y logística federal.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTENEDOR DE LA LÍNEA HORIZONTAL -->
+  <section class="timeline-master-container">
+
+    <!-- FILA SUPERIOR: HITOS IMPARES (1, 3, 5) -->
+    <div class="timeline-row timeline-row-top">
+      
+      <!-- HITO 1 (1966) -->
+      <article class="timeline-card step-1 is-active" data-step="1">
+        <div class="card-header">
+          <span class="card-phase-badge badge-step-1">HITO 01</span>
+          <span class="card-year-tag">1966</span>
+        </div>
+        <h3 class="card-title title-step-1">FUNDACIÓN & ORIGEN</h3>
+        <p class="card-desc">
+          Inicia la elaboración de productos marca Villalba por sus fundadores <strong>Arnaldo y Norberto Villalba</strong> en Caseros, sentando las bases de una compañía pionera en tecnología médica y vocación de servicio.
+        </p>
+        <div class="card-footer-meta">
+          <span class="meta-item">📍 Caseros, Bs. As.</span>
+          <span class="meta-item">🛠️ Origen Industrial</span>
+        </div>
+      </article>
+
+      <div class="timeline-spacer" aria-hidden="true"></div>
+
+      <!-- HITO 3 (2002) -->
+      <article class="timeline-card step-3" data-step="3">
+        <div class="card-header">
+          <span class="card-phase-badge badge-step-3">HITO 03</span>
+          <span class="card-year-tag">2002</span>
+        </div>
+        <h3 class="card-title title-step-3">TECNOLOGÍA CNC & ISO</h3>
+        <p class="card-desc">
+          Modernización con mecanizado multieje computarizado, rigurosos estándares <strong>ANMAT / ISO 13485</strong> y adopción de biomateriales de alta pureza (Titanio Grado 5 y Acero 316L) con tolerancias micrométricas.
+        </p>
+        <div class="card-footer-meta">
+          <span class="meta-item">⚙️ Centros CNC</span>
+          <span class="meta-item">🔬 Biomateriales ASTM</span>
+        </div>
+      </article>
+
+      <div class="timeline-spacer" aria-hidden="true"></div>
+
+      <!-- HITO 5 (ACTUALIDAD) -->
+      <article class="timeline-card step-5" data-step="5">
+        <div class="card-header">
+          <span class="card-phase-badge badge-step-5">HITO 05</span>
+          <span class="card-year-tag">ACTUALIDAD</span>
+        </div>
+        <h3 class="card-title title-step-5">VANGUARDIA & WORKSHOPS</h3>
+        <p class="card-desc">
+          Capacitación continua de esterilización y limpieza de productos médicos, workshops en hospitales (ej. Htal. Mercante) y asistencia quirúrgica directa con instrumental de alta complejidad en todo el país.
+        </p>
+        <div class="card-footer-meta">
+          <span class="meta-item">🏥 Workshops Quirúrgicos</span>
+          <span class="meta-item">🌐 Liderazgo Federal</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- PISTA CENTRAL CONTINUA EN DEGRADÉ -->
+    <div class="timeline-ribbon-bar">
+
+      <!-- NODO 1: 1966 -->
+      <div class="ribbon-node step-1 is-active" data-step="1" role="button" aria-label="Año 1966: Fundación">
+        <div class="node-arrow arrow-up" aria-hidden="true"></div>
+        <span class="node-year">1966</span>
+      </div>
+
+      <div class="node-separator" aria-hidden="true"></div>
+
+      <!-- NODO 2: 1985 -->
+      <div class="ribbon-node step-2" data-step="2" role="button" aria-label="Año 1985: Especialización Traumatológica">
+        <div class="node-arrow arrow-down" aria-hidden="true"></div>
+        <span class="node-year">1985</span>
+      </div>
+
+      <div class="node-separator" aria-hidden="true"></div>
+
+      <!-- NODO 3: 2002 -->
+      <div class="ribbon-node step-3" data-step="3" role="button" aria-label="Año 2002: Salto Tecnológico CNC">
+        <div class="node-arrow arrow-up" aria-hidden="true"></div>
+        <span class="node-year">2002</span>
+      </div>
+
+      <div class="node-separator" aria-hidden="true"></div>
+
+      <!-- NODO 4: 2015 -->
+      <div class="ribbon-node step-4" data-step="4" role="button" aria-label="Año 2015: Línea ANV II y Logística">
+        <div class="node-arrow arrow-down" aria-hidden="true"></div>
+        <span class="node-year">2015</span>
+      </div>
+
+      <div class="node-separator" aria-hidden="true"></div>
+
+      <!-- NODO 5: ACTUALIDAD -->
+      <div class="ribbon-node step-5" data-step="5" role="button" aria-label="Actualidad: Vanguardia y Workshops">
+        <div class="node-arrow arrow-up" aria-hidden="true"></div>
+        <span class="node-year">2026</span>
+      </div>
+
+    </div>
+
+    <!-- FILA INFERIOR: HITOS PARES (2, 4) -->
+    <div class="timeline-row timeline-row-bottom">
+
+      <div class="timeline-spacer" aria-hidden="true"></div>
+
+      <!-- HITO 2 (1985) -->
+      <article class="timeline-card step-2" data-step="2">
+        <div class="card-header">
+          <span class="card-phase-badge badge-step-2">HITO 02</span>
+          <span class="card-year-tag">1985</span>
+        </div>
+        <h3 class="card-title title-step-2">ESPECIALIZACIÓN & OSTEOSÍNTESIS</h3>
+        <p class="card-desc">
+          Expansión de líneas traumatológicas: diseño de prótesis femorales de cadera, clavos endomedulares, placas y tornillos corticales, consolidando la reputación quirúrgica ante la comunidad médica nacional.
+        </p>
+        <div class="card-footer-meta">
+          <span class="meta-item">🦴 Cadera y Fémur</span>
+          <span class="meta-item">📐 Clavos y Placas</span>
+        </div>
+      </article>
+
+      <div class="timeline-spacer" aria-hidden="true"></div>
+
+      <!-- HITO 4 (2015) -->
+      <article class="timeline-card step-4" data-step="4">
+        <div class="card-header">
+          <span class="card-phase-badge badge-step-4">HITO 04</span>
+          <span class="card-year-tag">2015</span>
+        </div>
+        <h3 class="card-title title-step-4">RODILLA ANV II & RED NACIONAL</h3>
+        <p class="card-desc">
+          Lanzamiento del sistema multicorte <strong>Rodilla ANV II</strong> y vástago <strong>Hip-Lock</strong>. Apertura de sucursales directas en Mar del Plata, Bahía Blanca, La Plata y Rosario para abastecimiento ágil.
+        </p>
+        <div class="card-footer-meta">
+          <span class="meta-item">🦾 Rodilla ANV II</span>
+          <span class="meta-item">🚚 Red de 4 Sucursales</span>
+        </div>
+      </article>
+
+      <div class="timeline-spacer" aria-hidden="true"></div>
+
+    </div>
+
+  </section>
+
+  <!-- PANEL DE FICHA TÉCNICA DINÁMICA -->
+  <section class="step-detail-panel" id="wpTimelineDetailPanel">
+    <div class="detail-header">
+      <div class="detail-badge-group">
+        <span class="detail-tag" id="wpDetailTag">HITO 01 — ORIGEN HISTÓRICO</span>
+        <h3 class="detail-title" id="wpDetailTitle">1966 — Fundación por Arnaldo y Norberto Villalba</h3>
+      </div>
+      <div class="detail-meta-pill" id="wpDetailPill">Pilar Familiar & Industrial</div>
+    </div>
+    <div class="detail-grid">
+      <div class="detail-box">
+        <h4 class="detail-subhead">🎯 Hito Estratégico</h4>
+        <p id="wpDetailObjective" class="detail-text">
+          Fundación por Arnaldo y Norberto Villalba en Caseros con enfoque en instrumental quirúrgico y dispositivos traumatológicos de precisión.
+        </p>
+      </div>
+      <div class="detail-box">
+        <h4 class="detail-subhead">📦 Productos & Desarrollo</h4>
+        <p id="wpDetailProducts" class="detail-text">
+          Instrumental quirúrgico especializado, fresas para traumatología y fijaciones óseas tempranas de alta resistencia mecánica.
+        </p>
+      </div>
+      <div class="detail-box">
+        <h4 class="detail-subhead">🔬 Estándar de Calidad</h4>
+        <p id="wpDetailQuality" class="detail-text">
+          Control dimensional al 100%, ajuste micrométrico manual y ensayos funcionales con cirujanos ortopédicos pioneros.
+        </p>
+      </div>
+      <div class="detail-box">
+        <h4 class="detail-subhead">📍 Red & Logística</h4>
+        <p id="wpDetailLogistics" class="detail-text">
+          Planta Matriz en Caseros con abastecimiento inicial a hospitales metropolitanos y clínicas ortopédicas especializadas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- 4. LOGICA DE INTERACCION BLINDADA PARA WORDPRESS -->
+<script>
+(function() {
+  function initVillalbaTimeline() {
+    var root = document.getElementById("wp-villalba-timeline");
+    if (!root) return;
+    var milestonesData = {
+      1: {
+        phaseTag: "HITO 01 \u2014 ORIGEN HIST\u00d3RICO",
+        title: "1966 \u2014 Fundaci\u00f3n por Arnaldo y Norberto Villalba",
+        pill: "Pilar Familiar & Industrial",
+        objective: "Fundaci\u00f3n por Arnaldo y Norberto Villalba en Caseros con foco en instrumental quir\u00fargico y osteos\u00edntesis de precisi\u00f3n.",
+        products: "Instrumental quir\u00fargico especializado, fresas para traumatolog\u00eda y fijaciones \u00f3seas tempranas de alta resistencia mec\u00e1nica.",
+        quality: "Control dimensional al 100%, ajuste microm\u00e9trico manual y ensayos funcionales con cirujanos ortop\u00e9dicos pioneros.",
+        logistics: "Planta Matriz en Caseros con abastecimiento inicial a hospitales metropolitanos y cl\u00ednicas ortop\u00e9dicas especializadas."
+      },
+      2: {
+        phaseTag: "HITO 02 \u2014 EXPANSI\u00d3N TRAUMATOL\u00d3GICA",
+        title: "1985 \u2014 Especializaci\u00f3n en Cadera y Osteos\u00edntesis",
+        pill: "Implantes Reconstructivos",
+        objective: "Desarrollo de los primeros sistemas estandarizados de reemplazo de cadera y elementos de osteos\u00edntesis interna hospitalaria.",
+        products: "Pr\u00f3tesis femorales de cadera, clavos endomedulares, placas de compresi\u00f3n din\u00e1mica y tornillos corticales normalizados.",
+        quality: "Adopci\u00f3n de aceros inoxidables grado quir\u00fargico 316L con trazabilidad metal\u00fargica certificada por colada y forja.",
+        logistics: "Creaci\u00f3n de las primeras rutas de distribuci\u00f3n hacia el interior del pa\u00eds y v\u00ednculo estrecho con sociedades m\u00e9dicas."
+      },
+      3: {
+        phaseTag: "HITO 03 \u2014 SALTO TECNOL\u00d3GICO",
+        title: "2002 \u2014 Centros de Mecanizado CNC & Normas ANMAT / ISO",
+        pill: "Precisi\u00f3n Computarizada",
+        objective: "Reconversi\u00f3n tecnol\u00f3gica incorporando centros de mecanizado multieje CNC, salas limpias y sistemas de calidad certificada.",
+        products: "V\u00e1stagos femorales anat\u00f3micos, cotilos no cementados con recubrimientos bioactivos y torniller\u00eda de titanio de precisi\u00f3n.",
+        quality: "Certificaci\u00f3n de Buenas Pr\u00e1cticas ANMAT y acreditaci\u00f3n seg\u00fan norma internacional ISO 13485 de productos m\u00e9dicos.",
+        logistics: "Sistema de trazabilidad individual por n\u00famero de serie y lote para control y seguimiento hospitalario estricto."
+      },
+      4: {
+        phaseTag: "HITO 04 \u2014 ARTROPLASTIA AVANZADA & RED FEDERAL",
+        title: "2015 \u2014 Rodilla ANV II, Hip-Lock & Sucursales Directas",
+        pill: "Artroplastia de Avanzada",
+        objective: "Lanzamiento del sistema multicorte Rodilla ANV II y pr\u00f3tesis autobloqueante de cadera Hip-Lock con despliegue federal.",
+        products: "Sistema completo Rodilla ANV II con instrumental multicorte, v\u00e1stagos Hip-Lock pulidos y rugosos de titanio Grado 5.",
+        quality: "Ensayos mec\u00e1nicos de fatiga seg\u00fan normas ASTM F136 e ISO 5832 con validaci\u00f3n en bancos biomec\u00e1nicos oficiales.",
+        logistics: "Apertura de sucursales oficiales en Mar del Plata, Bah\u00eda Blanca, La Plata y Rosario para provisi\u00f3n inmediata."
+      },
+      5: {
+        phaseTag: "HITO 05 \u2014 VANGUARDIA BIOM\u00c9DICA & COMUNIDAD",
+        title: "2026 \u2014 Workshops Hospitalarios, Capacitaciones & Excelencia",
+        pill: "Liderazgo Nacional",
+        objective: "M\u00e1s de seis d\u00e9cadas liderando el mercado m\u00e9dico nacional con fabricaci\u00f3n de clase mundial y asistencia en quir\u00f3fano.",
+        products: "Cajas de instrumental quir\u00fargico ergon\u00f3mico, instrumental radiol\u00facido, tutores externos biplanares y a medida.",
+        quality: "Workshops continuos de limpieza y esterilizaci\u00f3n hospitalaria, con asesoramiento t\u00e9cnico directo en intervenciones.",
+        logistics: "Red log\u00edstica integral con cobertura en las 23 provincias argentinas y coordinaci\u00f3n m\u00e9dica permanente 24/7."
+      }
+    };
+    var nodes = root.querySelectorAll(".ribbon-node");
+    var cards = root.querySelectorAll(".timeline-card");
+    var detailTag = root.querySelector("#wpDetailTag");
+    var detailTitle = root.querySelector("#wpDetailTitle");
+    var detailPill = root.querySelector("#wpDetailPill");
+    var detailObjective = root.querySelector("#wpDetailObjective");
+    var detailProducts = root.querySelector("#wpDetailProducts");
+    var detailQuality = root.querySelector("#wpDetailQuality");
+    var detailLogistics = root.querySelector("#wpDetailLogistics");
+    var currentActive = 0;
+    function activate(stepNumber) {
+      var step = parseInt(stepNumber, 10);
+      if (isNaN(step) || step < 1 || step > 5) return;
+      if (step === currentActive) return;
+      currentActive = step;
+      for (var i = 0; i < nodes.length; i++) {
+        var s = parseInt(nodes[i].getAttribute("data-step"), 10);
+        if (s === currentActive) { nodes[i].classList.add("is-active"); } else { nodes[i].classList.remove("is-active"); }
+      }
+      for (var j = 0; j < cards.length; j++) {
+        var cs = parseInt(cards[j].getAttribute("data-step"), 10);
+        if (cs === currentActive) { cards[j].classList.add("is-active"); } else { cards[j].classList.remove("is-active"); }
+      }
+      var d = milestonesData[currentActive];
+      if (d) {
+        if (detailTag) detailTag.textContent = d.phaseTag;
+        if (detailTitle) detailTitle.textContent = d.title;
+        if (detailPill) detailPill.textContent = d.pill;
+        if (detailObjective) detailObjective.textContent = d.objective;
+        if (detailProducts) detailProducts.textContent = d.products;
+        if (detailQuality) detailQuality.textContent = d.quality;
+        if (detailLogistics) detailLogistics.textContent = d.logistics;
+      }
+    }
+    for (var k = 0; k < nodes.length; k++) {
+      (function(node) {
+        var step = node.getAttribute("data-step");
+        node.addEventListener("mouseenter", function() { activate(step); });
+        node.addEventListener("click", function() { activate(step); });
+      })(nodes[k]);
+    }
+    for (var m = 0; m < cards.length; m++) {
+      (function(card) {
+        var step = card.getAttribute("data-step");
+        card.addEventListener("mouseenter", function() { activate(step); });
+        card.addEventListener("click", function() { activate(step); });
+      })(cards[m]);
+    }
+    var timelineSec = root.querySelector(".timeline-master-container");
+    if (timelineSec) {
+      timelineSec.addEventListener("mousemove", function(e) {
+        var rect = timelineSec.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var width = rect.width;
+        if (width <= 0) return;
+        var ratio = Math.max(0, Math.min(0.999, x / width));
+        var step = Math.floor(ratio * 5) + 1;
+        activate(step);
+      });
+    }
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initVillalbaTimeline);
+  } else {
+    initVillalbaTimeline();
+  }
+})();
+</script>

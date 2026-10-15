@@ -1,0 +1,546 @@
+/* ==========================================================================
+   INFOGRAFÍA LÍNEA DE TIEMPO HORIZONTAL INTERACTIVA
+   Empresa: VILLALBA HNOS. IMPLANTES S.A.
+   Versión: Modular CSS (Tipografía Inter & Inter Black)
+   ========================================================================== */
+
+:root {
+  /* FASES CROMÁTICAS EXTRAÍDAS DEL SITIO OFICIAL VILLALBA (IMPLANTESVILLALBA.COM.AR) */
+  --step-1: #193f89; /* Azul Marino Corporativo Insignia (1966 - Fundación) */
+  --step-2: #1d58a8; /* Azul Real Médico Quirúrgico (1985 - Expansión Traumatológica) */
+  --step-3: #0284c7; /* Azul Cerúleo / Océano Clínico (2002 - Salto CNC & ISO) */
+  --step-4: #0ea5e9; /* Cian Quirúrgico Radiante (2015 - Rodilla ANV II) */
+  --step-5: #6366f1; /* Índigo Tecnológico / IA & Vanguardia (2026 - Actualidad) */
+
+  /* DEGRADÉ CONTINUO DE LA PISTA CENTRAL */
+  --ribbon-gradient: linear-gradient(
+    90deg,
+    var(--step-1) 0%,
+    var(--step-2) 25%,
+    var(--step-3) 50%,
+    var(--step-4) 75%,
+    var(--step-5) 100%
+  );
+
+  /* COLORES MODO CLARO (TÉCNICO / WEB & IMPRESIÓN) */
+  --bg-page: transparent;
+  --sheet-bg: transparent;
+  --text-primary: #0a192f;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --card-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+  --header-bg: #f8fafc;
+  --panel-bg: #f8fafc;
+  --panel-border: #cbd5e1;
+  --accent-corporate: #193f89;
+  --accent-blue: #0284c7;
+
+  /* TIPOGRAFÍAS: INTER & INTER BLACK */
+  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* RESET GENERAL */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-y: scroll; /* Garantiza barra de desplazamiento permanente para evitar saltos horizontales */
+}
+
+body {
+  background-color: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  padding: 0;
+  margin: 0;
+}
+
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL FLUIDO Y TOTALMENTE INTEGRADO (SIN MARCO EXTERNO)
+   ========================================================================== */
+.page-sheet {
+  width: 100%;
+  max-width: 1320px;
+  margin: 40px auto 20px auto;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  padding: 30px 16px 20px 16px;
+  box-sizing: border-box;
+  clear: both;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   BANNER DE INTRODUCCIÓN Y ESTADÍSTICAS
+   ========================================================================== */
+.infographic-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 24px;
+  gap: 24px;
+}
+
+.main-timeline-title {
+  font-family: var(--font-heading);
+  font-size: 1.55rem;
+  font-weight: 900; /* Inter Black */
+  color: var(--accent-corporate);
+  letter-spacing: -0.025em;
+  margin-bottom: 6px;
+}
+
+.intro-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  max-width: 860px;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   LÍNEA DE TIEMPO HORIZONTAL MAESTRA (TIMELINE PROCESS RIBBON)
+   ========================================================================== */
+.timeline-master-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  margin: 12px 0 28px 0;
+  padding: 8px 0;
+}
+
+/* Grilla de Filas (5 Columnas) */
+.timeline-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  min-height: 215px;
+}
+
+.timeline-row-top {
+  align-items: stretch;
+  padding-bottom: 16px;
+}
+
+.timeline-row-bottom {
+  align-items: stretch;
+  padding-top: 16px;
+}
+
+.timeline-spacer {
+  visibility: hidden;
+  height: 10px;
+}
+
+/* TARJETAS DE CONTENIDO (TIMELINE CARDS) */
+.timeline-card {
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  border-radius: 14px;
+  padding: 18px 16px;
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  height: 100%;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: none !important; /* Estructura geométrica 100% inmóvil */
+}
+
+.timeline-card:hover,
+.timeline-card.is-active {
+  transform: none !important;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.18), 0 8px 24px rgba(15, 23, 42, 0.1);
+  border-color: currentColor;
+}
+
+.timeline-card:focus,
+.timeline-card:focus-visible {
+  outline: none !important;
+}
+
+.timeline-row-bottom .timeline-card:hover,
+.timeline-row-bottom .timeline-card.is-active {
+  transform: none !important;
+}
+
+.timeline-card.step-1 { border-color: rgba(25, 63, 137, 0.25); }
+.timeline-card.step-2 { border-color: rgba(29, 88, 168, 0.25); }
+.timeline-card.step-3 { border-color: rgba(2, 132, 199, 0.25); }
+.timeline-card.step-4 { border-color: rgba(14, 165, 233, 0.25); }
+.timeline-card.step-5 { border-color: rgba(99, 102, 241, 0.25); }
+
+.timeline-card.step-1:hover, .timeline-card.step-1.is-active { border-color: var(--step-1); }
+.timeline-card.step-2:hover, .timeline-card.step-2.is-active { border-color: var(--step-2); }
+.timeline-card.step-3:hover, .timeline-card.step-3.is-active { border-color: var(--step-3); }
+.timeline-card.step-4:hover, .timeline-card.step-4.is-active { border-color: var(--step-4); }
+.timeline-card.step-5:hover, .timeline-card.step-5.is-active { border-color: var(--step-5); }
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.card-phase-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+}
+
+.badge-step-1 { background-color: var(--step-1); }
+.badge-step-2 { background-color: var(--step-2); }
+.badge-step-3 { background-color: var(--step-3); }
+.badge-step-4 { background-color: var(--step-4); }
+.badge-step-5 { background-color: var(--step-5); }
+
+.card-year-tag {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 800; /* Inter ExtraBold */
+  color: var(--text-muted);
+  letter-spacing: -0.01em;
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 900; /* Inter Black */
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  line-height: 1.25;
+}
+
+.title-step-1 { color: var(--step-1); }
+.title-step-2 { color: var(--step-2); }
+.title-step-3 { color: var(--step-3); }
+.title-step-4 { color: var(--step-4); }
+.title-step-5 { color: var(--step-5); }
+
+.card-desc {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.card-footer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--card-border);
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   PISTA CENTRAL CONTINUA EN DEGRADÉ (THE RIBBON BAR)
+   ========================================================================== */
+.timeline-ribbon-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  border-radius: 9999px;
+  background: var(--ribbon-gradient);
+  box-shadow: 0 8px 24px rgba(25, 63, 137, 0.28);
+  position: relative;
+  padding: 0 14px;
+}
+
+/* Segmentos / Nodos */
+.ribbon-node {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  cursor: pointer;
+  outline: none;
+}
+
+.ribbon-node .node-year {
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 900; /* Inter Black */
+  letter-spacing: -0.015em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  user-select: none;
+  transition: text-shadow 0.2s ease;
+  transform: none !important; /* Cero desplazamiento */
+}
+
+.ribbon-node:hover .node-year,
+.ribbon-node.is-active .node-year,
+.ribbon-node:focus-visible .node-year {
+  transform: none !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Separadores Circulares (White Dots) */
+.node-separator {
+  width: 24px;
+  height: 24px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.22);
+  flex-shrink: 0;
+  z-index: 2;
+  transition: box-shadow 0.2s ease;
+  transform: none !important;
+  pointer-events: none; /* No interrumpe el barrido continuo */
+}
+
+.node-separator:hover {
+  transform: none !important;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Punteros / Flechas Indicadoras Triangulares */
+.node-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  z-index: 5;
+  transition: filter 0.2s ease;
+  transform: none !important; /* Inmóviles geométricamente */
+  pointer-events: none; /* No intercepta el barrido horizontal */
+}
+
+/* Flechas hacia arriba (Hitos 1, 3, 5) */
+.node-arrow.arrow-up {
+  bottom: 100%;
+  border-bottom-width: 14px;
+  border-bottom-style: solid;
+}
+
+/* Flechas hacia abajo (Hitos 2, 4) */
+.node-arrow.arrow-down {
+  top: 100%;
+  border-top-width: 14px;
+  border-top-style: solid;
+}
+
+/* Color exacto para cada flecha */
+.ribbon-node.step-1 .node-arrow.arrow-up { border-bottom-color: var(--step-1); }
+.ribbon-node.step-2 .node-arrow.arrow-down { border-top-color: var(--step-2); }
+.ribbon-node.step-3 .node-arrow.arrow-up { border-bottom-color: var(--step-3); }
+.ribbon-node.step-4 .node-arrow.arrow-down { border-top-color: var(--step-4); }
+.ribbon-node.step-5 .node-arrow.arrow-up { border-bottom-color: var(--step-5); }
+
+.ribbon-node:hover .node-arrow.arrow-up,
+.ribbon-node.is-active .node-arrow.arrow-up,
+.ribbon-node:hover .node-arrow.arrow-down,
+.ribbon-node.is-active .node-arrow.arrow-down {
+  transform: none !important;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.85));
+}
+
+/* ==========================================================================
+   PANEL EXPANDIBLE DE FICHA TÉCNICA
+   ========================================================================== */
+.step-detail-panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-bottom: 0;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.02);
+  height: 245px;
+  min-height: 245px;
+  max-height: 245px;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 52px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--card-border);
+  margin-bottom: 16px;
+}
+
+.detail-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent-corporate);
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.detail-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 900; /* Inter Black */
+  letter-spacing: -0.02em;
+  color: var(--accent-corporate);
+  line-height: 1.25;
+}
+
+.detail-meta-pill {
+  background: rgba(25, 63, 137, 0.08);
+  color: var(--accent-corporate);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 9999px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.detail-box {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  height: 125px;
+  min-height: 125px;
+  max-height: 125px;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-subhead {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 800; /* Inter ExtraBold */
+  color: var(--accent-corporate);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.detail-text {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   RESPONSIVIDAD (PANTALLAS MEDIANAS Y MÓVILES)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .page-sheet {
+    padding: 10px 12px;
+    margin: 0 auto;
+  }
+
+  .timeline-row {
+    gap: 10px;
+  }
+
+  .timeline-card {
+    padding: 12px 10px;
+  }
+
+  .detail-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ribbon-node .node-year {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .infographic-intro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .timeline-master-container {
+    overflow-x: auto;
+    padding-bottom: 20px;
+  }
+
+  .timeline-row,
+  .timeline-ribbon-bar {
+    min-width: 850px;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   ENTORNO DE IMPRESIÓN Y EXPORTACIÓN PDF A4 (@media print)
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 6mm;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .page-sheet {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  .timeline-card,
+  .timeline-master-container,
+  .step-detail-panel {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
