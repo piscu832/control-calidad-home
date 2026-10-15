@@ -79,7 +79,103 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 4. Persistencia en LocalStorage para inspectores de planta
+  // 4. Campo de Fecha de Inspección (Editable, solo números y calendario interactivo)
+  const traceDateInput = document.getElementById('trace-date-input');
+  const btnCalendarTrigger = document.getElementById('btn-calendar-trigger');
+  const traceNativeDate = document.getElementById('trace-native-date');
+
+  function syncTextToNativeDate() {
+    if (!traceDateInput || !traceNativeDate) return;
+    const text = traceDateInput.value.trim();
+    const parts = text.split('/');
+    if (parts.length === 3 && parts[0].length === 2 && parts[1].length === 2 && parts[2].length === 4) {
+      const day = parts[0];
+      const month = parts[1];
+      const year = parts[2];
+      const iso = `${year}-${month}-${day}`;
+      if (!isNaN(Date.parse(iso))) {
+        traceNativeDate.value = iso;
+      }
+    }
+  }
+
+  if (traceDateInput) {
+    // 4.1 Bloqueo estricto de letras en teclado
+    traceDateInput.addEventListener('keydown', (e) => {
+      // Permitir teclas de control y navegación
+      const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter', 'Home', 'End'];
+      if (allowedKeys.includes(e.key) || e.ctrlKey || e.metaKey) {
+        return;
+      }
+      // Bloquear todo carácter que no sea número del 0 al 9 o barra diagonal
+      if (!/^[0-9\/]$/.test(e.key)) {
+        e.preventDefault();
+      }
+    });
+
+    // 4.2 Filtrado en input y máscara inteligente DD/MM/AAAA
+    traceDateInput.addEventListener('input', () => {
+      let raw = traceDateInput.value.replace(/[^0-9\/]/g, '');
+      
+      // Si el usuario escribe dígitos continuos, aplicar formato DD/MM/AAAA
+      const digits = raw.replace(/\D/g, '').slice(0, 8);
+      if (raw.indexOf('/') === -1 && digits.length >= 2) {
+        let formatted = digits.slice(0, 2);
+        if (digits.length >= 4) {
+          formatted += '/' + digits.slice(2, 4) + '/' + digits.slice(4, 8);
+        } else if (digits.length > 2) {
+          formatted += '/' + digits.slice(2);
+        }
+        raw = formatted;
+      } else {
+        raw = raw.slice(0, 10);
+      }
+
+      traceDateInput.value = raw;
+      syncTextToNativeDate();
+      saveState();
+    });
+
+    // 4.3 Control de pegado (bloquear letras pegadas)
+    traceDateInput.addEventListener('paste', (e) => {
+      e.preventDefault();
+      const pasted = (e.clipboardData || window.clipboardData).getData('text');
+      const clean = pasted.replace(/[^0-9\/]/g, '').slice(0, 10);
+      traceDateInput.value = clean;
+      syncTextToNativeDate();
+      saveState();
+    });
+  }
+
+  // 4.4 Disparador de Calendario Interactivo
+  if (btnCalendarTrigger && traceNativeDate && traceDateInput) {
+    btnCalendarTrigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      syncTextToNativeDate();
+      try {
+        if (typeof traceNativeDate.showPicker === 'function') {
+          traceNativeDate.showPicker();
+        } else {
+          traceNativeDate.focus();
+          traceNativeDate.click();
+        }
+      } catch (err) {
+        traceNativeDate.focus();
+        traceNativeDate.click();
+      }
+    });
+
+    // Al seleccionar una fecha en el calendario
+    traceNativeDate.addEventListener('change', () => {
+      if (traceNativeDate.value) {
+        const [year, month, day] = traceNativeDate.value.split('-');
+        traceDateInput.value = `${day}/${month}/${year}`;
+        saveState();
+      }
+    });
+  }
+
+  // 5. Persistencia en LocalStorage para inspectores de planta
   const STORAGE_KEY = 'hip_lock_qc_state_v1';
   const sigField = document.getElementById('inspector-signature');
   const dateField = document.getElementById('inspector-date');
@@ -94,7 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
       qtyNoConforme: qtyNoConforme ? qtyNoConforme.value : '0',
       obs: obsField ? obsField.innerText : '',
       signature: sigField ? sigField.innerText : '',
-      date: dateField ? dateField.innerText : ''
+      date: dateField ? dateField.innerText : '',
+      traceDate: traceDateInput ? traceDateInput.value : '29/09/2026'
     };
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -130,6 +227,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (state.date && dateField) {
           dateField.innerText = state.date;
         }
+        if (state.traceDate && traceDateInput) {
+          traceDateInput.value = state.traceDate;
+          syncTextToNativeDate();
+        }
       }
     } catch (e) {
       console.warn('Error al cargar estado previo');
@@ -143,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (sigField) sigField.addEventListener('input', saveState);
   if (dateField) dateField.addEventListener('input', saveState);
 
-  // 5. Reiniciar Puntos
+  // 6. Reiniciar Puntos
   btnReset.addEventListener('click', () => {
     if (confirm('¿Desea reiniciar todas las marcas de verificación de los 9 puntos?')) {
       checkboxes.forEach(cb => cb.checked = false);

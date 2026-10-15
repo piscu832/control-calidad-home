@@ -348,6 +348,95 @@ body.theme-blueprint .trace-input:focus {
   background: #0f172a;
 }
 
+/* Contenedor interactivo de fecha con calendario */
+.date-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  min-height: 24px;
+}
+
+body.theme-blueprint .date-input-container {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.date-input-container:focus-within {
+  border-color: var(--cyan-primary);
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+}
+
+body.theme-blueprint .date-input-container:focus-within {
+  background: #0f172a;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
+}
+
+.trace-date-text {
+  flex: 1;
+  width: 100%;
+  border: none !important;
+  background: transparent !important;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-main);
+  padding: 4px 6px;
+  outline: none;
+  min-height: 24px;
+}
+
+body.theme-blueprint .trace-date-text {
+  color: #f8fafc;
+}
+
+.btn-calendar-trigger {
+  background: transparent;
+  border: none;
+  color: var(--cyan-primary);
+  padding: 2px 5px;
+  margin-right: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.btn-calendar-trigger:hover {
+  background: rgba(2, 132, 199, 0.15);
+  color: #0284c7;
+  transform: scale(1.08);
+}
+
+body.theme-blueprint .btn-calendar-trigger {
+  color: #38bdf8;
+}
+
+body.theme-blueprint .btn-calendar-trigger:hover {
+  background: rgba(56, 189, 248, 0.25);
+  color: #7dd3fc;
+}
+
+/* Input nativo date para abrir el selector del sistema */
+.trace-native-date {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
 /* ---------------- 2. Introducción Técnica ---------------- */
 .sheet-intro {
   margin-bottom: 20px;
@@ -1563,6 +1652,26 @@ html, body {
     gap: 6px;
     text-align: center;
     font-size: 0.62rem;
+  }
+}
+
+/* ==========================================================================
+   BLINDAJE DE IMPRESIÓN Y EXPORTACIÓN PDF A4
+   ========================================================================== */
+@media print {
+  .btn-calendar-trigger,
+  .trace-native-date {
+    display: none !important;
+  }
+  .date-input-container {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  .trace-date-text {
+    padding: 0 !important;
+    color: #000000 !important;
   }
 }
 

@@ -58,6 +58,7 @@
    - **Despeje y No Superposición**: Calibración de cotas en `viewBox="0 0 940 500"`, desplazando todas las etiquetas de texto a zonas libres exteriores respecto a las fotos reales, con halo protector `paint-order: stroke fill` de 3.5px.
    - **Campos de Aprobación Interactivos**: Campo de 'FIRMA Y MATRÍCULA DEL INSPECTOR' totalmente editable (`contenteditable="true"`), con placeholder visual, efectos focus/hover y persistencia en `localStorage`.
     - **Registro de Cantidades de Piezas (2026-10-15)**: Incorporación de campos numéricos dedicados con ambos sellos de dictamen permanentemente activos/encendidos (sin exclusión mutua de radio) (CANT. CONFORME y CANT. NO CONFORME), con estilo metrológico con borde guía verde/rojo, visualización de unidad (piezas), soporte en modo Blueprint / Taller e impresión A4, y persistencia automática en localStorage (qtyConforme, qtyNoConforme, obs).
+    - **Campo FECHA DE INSPECCIÓN Interactivo (2026-10-15)**: Campo editable con validación estricta que no admite letras (solo dígitos y `/`, con máscara automática DD/MM/AAAA) y botón con icono interactivo de calendario para seleccionar fechas del selector visual, con sincronización bidireccional y persistencia en localStorage.
 
 
 ## Decisiones de Despliegue y Adaptabilidad
