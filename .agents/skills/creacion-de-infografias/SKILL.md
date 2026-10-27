@@ -1,4 +1,4 @@
----
+﻿---
 name: creacion-de-infografias
 description: >-
   Estándar y flujo maestro para la creación de infografías técnicas, hojas de control de calidad,
@@ -146,3 +146,28 @@ Antes de dar por finalizada cualquier infografía, comprobar obligatoriamente:
 - [ ] ¿Están libres de superposición todos los textos, balizas y flechas conectoras del diagrama?
 - [ ] ¿Se verificó la interactividad (hover bidireccional y persistencia)?
 - [ ] ¿Se probó la exportación/impresión A4 con `@media print` asegurando márgenes correctos y sin cortes de página rotos?
+
+
+---
+
+## 6. Publicación e Integración de la Tarjeta en la Pantalla HOME (index.html)
+
+Cada nuevo proyecto técnico agregado en PROYECTOS/TÉCNICOS/<nuevo_proyecto>/ debe representarse en la pantalla principal (index.html del portal raíz) respetando fielmente el diseño de la tarjeta modelo:
+
+1. **Estructura idéntica de Tarjeta (.tech-card en #cardsGridTecnicos):**
+   - **Badge de Documento (.doc-pill):** Código de documento y revisión según el PDF de control (ej. DOC: QC-XX-YY | REV. ZZ).
+   - **Badge de Estado (.status-badge):** Estado de auditoría (ej. ● HOMOLOGADO o ● AUDITADO).
+   - **Título (<h3>):** Nombre técnico de la pieza según el PDF.
+   - **Familia/Subtítulo (.card-family):** Categoría biomecánica o especialidad quirúrgica precedida por #.
+   - **Caja de Parámetros Metrológicos (.card-preview-thumb):** 4 filas clave extraídas del PDF principal:
+     1. *Puntos de control:* número de cotas críticas.
+     2. *Rasgo principal / conexión:* tipo de cono, rosca o característica geométrica sobresaliente.
+     3. *Tolerancia crítica:* la tolerancia más exigente de la pieza (ej. runout, excentricidad).
+     4. *Materiales:* aleación especificada en el PDF (ej. Titanio / Acero 316L).
+     - Icono metrológico representativo a la derecha en .thumb-icon-box.
+   - **Etiquetas de Instrumental (.card-tags):** Herramientas metrológicas específicas (calibres, plantillas, micrómetros), sin normas genéricas.
+   - **Acciones:**
+     - Abrir Hoja Técnica (.btn-action-primary): enlace a ./PROYECTOS/TÉCNICOS/<nombre_proyecto>/index.html.
+     - Vista Rápida (.btn-action-secondary): abre el visor modal interactivo.
+2. **Actualización de Métricas del Banner:**
+   - Incrementar el contador de hojas técnicas (#metric-docs) y actualizar la suma total de puntos críticos.

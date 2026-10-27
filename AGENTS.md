@@ -99,3 +99,24 @@ Para garantizar que **NINGUNA infografía o componente interactivo rompa la estr
    - Toda capa vectorial superpuesta debe declarar `overflow: visible;` para asegurar que las balizas, flechas o etiquetas desplegadas en hover que se extiendan hacia los márgenes laterales nunca se recorten.
 6. **Fondo 100% Transparente y Canal Alfa Puro en Recursos Raster:**
    - En infografías flotantes o mapas, las imágenes base rasterizadas deben procesarse con canal alfa puro (`alpha = 0` en el exterior) y bordes desmezclados (*alpha unblending*) para que resplandores o efectos neón se fusionen con cualquier fondo (claro u oscuro) sin halos blancos ni bordes aserrados.
+
+
+---
+
+### E. Integración y Representación en la Pantalla HOME (Portal Central)
+Al incorporar cualquier nuevo proyecto en PROYECTOS/TÉCNICOS/<nuevo_proyecto>/:
+1. **Tarjeta Estandarizada en Grilla de la HOME (#cardsGridTecnicos):** Debe crearse una tarjeta técnica (.tech-card) con la misma estructura, componentes visuales y comportamiento responsivo que la tarjeta de referencia (*Tallo Hip-Lock*).
+2. **Extracción y Adaptación Fiel del PDF Principal de Control:**
+   - **Badge de Código y Revisión (.doc-pill):** DOC: [CODIGO] | REV. [NUM] según conste en la carátula o encabezado del PDF.
+   - **Badge de Estado (.status-badge):** Estado de auditoría o validación (ej. ● HOMOLOGADO o ● AUDITADO).
+   - **Título Principal (<h3>):** Denominación técnica normalizada de la pieza según el documento.
+   - **Familia Quirúrgica / Especialidad (.card-family):** Categoría anatómica con prefijo # (ej. # Artroplastia de Cadera / Implantes Femorales).
+   - **Caja de Parámetros Metrológicos (.card-preview-thumb):** 4 filas de especificaciones directas extraídas del PDF:
+     1. *Puntos de control:* número exacto de cotas críticas (ej. N cotas críticas).
+     2. *Rasgo principal:* conexión, cono, rosca o característica geométrica sobresaliente.
+     3. *Tolerancia crítica:* la tolerancia más exigente de la pieza (ej. Tolerancia runout: ≤ 0.20 mm).
+     4. *Materiales:* aleación o materiales normados (ej. Titanio / Acero 316L, PEEK, etc.).
+     - Pastilla con icono metrológico SVG en el cuadrante derecho.
+   - **Etiquetas Técnicas (.card-tags):** Instrumental metrológico utilizado (calibres, plantillas, micrómetros) y doble entorno A4/Web, sin etiquetas normativas genéricas.
+   - **Acciones Directas:** Botón Abrir Hoja Técnica (enlace al index.html del proyecto) y botón Vista Rápida (modal embebido).
+3. **Métricas Globales:** Actualizar los contadores superiores de la HOME (cantidad de hojas técnicas y suma total de puntos críticos).
