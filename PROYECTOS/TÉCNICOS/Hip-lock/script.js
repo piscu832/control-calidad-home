@@ -493,7 +493,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (btnUploadRemito && inputRemitoFile) {
-    btnUploadRemito.addEventListener('click', () => {
+    btnUploadRemito.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       inputRemitoFile.click();
     });
 
@@ -581,7 +583,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (btnRemoveRemito) {
-    btnRemoveRemito.addEventListener('click', () => {
+    btnRemoveRemito.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       if (inputRemitoFile) inputRemitoFile.value = '';
       if (remitoDisplayWrapper) remitoDisplayWrapper.innerHTML = '';
       if (btnUploadRemito) btnUploadRemito.style.display = 'inline-flex';
@@ -595,7 +599,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (btnViewRemito && sheetRemitoPage) {
-    btnViewRemito.addEventListener('click', () => {
+    btnViewRemito.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       sheetRemitoPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
