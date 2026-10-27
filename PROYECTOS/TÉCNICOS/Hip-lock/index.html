@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body class="theme-light">
   <!-- Barra de utilidades superior (no imprimible) -->
@@ -68,10 +69,6 @@
 
       <!-- Datos de Trazabilidad de Producción -->
       <div class="traceability-grid">
-        <div class="trace-field">
-          <label>ORDEN DE PRODUCCIÓN:</label>
-          <div class="trace-input" contenteditable="true" spellcheck="false">OP-2026</div>
-        </div>
         <div class="trace-field trace-field-date">
           <label for="trace-date-input">FECHA DE INSPECCIÓN:</label>
           <div class="date-input-container">
@@ -89,15 +86,34 @@
         </div>
         <div class="trace-field">
           <label>INSPECTOR RESPONSABLE:</label>
-          <div class="trace-input" contenteditable="true" spellcheck="false">M.Ezequiel</div>
+          <div id="trace-inspector-input" class="trace-input" contenteditable="true" spellcheck="false">M.Ezequiel</div>
         </div>
         <div class="trace-field">
           <label>ORDEN DE COMPRA:</label>
-          <div class="trace-input" contenteditable="true" spellcheck="false">OC-88942</div>
+          <div id="trace-oc-input" class="trace-input" contenteditable="true" spellcheck="false">OC-88942</div>
         </div>
-        <div class="trace-field">
-          <label>N° DE REMITO / DESPACHO:</label>
-          <div class="trace-input" contenteditable="true" spellcheck="false">REM-003418</div>
+        <div class="trace-field trace-field-remito">
+          <label id="lbl-remito-title">DOCUMENTO REMITO / DESPACHO:</label>
+          <div class="remito-upload-wrapper">
+            <input type="file" id="input-remito-file" accept="image/*,.pdf" style="display: none;">
+            <button type="button" id="btn-upload-remito" class="btn-remito-upload" title="Cargar documento de remito (PDF o Imagen)">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+              </svg>
+              <span id="btn-remito-text">Cargar Remito</span>
+            </button>
+            <div id="remito-badge-box" class="remito-badge-box" style="display: none;">
+              <span class="remito-chip" id="remito-chip" title="Remito cargado">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                <span id="remito-chip-name">Remito</span>
+              </span>
+              <button type="button" id="btn-view-remito" class="btn-view-remito" title="Ver Remito en Hoja 2">👁</button>
+              <button type="button" id="btn-remove-remito" class="btn-remove-remito" title="Quitar remito">✕</button>
+            </div>
+          </div>
+          <span class="trace-remito-print" id="trace-remito-print">REMITO ADJUNTO (HOJA 2)</span>
         </div>
       </div>
     </section>
@@ -750,6 +766,74 @@
       </div>
     </footer>
   </main>
+
+  <!-- ====================================================================
+       HOJA N° 2: ANEXO DE REMITO / DESPACHO DE PRODUCCIÓN
+       Se activa al cargar el remito y se incluye como Hoja 2 en la descarga/impresión
+       ==================================================================== -->
+  <section class="sheet-container sheet-page-2" id="sheet-remito-page" style="display: none;">
+    <!-- ENCABEZADO TÉCNICO HOJA 2 -->
+    <div class="sheet-header">
+      <div class="header-top-row">
+        <div class="header-logo-area">
+          <div class="logo-mark">
+            <img src="logo_villalba.png" alt="Logo Villalba Hnos. Implantes S.A." class="brand-img" />
+            <div class="logo-text">
+              <span class="logo-company">VILLALBA HNOS. IMPLANTES S.A.</span>
+              <span class="logo-division">Innovación, liderazgo y experiencia al servicio de la salud.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-doc-code">
+          <span class="doc-badge">DOC: QC-HL-08</span>
+          <span class="doc-badge" style="background:#0284c7; color:#ffffff;">HOJA 2 DE 2</span>
+          <span class="doc-rev">ANEXO DE TRAZABILIDAD</span>
+          <span class="doc-status">REMITO DE DESPACHO</span>
+        </div>
+      </div>
+
+      <div class="header-title-box">
+        <h2 class="main-title" style="font-size: 1.3rem;">ANEXO DE CONTROL — REMITO / DESPACHO DE ENTREGA</h2>
+        <p class="subtitle">CONSTANCIA DOCUMENTAL ADJUNTA AL PROTOCOLO DE CONFORMIDAD DIMENSIONAL HIP-LOCK</p>
+      </div>
+
+      <!-- Resumen de trazabilidad sincronizado con Hoja 1 -->
+      <div class="remito-trace-summary">
+        <div class="remito-summary-item">
+          <span class="summary-lbl">ORDEN DE COMPRA:</span>
+          <span class="summary-val" id="p2-oc-val">OC-88942</span>
+        </div>
+        <div class="remito-summary-item">
+          <span class="summary-lbl">FECHA DE INSPECCIÓN:</span>
+          <span class="summary-val" id="p2-date-val">29/09/2026</span>
+        </div>
+        <div class="remito-summary-item">
+          <span class="summary-lbl">INSPECTOR RESPONSABLE:</span>
+          <span class="summary-val" id="p2-inspector-val">M.Ezequiel</span>
+        </div>
+        <div class="remito-summary-item">
+          <span class="summary-lbl">ARCHIVO ADJUNTO:</span>
+          <span class="summary-val" id="p2-file-val">-</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUERPO DE VISUALIZACIÓN DEL REMITO -->
+    <div class="remito-display-wrapper" id="remito-display-wrapper">
+      <!-- Aquí se renderiza la imagen o canvas del PDF cargado -->
+    </div>
+
+    <!-- PIE DE PÁGINA INSTITUCIONAL HOJA 2 -->
+    <footer class="sheet-bottom-bar" style="margin-top: auto;">
+      <div class="footer-legal">
+        DOCUMENTO TÉCNICO INTERNO DE PRODUCCIÓN — CONTROL METROLÓGICO TALLO HIP-LOCK (HOJA 2/2 - ANEXO DE REMITO)
+      </div>
+      <div class="footer-site">
+        VILLALBA HNOS. IMPLANTES S.A. — PLANTA CASEROS
+      </div>
+    </footer>
+  </section>
 
   <!-- MODAL / VENTANA DE PLANOS POR TALLE (no imprimible) -->
   <div id="modal-blueprints" class="modal-backdrop no-print" aria-hidden="true" role="dialog" aria-labelledby="modal-blueprints-title">

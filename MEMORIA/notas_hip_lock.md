@@ -77,3 +77,5 @@
 
 
 
+
+    - **Integración de Remito como Hoja N° 2 (2026-10-27):** Se eliminó el campo 'ORDEN DE PRODUCCIÓN' de la grilla de trazabilidad y se reemplazó el campo 'N° DE REMITO / DESPACHO' por un botón interactivo para adjuntar el documento de remito (PDF o imagen). Al cargar el archivo, el sistema despliega automáticamente la **Hoja N° 2** oficial con encabezado institucional, trazabilidad sincronizada y visualización del remito, incluyéndose de forma continua en la descarga/impresión A4 (window.print()) como un documento único de 2 páginas.

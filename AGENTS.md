@@ -1,4 +1,4 @@
-# REGLAS Y ESPECIFICACIONES GENERALES DEL AGENTE
+﻿# REGLAS Y ESPECIFICACIONES GENERALES DEL AGENTE
 
 ## 1. Reglas Fundamentales de Operación
 1. **Si te falta un dato, pregunta en lugar de inventar:**
@@ -17,7 +17,8 @@ Cada infografía técnica o divulgativa creada en este entorno debe estructurars
    - **Logotipo y Empresa Obligatorios:** Usar **SIEMPRE** la imagen oficial del logotipo (`logo_villalba.png`, respaldada en `CONTEXTO/logo_villalba.png`). La empresa se llama **SIEMPRE** `VILLALBA HNOS. IMPLANTES S.A.` en el cuadrante superior izquierdo, acompañada debajo por el eslogan: *"Innovación, liderazgo y experiencia al servicio de la salud."*.
    - Código de documento normativo, versión/revisión y estado de auditoría (ej. `QC-HL-08 REV. 04 / 2026`).
    - Título principal en mayúsculas destacado a color y subtítulo con la especificación técnica/materiales.
-   - Grilla editable de trazabilidad: Pieza/Lote, Fecha de inspección, Inspector responsable, Orden de compra, Remito/Despacho.
+    - Grilla editable de trazabilidad de 4 campos: Fecha de inspección, Inspector responsable, Orden de compra, y Botón interactivo para Cargar Documento Remito/Despacho.
+   - **Inclusión Obligatoria de Hoja N° 2 (Anexo de Remito):** Al adjuntar el remito (PDF o Imagen), el sistema incorpora automáticamente la **Hoja N° 2** con encabezado institucional, trazabilidad sincronizada y visualización del remito, incluyéndose en la descarga/impresión del documento entero como un archivo de 2 páginas (page-break-before: always;).
 2. **Introducción y Fundamento Técnico:**
    - Tarjeta destacada con el concepto clave: qué es la pieza/procedimiento, objetivos de control y relevancia biomecánica o funcional.
 3. **Cuerpo Visual Central / Diagrama Anatómico o Blueprint:**

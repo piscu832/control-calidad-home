@@ -454,5 +454,151 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 9. Carga y Gestión de Documento Remito (Inclusión como Hoja N° 2)
+  const btnUploadRemito = document.getElementById('btn-upload-remito');
+  const inputRemitoFile = document.getElementById('input-remito-file');
+  const remitoBadgeBox = document.getElementById('remito-badge-box');
+  const remitoChipName = document.getElementById('remito-chip-name');
+  const btnViewRemito = document.getElementById('btn-view-remito');
+  const btnRemoveRemito = document.getElementById('btn-remove-remito');
+  const sheetRemitoPage = document.getElementById('sheet-remito-page');
+  const remitoDisplayWrapper = document.getElementById('remito-display-wrapper');
+  const p2FileVal = document.getElementById('p2-file-val');
+  const p2OcVal = document.getElementById('p2-oc-val');
+  const p2DateVal = document.getElementById('p2-date-val');
+  const p2InspectorVal = document.getElementById('p2-inspector-val');
+  const traceInspectorInput = document.getElementById('trace-inspector-input');
+  const traceOcInput = document.getElementById('trace-oc-input');
+
+  function syncTraceabilityToP2() {
+    if (p2DateVal && traceDateInput) p2DateVal.textContent = traceDateInput.value.trim() || '-';
+    if (p2InspectorVal && traceInspectorInput) p2InspectorVal.textContent = traceInspectorInput.innerText.trim() || '-';
+    if (p2OcVal && traceOcInput) p2OcVal.textContent = traceOcInput.innerText.trim() || '-';
+  }
+
+  if (traceDateInput) traceDateInput.addEventListener('input', syncTraceabilityToP2);
+  if (traceInspectorInput) traceInspectorInput.addEventListener('input', syncTraceabilityToP2);
+  if (traceOcInput) traceOcInput.addEventListener('input', syncTraceabilityToP2);
+  syncTraceabilityToP2();
+
+  function renderPdfFallback(file, dataUrl) {
+    if (!remitoDisplayWrapper) return;
+    const url = dataUrl || URL.createObjectURL(file);
+    const frame = document.createElement('iframe');
+    frame.className = 'remito-sheet-frame';
+    frame.src = url;
+    frame.title = 'Documento Remito PDF';
+    remitoDisplayWrapper.innerHTML = '';
+    remitoDisplayWrapper.appendChild(frame);
+  }
+
+  if (btnUploadRemito && inputRemitoFile) {
+    btnUploadRemito.addEventListener('click', () => {
+      inputRemitoFile.click();
+    });
+
+    inputRemitoFile.addEventListener('change', (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+
+      const fileName = file.name;
+      const isPdf = file.type === 'application/pdf' || fileName.toLowerCase().endsWith('.pdf');
+      const isImage = file.type.startsWith('image/') || /\.(jpg|jpeg|png|webp|jfif|bmp)$/i.test(fileName);
+
+      if (remitoChipName) {
+        remitoChipName.textContent = fileName;
+        remitoChipName.title = fileName;
+      }
+      if (p2FileVal) p2FileVal.textContent = fileName;
+
+      btnUploadRemito.style.display = 'none';
+      if (remitoBadgeBox) remitoBadgeBox.style.display = 'flex';
+      if (sheetRemitoPage) {
+        sheetRemitoPage.style.display = 'flex';
+        sheetRemitoPage.classList.add('is-active');
+      }
+
+      if (remitoDisplayWrapper) remitoDisplayWrapper.innerHTML = '';
+
+      if (isImage) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const img = document.createElement('img');
+          img.src = event.target.result;
+          img.alt = 'Documento Remito / Despacho';
+          img.className = 'remito-sheet-img';
+          if (remitoDisplayWrapper) {
+            remitoDisplayWrapper.innerHTML = '';
+            remitoDisplayWrapper.appendChild(img);
+          }
+        };
+        reader.readAsDataURL(file);
+      } else if (isPdf) {
+        const reader = new FileReader();
+        reader.onload = async (event) => {
+          const typedArray = new Uint8Array(event.target.result);
+          if (window.pdfjsLib) {
+            try {
+              window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+              const pdf = await window.pdfjsLib.getDocument({ data: typedArray }).promise;
+              if (remitoDisplayWrapper) remitoDisplayWrapper.innerHTML = '';
+              for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                const page = await pdf.getPage(pageNum);
+                const viewport = page.getViewport({ scale: 1.8 });
+                const canvas = document.createElement('canvas');
+                canvas.className = 'remito-sheet-canvas';
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                await page.render({ canvasContext: context, viewport: viewport }).promise;
+                if (remitoDisplayWrapper) remitoDisplayWrapper.appendChild(canvas);
+              }
+            } catch (err) {
+              console.error('Error renderizando con PDF.js, usando iframe fallback:', err);
+              renderPdfFallback(file);
+            }
+          } else {
+            renderPdfFallback(file);
+          }
+        };
+        reader.readAsArrayBuffer(file);
+      } else {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          renderPdfFallback(file, event.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+
+      syncTraceabilityToP2();
+
+      setTimeout(() => {
+        if (sheetRemitoPage) {
+          sheetRemitoPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 250);
+    });
+  }
+
+  if (btnRemoveRemito) {
+    btnRemoveRemito.addEventListener('click', () => {
+      if (inputRemitoFile) inputRemitoFile.value = '';
+      if (remitoDisplayWrapper) remitoDisplayWrapper.innerHTML = '';
+      if (btnUploadRemito) btnUploadRemito.style.display = 'inline-flex';
+      if (remitoBadgeBox) remitoBadgeBox.style.display = 'none';
+      if (sheetRemitoPage) {
+        sheetRemitoPage.style.display = 'none';
+        sheetRemitoPage.classList.remove('is-active');
+      }
+      if (p2FileVal) p2FileVal.textContent = '-';
+    });
+  }
+
+  if (btnViewRemito && sheetRemitoPage) {
+    btnViewRemito.addEventListener('click', () => {
+      sheetRemitoPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
   loadState();
 });
