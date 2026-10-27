@@ -1922,9 +1922,14 @@ html, body {
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 800;
-  color: #38bdf8;
+  color: #ffffff;
   letter-spacing: 0.6px;
   user-select: none;
+}
+
+.dropdown-label svg {
+  color: #ffffff;
+  stroke: #ffffff;
 }
 
 .custom-select-box {

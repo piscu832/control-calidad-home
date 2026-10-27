@@ -376,7 +376,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalBlueprints = document.getElementById('modal-blueprints');
   const btnCloseModal = document.getElementById('btn-close-modal');
   const blueprintSelect = document.getElementById('blueprint-select');
-  const blueprintIframe = document.getElementById('blueprint-iframe');
+  const viewerContainer = document.querySelector('.modal-viewer-container');
+  let currentIframe = document.getElementById('blueprint-iframe');
   const btnExternalBlueprint = document.getElementById('btn-external-blueprint');
   const btnDownloadBlueprint = document.getElementById('btn-download-blueprint');
 
@@ -418,21 +419,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  function updateBlueprintDocument(fileUrl) {
+    if (!fileUrl) return;
+    const cleanUrl = encodeURI(fileUrl);
+
+    // Recrear el iframe para forzar al visor PDF nativo del navegador a refrescar el documento sin retención de caché
+    if (viewerContainer) {
+      const newIframe = document.createElement('iframe');
+      newIframe.id = 'blueprint-iframe';
+      newIframe.title = 'Visor de Plano de Control';
+      newIframe.src = cleanUrl;
+      viewerContainer.innerHTML = '';
+      viewerContainer.appendChild(newIframe);
+      currentIframe = newIframe;
+    } else if (currentIframe) {
+      currentIframe.src = cleanUrl;
+    }
+
+    if (btnExternalBlueprint) {
+      btnExternalBlueprint.href = cleanUrl;
+    }
+    if (btnDownloadBlueprint) {
+      btnDownloadBlueprint.href = cleanUrl;
+    }
+  }
+
   // Cambio de documento mediante el selector desplegable
   if (blueprintSelect) {
     blueprintSelect.addEventListener('change', () => {
-      const fileUrl = blueprintSelect.value;
-      if (!fileUrl) return;
-
-      if (blueprintIframe) {
-        blueprintIframe.src = fileUrl;
-      }
-      if (btnExternalBlueprint) {
-        btnExternalBlueprint.href = fileUrl;
-      }
-      if (btnDownloadBlueprint) {
-        btnDownloadBlueprint.href = fileUrl;
-      }
+      updateBlueprintDocument(blueprintSelect.value);
+    });
+    blueprintSelect.addEventListener('input', () => {
+      updateBlueprintDocument(blueprintSelect.value);
     });
   }
 
