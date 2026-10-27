@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnBlueprints = document.getElementById('btn-blueprints');
   const modalBlueprints = document.getElementById('modal-blueprints');
   const btnCloseModal = document.getElementById('btn-close-modal');
-  const blueprintTabs = document.querySelectorAll('.blueprint-selector-tabs .tab-btn');
+  const blueprintSelect = document.getElementById('blueprint-select');
   const blueprintIframe = document.getElementById('blueprint-iframe');
   const btnExternalBlueprint = document.getElementById('btn-external-blueprint');
   const btnDownloadBlueprint = document.getElementById('btn-download-blueprint');
@@ -418,14 +418,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Cambio de hojas / planos por talle
-  blueprintTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const fileUrl = tab.getAttribute('data-file');
+  // Cambio de documento mediante el selector desplegable
+  if (blueprintSelect) {
+    blueprintSelect.addEventListener('change', () => {
+      const fileUrl = blueprintSelect.value;
       if (!fileUrl) return;
-
-      blueprintTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
 
       if (blueprintIframe) {
         blueprintIframe.src = fileUrl;
@@ -437,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnDownloadBlueprint.href = fileUrl;
       }
     });
-  });
+  }
 
   loadState();
 });
