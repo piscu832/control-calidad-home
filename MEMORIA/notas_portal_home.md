@@ -33,3 +33,7 @@
      - `≤ 768px` (Tablets verticales y phablets): Banner superior apilado, métricas en 3 columnas fluidas, controles al 100% de ancho.
      - `≤ 640px` (Smartphones estándar): Encabezado vertical ergonómico, botones de acción táctiles de mínimo 44px de alto apilados verticalmente, buscador táctil amplio.
      - `≤ 480px` (Smartphones compactos 360-412px): Tarjetas de previsualización técnica en columna y modal a pantalla completa adaptativa.
+
+5. **Exclusi�n de Normas Regulatorias Gen�ricas (2026-10-27):**
+   - Queda formalmente desestimado incluir textos, leyendas o badges alusivos a normas como ? ISO 13485:2016, ? ANMAT DISP. 3266/13, ? ASTM F136 / F138 tanto en el pie de p�gina del portal como en los cuadros/tarjetas de control t�cnico.
+   - Las etiquetas de las tarjetas quedan reservadas con exclusividad para instrumental metrol�gico (*Calibres Digitales*, *Plantilla de Forma*), tolerancias y especificaciones operativas.

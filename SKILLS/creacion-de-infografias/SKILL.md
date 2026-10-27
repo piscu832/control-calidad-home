@@ -65,9 +65,9 @@ Toda infografía debe incorporar de forma estructurada las siguientes 7 seccione
 - **Observaciones Técnicas:** Campo editable para registrar valores medidos o notas de auditoría.
 - **Bloque de Cierre Formal Interactivo:** Campos editables directos (`contenteditable="true"`) para *Firma y Matrícula del Inspector* y *Fecha/Hora Registrada*, con placeholder de ayuda (`data-placeholder`), respuesta visual a la interacción (hover, focus iluminado) e integración con el guardado en planta.
 
-### Sección 7: Pie de Página Normativo
-- Normas internacionales aplicables (ej. ISO 13485:2016, ASTM F136, ISO 9001).
-- Leyenda técnica de confidencialidad y control interno de planta.
+### Sección 7: Pie de Página Institucional (Exclusión de Normas Genéricas)
+- **Criterio Maestro:** No incluir textos, etiquetas ni badges de normas genéricas (ISO 13485, ASTM F136/F138, ANMAT DISP. 3266/13) ni en las tarjetas de control ni en los pies de página.
+- Leyenda técnica de documento interno de producción, control metrológico y trazabilidad de planta de VILLALBA HNOS. IMPLANTES S.A.
 
 ---
 

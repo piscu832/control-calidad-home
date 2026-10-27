@@ -43,9 +43,10 @@ Cada infografía técnica o divulgativa creada en este entorno debe estructurars
      - **Campos numéricos interactivos de cantidad:** Cada categoría debe incluir obligatoriamente su campo numérico para registrar piezas (**`CANT. CONFORME`** y **`CANT. NO CONFORME`**), con etiqueta de unidad (`piezas`), borde guía lateral cromático, tipografía de precisión `Inter` con cifras tabulares (`font-feature-settings: "tnum" on`), dígitos en peso destacado (`Inter Black` o semibold) y persistencia en `localStorage`.
    - Bloque de observaciones técnicas.
    - Campos formales interactivos y editables (`contenteditable="true"`) para *Firma y Matrícula del Inspector* y *Fecha/Hora Registrada*, con placeholder de ayuda, efectos visuales de edición y guardado automático.
-7. **Pie de Página Normativo:**
-   - Normas internacionales aplicables (ISO 13485, ASTM F136 u otras según la industria).
-   - Datos de contacto, web o leyenda de confidencialidad y control interno.
+7. **Pie de Página Institucional y Exclusión de Normas Genéricas:**
+   - **Criterio Obligatorio:** Queda expresamente desestimado e inhabilitado el uso de leyendas, etiquetas o badges con normas regulatorias genéricas (tales como `ISO 13485`, `ASTM F136 / F138`, `ANMAT DISP. 3266/13`) tanto en los pies de página como en las barras de navegación, encabezados o en los cuadros/tarjetas de control de las infografías.
+   - **Contenido del Pie de Página:** Debe enfocarse exclusivamente en la leyenda legal de documento técnico interno de producción, departamento de aseguramiento de calidad y trazabilidad de planta de VILLALBA HNOS. IMPLANTES S.A.
+   - **Etiquetas en Cuadros de Control:** Las etiquetas (*tags*) deben reservarse con exclusividad para instrumental metrológico (ej. Calibres Digitales, Plantillas de Forma, Comparadores) y especificaciones operativas directas de taller, sin etiquetas normativas genéricas.
 
 ---
 
