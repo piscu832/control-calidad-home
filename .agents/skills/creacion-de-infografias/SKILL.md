@@ -31,7 +31,12 @@ Toda infografía debe incorporar de forma estructurada las siguientes 7 seccione
 - **Identidad de Empresa Obligatoria:** Usar **SIEMPRE** la imagen oficial del logotipo triangular (`logo_villalba.png`, respaldada en `CONTEXTO/logo_villalba.png`). La empresa se denomina **SIEMPRE** `VILLALBA HNOS. IMPLANTES S.A.` en el cuadrante superior izquierdo, acompañada debajo por su eslogan institucional: *"Innovación, liderazgo y experiencia al servicio de la salud."*.
 - **Identificación Documental:** Código normativo, versión/revisión y estado auditado (ej. `DOC: QC-HL-08 | REV. 04 / 2026 | ORIGINAL AUDITADO`).
 - **Título y Subtítulo:** Título en mayúsculas destacado con el color primario técnico, acompañado de la especificación técnica y aleaciones/materiales (ej. Titanio Grado 5, Acero Quirúrgico 316L).
-- **Grilla Editable de Trazabilidad:** Campos con `contenteditable="true"` para *Pieza/Lote*, *Fecha de inspección*, *Inspector responsable*, *Orden de compra* y *N° de remito/despacho*.
+- **Grilla Estandarizada de Trazabilidad (4 campos unificados):**
+  1. *Fecha de inspección:* Campo numérico estricto (máscara DD/MM/AAAA) con disparador de calendario interactivo.
+  2. *Inspector responsable:* Campo editable (`contenteditable="true"`).
+  3. *Orden de compra:* Campo editable (`contenteditable="true"`).
+  4. *Documento Remito / Despacho:* Botón interactivo integrado con la estética de las cajas de trazabilidad para adjuntar archivo de remito (PDF o Imagen).
+- **Inclusión de Hoja N° 2 (Anexo de Remito):** Al adjuntar el remito, se genera automáticamente la Hoja N° 2 con encabezado institucional y trazabilidad sincronizada, integrándose de forma continua en la exportación/impresión A4 de 2 páginas (`page-break-before: always;`).
 
 ### Sección 2: Introducción y Fundamento Técnico
 - Tarjeta destacada con icono metrológico explicando el propósito del control, la relevancia funcional/biomecánica de la pieza y los objetivos de conformidad.
@@ -81,11 +86,14 @@ Toda infografía debe incorporar de forma estructurada las siguientes 7 seccione
 ### Doble Entorno Operativo
 
 #### A. Entorno Pantalla (Interactivo)
+- **Barra de Herramientas Superior Estandarizada:**
+  - Título a la izquierda: `SISTEMA DE CONTROL DE CALIDAD DE PLANTA` (sin badges ni menciones de normas genéricas como ISO 13485 o ASTM).
+  - Acciones a la derecha: Botón de *Planos por Talle / Fabricación* (modal con selector desplegable de archivos PDF y descarga directa), botón *Reiniciar Puntos*, selector de *Modo Blueprint / Modo Claro*, y botón principal *Imprimir / Exportar PDF (A4)*.
 - **Sincronización Bidireccional:** Al pasar el cursor o hacer clic sobre una baliza del diagrama SVG, la tarjeta correspondiente de la matriz se resalta y se desplaza a la vista. Al posar el cursor sobre una tarjeta, se resalta la baliza en el diagrama.
 - **Selector de Modo Visual:** Alternancia fluida entre:
   - *Modo Hoja Técnica Clara (Print Preview)*: Base blanca y neutra para lectura diurna.
   - *Modo Blueprint / Taller Nocturno*: Fondo azul oscuro profundo (`#0b1727`), alto contraste y resaltes luminiscentes para estaciones de trabajo con poca luz.
-- **Persistencia en LocalStorage:** Guardado automático de los checkboxes, dictamen final, observaciones técnicas y firma/matrícula del inspector para evitar pérdidas de datos en caso de recarga o corte eléctrico en planta.
+- **Persistencia en LocalStorage:** Guardado automático de los checkboxes, dictamen final, cantidades conforme/no conforme, observaciones técnicas y firma/matrícula del inspector para evitar pérdidas de datos en caso de recarga o corte eléctrico en planta.
 
 #### B. Entorno Impresión y Exportación PDF (`@media print`)
 - **Tamaño de Hoja:** Formato estándar A4 vertical:
