@@ -371,5 +371,73 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // 8. Ventana Modal de Planos por Talle
+  const btnBlueprints = document.getElementById('btn-blueprints');
+  const modalBlueprints = document.getElementById('modal-blueprints');
+  const btnCloseModal = document.getElementById('btn-close-modal');
+  const blueprintTabs = document.querySelectorAll('.blueprint-selector-tabs .tab-btn');
+  const blueprintIframe = document.getElementById('blueprint-iframe');
+  const btnExternalBlueprint = document.getElementById('btn-external-blueprint');
+  const btnDownloadBlueprint = document.getElementById('btn-download-blueprint');
+
+  function openBlueprintsModal() {
+    if (!modalBlueprints) return;
+    modalBlueprints.classList.add('is-open');
+    modalBlueprints.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeBlueprintsModal() {
+    if (!modalBlueprints) return;
+    modalBlueprints.classList.remove('is-open');
+    modalBlueprints.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  if (btnBlueprints) {
+    btnBlueprints.addEventListener('click', openBlueprintsModal);
+  }
+
+  if (btnCloseModal) {
+    btnCloseModal.addEventListener('click', closeBlueprintsModal);
+  }
+
+  if (modalBlueprints) {
+    // Cerrar al hacer clic en el backdrop fuera del diálogo
+    modalBlueprints.addEventListener('click', (e) => {
+      if (e.target === modalBlueprints) {
+        closeBlueprintsModal();
+      }
+    });
+  }
+
+  // Cerrar con tecla Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalBlueprints && modalBlueprints.classList.contains('is-open')) {
+      closeBlueprintsModal();
+    }
+  });
+
+  // Cambio de hojas / planos por talle
+  blueprintTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const fileUrl = tab.getAttribute('data-file');
+      if (!fileUrl) return;
+
+      blueprintTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      if (blueprintIframe) {
+        blueprintIframe.src = fileUrl;
+      }
+      if (btnExternalBlueprint) {
+        btnExternalBlueprint.href = fileUrl;
+      }
+      if (btnDownloadBlueprint) {
+        btnDownloadBlueprint.href = fileUrl;
+      }
+    });
+  });
+
   loadState();
 });

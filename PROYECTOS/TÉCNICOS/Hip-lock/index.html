@@ -14,13 +14,18 @@
   <!-- Barra de utilidades superior (no imprimible) -->
   <header class="top-toolbar no-print">
     <div class="toolbar-brand">
-      <span class="badge-tech">ISO 13485 / ASTM F136</span>
       <span class="system-title">SISTEMA DE CONTROL DE CALIDAD DE PLANTA</span>
     </div>
     <div class="toolbar-actions">
       <button id="btn-theme" class="btn btn-secondary" title="Cambiar tema">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
         <span>Modo Blueprint / Taller</span>
+      </button>
+      <button id="btn-blueprints" class="btn btn-secondary" title="Ver planos por talle de fabricación">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>
+        <span>Planos por Talle</span>
       </button>
       <button id="btn-reset" class="btn btn-secondary" title="Reiniciar checklist">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
@@ -744,8 +749,51 @@
         ISO 13485:2016 Dispositivos Médicos Implante Grado Quirúrgico
       </div>
     </footer>
-
   </main>
+
+  <!-- MODAL / VENTANA DE PLANOS POR TALLE (no imprimible) -->
+  <div id="modal-blueprints" class="modal-backdrop no-print" aria-hidden="true" role="dialog" aria-labelledby="modal-blueprints-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <div class="modal-tag">DOCUMENTACIÓN TÉCNICA DE PRODUCCIÓN</div>
+          <h2 id="modal-blueprints-title" class="modal-title">PLANOS DE CONTROL Y MECANIZADO POR TALLE</h2>
+        </div>
+        <button id="btn-close-modal" class="modal-close-btn" aria-label="Cerrar visor de planos" title="Cerrar ventana (Esc)">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <!-- Barra de navegación de planos y acciones -->
+      <div class="modal-toolbar">
+        <div class="blueprint-selector-tabs">
+          <button class="tab-btn active" data-file="Planos por talle/Plano Control - Tallo Hip-Lock 5-(1_2).pdf" data-title="Plano Control - Tallo Hip-Lock 5 (Hoja 1 de 2)">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            <span>Talle 5 — Hoja 1/2</span>
+          </button>
+          <button class="tab-btn" data-file="Planos por talle/Plano Control - Tallo Hip-Lock 5-(2_2).pdf" data-title="Plano Control - Tallo Hip-Lock 5 (Hoja 2 de 2)">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            <span>Talle 5 — Hoja 2/2</span>
+          </button>
+        </div>
+        <div class="modal-actions-right">
+          <a id="btn-external-blueprint" href="Planos por talle/Plano Control - Tallo Hip-Lock 5-(1_2).pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" title="Abrir plano en nueva pestaña">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            <span>Abrir en pestaña nueva</span>
+          </a>
+          <a id="btn-download-blueprint" href="Planos por talle/Plano Control - Tallo Hip-Lock 5-(1_2).pdf" download class="btn btn-primary btn-sm" title="Descargar archivo PDF">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            <span>Descargar PDF</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Visor de archivo PDF -->
+      <div class="modal-viewer-container">
+        <iframe id="blueprint-iframe" src="Planos por talle/Plano Control - Tallo Hip-Lock 5-(1_2).pdf" title="Visor de Plano de Control"></iframe>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
