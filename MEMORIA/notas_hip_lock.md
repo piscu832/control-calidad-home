@@ -63,6 +63,7 @@
     - **Estandarización Tipográfica Exclusiva (2026-10-15)**: Todos los textos de la infografía deben utilizar estrictamente la familia tipográfica **Inter** (regular, medium, semibold, bold) e **Inter Black** (`font-weight: 900`) para títulos, numeración, cabecera y sellos de aprobación, eliminando fuentes previas (Chakra Petch y JetBrains Mono) y manteniendo la alineación de datos numéricos mediante `font-feature-settings: "tnum" on`.
     - **Alineación de Barra Superior (2026-10-27)**: Se removió la etiqueta/badge con el texto `ISO 13485 / ASTM F136` de la barra de utilidades superior, posicionando el título `SISTEMA DE CONTROL DE CALIDAD DE PLANTA` directamente en el extremo izquierdo.
     - **Visor Modal de Planos por Talle (2026-10-27)**: Se incorporó el botón `Planos por Talle` antes de `Reiniciar Puntos` en la barra de utilidades superior. Despliega una ventana modal con visor embebido del plano PDF consolidado de fabricación y control ubicado en `Planos por talle/` (`Plano Control - Tallo Hip-Lock 5.pdf`), con selector desplegable (`<select>` personalizado) con etiqueta metrológica (`PLANO:`), botones de descarga directa y apertura en pestaña independiente, cierre por botón, fondo o tecla Escape, y blindaje no imprimible.
+    - **Actualización de Archivo de Plano Talle 5 (2026-10-28)**: Actualización del archivo binario consolidado `Plano Control - Tallo Hip-Lock 5.pdf` en `PROYECTOS/TÉCNICOS/Hip-lock/Planos por talle/` y sincronización con repositorio GitHub.
 
 
 ## Decisiones de Despliegue y Adaptabilidad
