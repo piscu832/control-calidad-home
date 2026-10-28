@@ -1315,6 +1315,7 @@ body.theme-blueprint .qty-field-label {
 }
 .verdict-qty-input {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 body.theme-blueprint .verdict-qty-input {
