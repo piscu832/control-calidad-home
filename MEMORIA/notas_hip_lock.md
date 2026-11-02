@@ -65,6 +65,7 @@
     - **Visor Modal de Planos por Talle (2026-10-27)**: Se incorporó el botón `Planos por Talle` antes de `Reiniciar Puntos` en la barra de utilidades superior. Despliega una ventana modal con visor embebido del plano PDF consolidado de fabricación y control ubicado en `Planos por talle/` (`Plano Control - Tallo Hip-Lock 5.pdf`), con selector desplegable (`<select>` personalizado) con etiqueta metrológica (`PLANO:`), botones de descarga directa y apertura en pestaña independiente, cierre por botón, fondo o tecla Escape, y blindaje no imprimible.
     - **Actualización de Archivo de Plano Talle 5 (2026-10-28)**: Actualización del archivo binario consolidado `Plano Control - Tallo Hip-Lock 5.pdf` en `PROYECTOS/TÉCNICOS/Hip-lock/Planos por talle/` y sincronización con repositorio GitHub.
     - **Actualización de Carpeta Planos por Talle (2026-10-30)**: Incorporación de los planos `Plano Control - Tallo Hip-Lock 6,25.pdf` y `Plano Control - Tallo Hip-Lock 7,5.pdf` en `PROYECTOS/TÉCNICOS/Hip-lock/Planos por talle/`, actualización del selector desplegable `#blueprint-select` en `index.html` y despliegue en GitHub.
+    - **Serie Completa de Planos por Talle (2026-11-02)**: Incorporación de los 8 talles restantes (`8,75`, `10`, `11,25`, `12,5`, `13,75`, `15`, `16,25` y `17,5`) en `PROYECTOS/TÉCNICOS/Hip-lock/Planos por talle/`, completando la serie de 11 talles (del 5 al 17,5) en el selector `#blueprint-select` de `index.html` y desplegando en GitHub.
 
 
 ## Decisiones de Despliegue y Adaptabilidad
