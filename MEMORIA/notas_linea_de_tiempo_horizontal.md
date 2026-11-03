@@ -71,3 +71,24 @@ El usuario confirmó los siguientes requisitos estrictos para **TODAS las infogr
 - [PROYECTOS/ARTÍSTICOS/Línea de tiempo/app.js](file:///a:/PROYECTOS%20ANTIGRAVITY/CREADOR%20DE%20INFOGRAF%C3%8DAS/PROYECTOS/ART%C3%8DSTICOS/L%C3%ADnea%20de%20tiempo/app.js)
 - [PROYECTOS/ARTÍSTICOS/Línea de tiempo/wordpress_embed.html](file:///a:/PROYECTOS%20ANTIGRAVITY/CREADOR%20DE%20INFOGRAF%C3%8DAS/PROYECTOS/ART%C3%8DSTICOS/L%C3%ADnea%20de%20tiempo/wordpress_embed.html)
 - [PROYECTOS/ARTÍSTICOS/Línea de tiempo/wordpress_shortcode.php](file:///a:/PROYECTOS%20ANTIGRAVITY/CREADOR%20DE%20INFOGRAF%C3%8DAS/PROYECTOS/ART%C3%8DSTICOS/L%C3%ADnea%20de%20tiempo/wordpress_shortcode.php)
+
+---
+
+## 4. Actualización Rediseño Carrusel 60 Años de Trayectoria (2026-11-02)
+Por indicación del usuario a partir del prototipo `Línea de tiempo – 60 años de trayectoria.html`, el proyecto en `PROYECTOS/ARTÍSTICOS/Línea de tiempo/` se actualizó con:
+1. **Estructura de Carrusel Horizontal de 6 Hitos (4 visibles en desktop):**
+   - **01 · 1966 — Fundación** (`Industria metalúrgica`): Taller metalúrgico y primeros implantes de osteosíntesis.
+   - **02 · 1986 — Línea de cadera** (`Industria metalúrgica`): Incorporación de implantes de cadera de producción propia.
+   - **03 · 1996 — Línea de rodilla** (`Industria metalúrgica`): Ampliación a prótesis e implantes de rodilla.
+   - **04 · 2006 — Línea de columna** (`Industria metalúrgica`): Incorporación del sistema de implantes para cirugía de columna.
+   - **05 · 2016 — Área comercial** (`Comercio`): Estructura comercial para llegar a clínicas y cirujanos con asesoramiento directo.
+   - **06 · 2026 — Logística propia** (`Logística`): Distribución integrada completando el ciclo fabricar, vender y entregar.
+2. **Doble Interactividad Conservada:**
+   - **Desplazamiento del carrusel:** Botones Anterior/Siguiente (`1-4 de 6`, `2-5 de 6`, `3-6 de 6`) y barra de progreso horizontal animada.
+   - **Hover sobre año/hito:** Atenúa el resto de las columnas, activa pulso en el nodo circular y despliega tarjeta emergente (*popover*) con espacio `[FOTO DEL HITO]` y texto ampliado.
+   - **Clic sobre año/hito:** Abre vista detallada ampliada (*overlay* de 2 columnas) con foto del hito, marca de agua gigante (`01` a `06`), logo institucional `VILLALBA HNOS. IMPLANTES S.A.`, navegación secuencial (`1 de 6` a `6 de 6`) y cierre con revinculación automática de posición del carrusel.
+3. **Estilo Oficial y Compatibilidad WordPress:**
+   - Versión Clara (*Light*) con fondo exterior transparente (`background: transparent !important`), paleta institucional Villalba (`#193f89`, `#1d58a8`, `#0284c7`, `#0ea5e9`), tipografía exclusiva `Inter` e `Inter Black` (`font-weight: 900`, `tnum`), y aislamiento CSS encapsulado en `#wp-villalba-timeline` con `!important`.
+   - Encabezado superior con etiqueta `Línea de tiempo`, título `60 años de trayectoria` en dos bloques `.tl-title-line` y sin bloque de marca superior derecho.
+   - Imágenes de los 6 hitos (`Imágenes Hitos/h1.jfif`, `h2.jfif`, `h3.PNG`, `h4.jfif`, `h5.png`, `h6.png`) optimizadas y embebidas en Base64 tanto en las tarjetas emergentes de hover como en el panel visual izquierdo del modal detallado.
+   - HTML pre-renderizado y JavaScript sin líneas en blanco ni caracteres `<` para evitar bloqueos de `wpautop` en WordPress.

@@ -1,156 +1,245 @@
-/**
- * LÓGICA DE INTERACCIÓN MODULAR - LÍNEA DE TIEMPO HORIZONTAL
- * Empresa: VILLALBA HNOS. IMPLANTES S.A.
- * Barrido continuo e interactividad por hover y clic sin saltos estructurales
- */
-
 (function() {
-  function initTimeline() {
-    var milestonesData = {
-      1: {
-        year: '1966',
-        phaseTag: 'HITO 01 — ORIGEN HISTÓRICO',
-        title: '1966 — Fundación por Arnaldo y Norberto Villalba',
-        pill: 'Pilar Familiar & Industrial',
-        objective: 'Fundación por Arnaldo y Norberto Villalba en Caseros con foco en instrumental quirúrgico y osteosíntesis de precisión.',
-        products: 'Instrumental quirúrgico especializado, fresas para traumatología y fijaciones óseas tempranas de alta resistencia mecánica.',
-        quality: 'Control dimensional al 100%, ajuste micrométrico manual y ensayos funcionales con cirujanos ortopédicos pioneros.',
-        logistics: 'Planta Matriz en Caseros con abastecimiento inicial a hospitales metropolitanos y clínicas ortopédicas especializadas.'
+  function initVillalbaTimeline() {
+    var root = document.getElementById("wp-villalba-timeline");
+    if (!root) return;
+    var milestones = [
+      {
+        num: "01",
+        year: "1966",
+        title: "Fundaci\u00f3n",
+        desc: "Nace el taller metal\u00fargico y salen los primeros implantes de osteos\u00edntesis.",
+        detail: "Todo empez\u00f3 en el taller: metalurgia aplicada a la cirug\u00eda ortop\u00e9dica. All\u00ed se fijaron la precisi\u00f3n y el control de calidad que sostienen los 60 a\u00f1os siguientes.",
+        tagLabel: "Industria metal\u00fargica",
+        tagClass: "tl-tag-I"
       },
-      2: {
-        year: '1985',
-        phaseTag: 'HITO 02 — EXPANSIÓN TRAUMATOLÓGICA',
-        title: '1985 — Especialización en Cadera y Osteosíntesis',
-        pill: 'Implantes Reconstructivos',
-        objective: 'Desarrollo de los primeros sistemas estandarizados de reemplazo de cadera y elementos de osteosíntesis interna hospitalaria.',
-        products: 'Prótesis femorales de cadera, clavos endomedulares, placas de compresión dinámica y tornillos corticales normalizados.',
-        quality: 'Adopción de aceros inoxidables grado quirúrgico 316L con trazabilidad metalúrgica certificada por colada y forja.',
-        logistics: 'Creación de las primeras rutas de distribución hacia el interior del país y vínculo estrecho con sociedades médicas.'
+      {
+        num: "02",
+        year: "1986",
+        title: "L\u00ednea de cadera",
+        desc: "Se suman los implantes de cadera al cat\u00e1logo de producci\u00f3n propia.",
+        detail: "Con la experiencia en osteos\u00edntesis, la planta dio el salto a una de las cirug\u00edas de reemplazo m\u00e1s demandadas.",
+        tagLabel: "Industria metal\u00fargica",
+        tagClass: "tl-tag-I"
       },
-      3: {
-        year: '2002',
-        phaseTag: 'HITO 03 — SALTO TECNOLÓGICO',
-        title: '2002 — Centros de Mecanizado CNC & Normas ANMAT / ISO',
-        pill: 'Precisión Computarizada',
-        objective: 'Reconversión tecnológica incorporando centros de mecanizado multieje CNC, salas limpias y sistemas de calidad certificada.',
-        products: 'Vástagos femorales anatómicos, cotilos no cementados con recubrimientos bioactivos y tornillería de titanio de precisión.',
-        quality: 'Certificación de Buenas Prácticas ANMAT y acreditación según norma internacional ISO 13485 de productos médicos.',
-        logistics: 'Sistema de trazabilidad individual por número de serie y lote para control y seguimiento hospitalario estricto.'
+      {
+        num: "03",
+        year: "1996",
+        title: "L\u00ednea de rodilla",
+        desc: "La fabricaci\u00f3n se ampl\u00eda a pr\u00f3tesis e implantes de rodilla.",
+        detail: "La rodilla complet\u00f3 la oferta en articulaciones y consolid\u00f3 el cat\u00e1logo ortop\u00e9dico de la empresa.",
+        tagLabel: "Industria metal\u00fargica",
+        tagClass: "tl-tag-I"
       },
-      4: {
-        year: '2015',
-        phaseTag: 'HITO 04 — ARTROPLASTIA AVANZADA & RED FEDERAL',
-        title: '2015 — Rodilla ANV II, Hip-Lock & Sucursales Directas',
-        pill: 'Artroplastia de Avanzada',
-        objective: 'Lanzamiento del sistema multicorte Rodilla ANV II y prótesis autobloqueante de cadera Hip-Lock con despliegue federal.',
-        products: 'Sistema completo Rodilla ANV II con instrumental multicorte, vástagos Hip-Lock pulidos y rugosos de titanio Grado 5.',
-        quality: 'Ensayos mecánicos de fatiga según normas ASTM F136 e ISO 5832 con validación en bancos biomecánicos oficiales.',
-        logistics: 'Apertura de sucursales oficiales en Mar del Plata, Bahía Blanca, La Plata y Rosario para provisión inmediata.'
+      {
+        num: "04",
+        year: "2006",
+        title: "L\u00ednea de columna",
+        desc: "Se incorpora el sistema de implantes para cirug\u00eda de columna.",
+        detail: "Una especialidad de alta exigencia t\u00e9cnica, que ampli\u00f3 el v\u00ednculo con los equipos quir\u00fargicos.",
+        tagLabel: "Industria metal\u00fargica",
+        tagClass: "tl-tag-I"
       },
-      5: {
-        year: 'ACTUALIDAD',
-        phaseTag: 'HITO 05 — VANGUARDIA BIOMÉDICA & COMUNIDAD',
-        title: '2026 — Workshops Hospitalarios, Capacitaciones & Excelencia',
-        pill: 'Liderazgo Nacional',
-        objective: 'Más de seis décadas liderando el mercado médico nacional con fabricación de clase mundial y asistencia en quirófano.',
-        products: 'Cajas de instrumental quirúrgico ergonómico, instrumental radiolúcido, tutores externos biplanares y a medida.',
-        quality: 'Workshops continuos de limpieza y esterilización hospitalaria, con asesoramiento técnico directo en intervenciones.',
-        logistics: 'Red logística integral con cobertura en las 23 provincias argentinas y coordinación médica permanente 24/7.'
+      {
+        num: "05",
+        year: "2016",
+        title: "\u00c1rea comercial",
+        desc: "Se crea la estructura de comercio para llegar a cl\u00ednicas y cirujanos.",
+        detail: "La empresa pas\u00f3 de fabricar a acompa\u00f1ar al cirujano: asesoramiento, instrumental y atenci\u00f3n directa.",
+        tagLabel: "Comercio",
+        tagClass: "tl-tag-C"
+      },
+      {
+        num: "06",
+        year: "2026",
+        title: "Log\u00edstica propia",
+        desc: "La distribuci\u00f3n integrada completa el ciclo: fabricar, vender y entregar.",
+        detail: "Entregar a tiempo es parte del producto. La log\u00edstica propia cierra el ciclo y lleva el implante al quir\u00f3fano.",
+        tagLabel: "Log\u00edstica",
+        tagClass: "tl-tag-L"
       }
-    };
-
-    var nodes = document.querySelectorAll('.ribbon-node');
-    var cards = document.querySelectorAll('.timeline-card');
-
-    var detailTag = document.getElementById('detailTag');
-    var detailTitle = document.getElementById('detailTitle');
-    var detailPill = document.getElementById('detailPill');
-    var detailObjective = document.getElementById('detailObjective');
-    var detailProducts = document.getElementById('detailProducts');
-    var detailQuality = document.getElementById('detailQuality');
-    var detailLogistics = document.getElementById('detailLogistics');
-
-    var activeStep = 0; // Inicializar en 0 para forzar actualización limpia del Hito 1
-
-    function setStep(stepNumber) {
-      var step = parseInt(stepNumber, 10);
-      if (isNaN(step) || step < 1 || step > 5) return;
-      if (step === activeStep) return;
-      activeStep = step;
-
-      // Actualizar nodos del ribbon
-      for (var i = 0; i < nodes.length; i++) {
-        var nodeStep = parseInt(nodes[i].getAttribute('data-step'), 10);
-        if (nodeStep === activeStep) {
-          nodes[i].classList.add('is-active');
+    ];
+    var state = { offset: 0, hover: -1, open: -1, visibleCount: 4 };
+    var itemsTrack = root.querySelector("#tlItemsTrack");
+    var itemEls = Array.prototype.slice.call(root.querySelectorAll(".tl-item"));
+    var trackFill = root.querySelector("#tlTrackFill");
+    var rangeText = root.querySelector("#tlRangeText");
+    var btnPrev = root.querySelector("#tlBtnPrev");
+    var btnNext = root.querySelector("#tlBtnNext");
+    var overlay = root.querySelector("#tlDetailOverlay");
+    var ovVisual = root.querySelector(".tl-ov-visual");
+    var ovImg = root.querySelector("#tlOvImg");
+    var ovNum = root.querySelector("#tlOvNum");
+    var ovTag = root.querySelector("#tlOvTag");
+    var ovYear = root.querySelector("#tlOvYear");
+    var ovTitle = root.querySelector("#tlOvTitle");
+    var ovDesc = root.querySelector("#tlOvDesc");
+    var ovDetail = root.querySelector("#tlOvDetail");
+    var ovCount = root.querySelector("#tlOvCount");
+    var ovClose = root.querySelector("#tlOvClose");
+    var ovPrev = root.querySelector("#tlOvPrev");
+    var ovNext = root.querySelector("#tlOvNext");
+    function getVisibleCount() {
+      var w = window.innerWidth;
+      if (600 >= w) return 1;
+      if (900 >= w) return 2;
+      if (1180 >= w) return 3;
+      return 4;
+    }
+    function getMaxOffset() {
+      return Math.max(0, milestones.length - state.visibleCount);
+    }
+    function render() {
+      state.visibleCount = getVisibleCount();
+      var maxOffset = getMaxOffset();
+      if (state.offset > maxOffset) state.offset = maxOffset;
+      if (0 > state.offset) state.offset = 0;
+      var shiftPx = 0;
+      if (itemEls.length > 0 && state.offset > 0) {
+        var firstRect = itemEls[0].getBoundingClientRect();
+        var gapPx = 28;
+        shiftPx = -state.offset * (firstRect.width + gapPx);
+      }
+      if (itemsTrack) {
+        itemsTrack.style.transform = "translateX(" + shiftPx + "px)";
+      }
+      var fillPct = maxOffset > 0 ? 30 + (state.offset / maxOffset) * 70 : 100;
+      if (trackFill) {
+        trackFill.style.width = fillPct + "%";
+      }
+      var startIdx = state.offset + 1;
+      var endIdx = Math.min(milestones.length, state.offset + state.visibleCount);
+      if (rangeText) {
+        rangeText.textContent = startIdx + "-" + endIdx + " de " + milestones.length;
+      }
+      if (btnPrev) btnPrev.classList.toggle("is-disabled", state.offset === 0);
+      if (btnNext) btnNext.classList.toggle("is-disabled", state.offset >= maxOffset);
+      itemEls.forEach(function(el, i) {
+        el.classList.toggle("is-hovered", state.hover === i);
+        el.classList.toggle("is-dimmed", state.hover !== -1 && state.hover !== i);
+      });
+      var isOpen = state.open >= 0 && milestones.length > state.open;
+      if (overlay) {
+        overlay.classList.toggle("is-open", isOpen);
+        overlay.setAttribute("aria-hidden", isOpen ? "false" : "true");
+      }
+      var currentIdx = isOpen ? state.open : 0;
+      var cur = milestones[currentIdx];
+      if (ovNum) ovNum.textContent = cur.num;
+      if (ovYear) ovYear.textContent = cur.year;
+      if (ovTitle) ovTitle.textContent = cur.title;
+      if (ovDesc) ovDesc.textContent = cur.desc;
+      if (ovDetail) ovDetail.textContent = cur.detail;
+      if (ovCount) ovCount.textContent = (currentIdx + 1) + " de " + milestones.length;
+      if (ovTag) {
+        ovTag.textContent = cur.tagLabel;
+        ovTag.className = "tl-tag-pill " + cur.tagClass;
+      }
+      var popImg = itemEls[currentIdx] ? itemEls[currentIdx].querySelector(".tl-pop-img") : null;
+      var imgSrc = popImg ? popImg.getAttribute("src") : "";
+      if (ovImg && ovVisual) {
+        if (imgSrc) {
+          ovImg.setAttribute("src", imgSrc);
+          ovImg.setAttribute("alt", cur.year + " - " + cur.title);
+          ovImg.classList.add("has-img");
+          ovVisual.classList.add("has-photo");
         } else {
-          nodes[i].classList.remove('is-active');
+          ovImg.removeAttribute("src");
+          ovImg.classList.remove("has-img");
+          ovVisual.classList.remove("has-photo");
         }
       }
-
-      // Actualizar tarjetas
-      for (var j = 0; j < cards.length; j++) {
-        var cardStep = parseInt(cards[j].getAttribute('data-step'), 10);
-        if (cardStep === activeStep) {
-          cards[j].classList.add('is-active');
-        } else {
-          cards[j].classList.remove('is-active');
+      if (ovPrev) ovPrev.classList.toggle("is-disabled", currentIdx === 0);
+      if (ovNext) ovNext.classList.toggle("is-disabled", currentIdx >= milestones.length - 1);
+    }
+    function closeOverlay() {
+      if (0 > state.open) return;
+      var ci = state.open;
+      var maxOffset = getMaxOffset();
+      var nextOffset = state.offset;
+      if (state.offset > ci) {
+        nextOffset = ci;
+      } else if (ci > state.offset + state.visibleCount - 1) {
+        nextOffset = ci - (state.visibleCount - 1);
+      }
+      state.open = -1;
+      state.hover = -1;
+      state.offset = Math.min(maxOffset, Math.max(0, nextOffset));
+      render();
+    }
+    itemEls.forEach(function(el, idx) {
+      el.addEventListener("mouseenter", function() {
+        state.hover = idx;
+        render();
+      });
+      el.addEventListener("mouseleave", function() {
+        state.hover = -1;
+        render();
+      });
+      el.addEventListener("click", function() {
+        state.open = idx;
+        state.hover = -1;
+        render();
+      });
+    });
+    if (btnPrev) {
+      btnPrev.addEventListener("click", function() {
+        if (state.offset > 0) {
+          state.offset -= 1;
+          state.hover = -1;
+          render();
         }
-      }
-
-      // Actualizar panel de detalle
-      var data = milestonesData[activeStep];
-      if (data && detailTitle) {
-        detailTag.textContent = data.phaseTag;
-        detailTitle.textContent = data.title;
-        detailPill.textContent = data.pill;
-        detailObjective.textContent = data.objective;
-        detailProducts.textContent = data.products;
-        detailQuality.textContent = data.quality;
-        detailLogistics.textContent = data.logistics;
-      }
-    }
-
-    // Interacción sobre nodos (hover y clic)
-    for (var k = 0; k < nodes.length; k++) {
-      (function(node) {
-        var step = node.getAttribute('data-step');
-        node.addEventListener('mouseenter', function() { setStep(step); });
-        node.addEventListener('click', function() { setStep(step); });
-      })(nodes[k]);
-    }
-
-    // Interacción sobre tarjetas (hover y clic)
-    for (var m = 0; m < cards.length; m++) {
-      (function(card) {
-        var step = card.getAttribute('data-step');
-        card.addEventListener('mouseenter', function() { setStep(step); });
-        card.addEventListener('click', function() { setStep(step); });
-      })(cards[m]);
-    }
-
-    // Barrido horizontal continuo e ininterrumpido sobre toda la sección
-    var timelineSection = document.getElementById('timelineSection');
-    if (timelineSection) {
-      timelineSection.addEventListener('mousemove', function(e) {
-        var rect = timelineSection.getBoundingClientRect();
-        var x = e.clientX - rect.left;
-        var width = rect.width;
-        if (width <= 0) return;
-        var ratio = Math.max(0, Math.min(0.999, x / width));
-        var step = Math.floor(ratio * 5) + 1;
-        setStep(step);
       });
     }
-
-    // Inicializar limpiamente en el Hito 1
-    setStep(1);
+    if (btnNext) {
+      btnNext.addEventListener("click", function() {
+        var maxOff = getMaxOffset();
+        if (maxOff > state.offset) {
+          state.offset += 1;
+          state.hover = -1;
+          render();
+        }
+      });
+    }
+    if (ovClose) {
+      ovClose.addEventListener("click", closeOverlay);
+    }
+    if (ovPrev) {
+      ovPrev.addEventListener("click", function() {
+        if (state.open > 0) {
+          state.open -= 1;
+          render();
+        }
+      });
+    }
+    if (ovNext) {
+      ovNext.addEventListener("click", function() {
+        if (milestones.length - 1 > state.open) {
+          state.open += 1;
+          render();
+        }
+      });
+    }
+    document.addEventListener("keydown", function(e) {
+      if (state.open >= 0) {
+        if (e.key === "Escape") {
+          closeOverlay();
+        } else if (e.key === "ArrowLeft" && state.open > 0) {
+          state.open -= 1;
+          render();
+        } else if (e.key === "ArrowRight" && milestones.length - 1 > state.open) {
+          state.open += 1;
+          render();
+        }
+      }
+    });
+    window.addEventListener("resize", function() {
+      render();
+    });
+    render();
   }
-
-  // Carga asíncrona dual segura: funciona inmediatamente o tras DOMContentLoaded
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTimeline);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initVillalbaTimeline);
   } else {
-    initTimeline();
+    initVillalbaTimeline();
   }
 })();

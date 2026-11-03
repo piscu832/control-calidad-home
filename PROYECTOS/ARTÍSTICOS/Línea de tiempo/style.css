@@ -1,546 +1,756 @@
 /* ==========================================================================
-   INFOGRAFÍA LÍNEA DE TIEMPO HORIZONTAL INTERACTIVA
+   LÍNEA DE TIEMPO INTERACTIVA – 60 AÑOS DE TRAYECTORIA
    Empresa: VILLALBA HNOS. IMPLANTES S.A.
-   Versión: Modular CSS (Tipografía Inter & Inter Black)
+   Blindado para incrustación en WordPress / Elementor / Divi / Gutenberg
    ========================================================================== */
-
-:root {
-  /* FASES CROMÁTICAS EXTRAÍDAS DEL SITIO OFICIAL VILLALBA (IMPLANTESVILLALBA.COM.AR) */
-  --step-1: #193f89; /* Azul Marino Corporativo Insignia (1966 - Fundación) */
-  --step-2: #1d58a8; /* Azul Real Médico Quirúrgico (1985 - Expansión Traumatológica) */
-  --step-3: #0284c7; /* Azul Cerúleo / Océano Clínico (2002 - Salto CNC & ISO) */
-  --step-4: #0ea5e9; /* Cian Quirúrgico Radiante (2015 - Rodilla ANV II) */
-  --step-5: #6366f1; /* Índigo Tecnológico / IA & Vanguardia (2026 - Actualidad) */
-
-  /* DEGRADÉ CONTINUO DE LA PISTA CENTRAL */
-  --ribbon-gradient: linear-gradient(
-    90deg,
-    var(--step-1) 0%,
-    var(--step-2) 25%,
-    var(--step-3) 50%,
-    var(--step-4) 75%,
-    var(--step-5) 100%
-  );
-
-  /* COLORES MODO CLARO (TÉCNICO / WEB & IMPRESIÓN) */
-  --bg-page: transparent;
-  --sheet-bg: transparent;
-  --text-primary: #0a192f;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
-  --card-bg: #ffffff;
-  --card-border: #e2e8f0;
-  --card-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
-  --header-bg: #f8fafc;
-  --panel-bg: #f8fafc;
-  --panel-border: #cbd5e1;
-  --accent-corporate: #193f89;
-  --accent-blue: #0284c7;
-
-  /* TIPOGRAFÍAS: INTER & INTER BLACK */
-  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-}
-
-/* RESET GENERAL */
-*, *::before, *::after {
-  box-sizing: border-box;
+#wp-villalba-timeline,
+#wp-villalba-timeline *,
+#wp-villalba-timeline *::before,
+#wp-villalba-timeline *::after {
+  box-sizing: border-box !important;
   margin: 0;
   padding: 0;
-}
-
-html {
-  overflow-y: scroll; /* Garantiza barra de desplazamiento permanente para evitar saltos horizontales */
-}
-
-body {
-  background-color: transparent;
-  color: var(--text-primary);
-  font-family: var(--font-body);
-  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  padding: 0;
-  margin: 0;
 }
-
-/* ==========================================================================
-   CONTENEDOR PRINCIPAL FLUIDO Y TOTALMENTE INTEGRADO (SIN MARCO EXTERNO)
-   ========================================================================== */
-.page-sheet {
-  width: 100%;
-  max-width: 1320px;
-  margin: 40px auto 20px auto;
-  background: transparent;
-  border-radius: 0;
-  box-shadow: none;
-  border: none;
-  padding: 30px 16px 20px 16px;
-  box-sizing: border-box;
-  clear: both;
-  position: relative;
-  z-index: 1;
+#wp-villalba-timeline {
+  --tl-navy: #193f89;
+  --tl-royal: #1d58a8;
+  --tl-cerulean: #0284c7;
+  --tl-cyan: #0ea5e9;
+  --tl-text-primary: #0f172a;
+  --tl-text-secondary: #334155;
+  --tl-text-muted: #64748b;
+  --tl-border-light: #e2e8f0;
+  --tl-tag-ind-bg: #dbeafe;
+  --tl-tag-ind-fg: #193f89;
+  --tl-tag-com-bg: #e0f2fe;
+  --tl-tag-com-fg: #0369a1;
+  --tl-tag-log-bg: #ccfbf1;
+  --tl-tag-log-fg: #0f766e;
+  --tl-font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  width: 100% !important;
+  max-width: 1360px !important;
+  margin: 40px auto 24px auto !important;
+  padding: 20px 16px !important;
+  background: transparent !important;
+  font-family: var(--tl-font-sans) !important;
+  color: var(--tl-text-primary) !important;
+  line-height: 1.5 !important;
+  position: relative !important;
+  clear: both !important;
+  z-index: 1 !important;
+  text-align: left !important;
 }
-
-/* ==========================================================================
-   BANNER DE INTRODUCCIÓN Y ESTADÍSTICAS
-   ========================================================================== */
-.infographic-intro {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 0;
-  margin-bottom: 24px;
-  gap: 24px;
+#wp-villalba-timeline p:empty {
+  display: none !important;
 }
-
-.main-timeline-title {
-  font-family: var(--font-heading);
-  font-size: 1.55rem;
-  font-weight: 900; /* Inter Black */
-  color: var(--accent-corporate);
-  letter-spacing: -0.025em;
-  margin-bottom: 6px;
+#wp-villalba-timeline .tl-title-line {
+  display: block !important;
 }
-
-.intro-desc {
-  font-size: 0.88rem;
-  color: var(--text-secondary);
-  max-width: 860px;
-  line-height: 1.5;
+#wp-villalba-timeline .tl-canvas {
+  position: relative !important;
+  width: 100% !important;
+  min-height: 580px !important;
+  padding: 10px 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  gap: 24px !important;
+  overflow: visible !important;
 }
-
-/* ==========================================================================
-   LÍNEA DE TIEMPO HORIZONTAL MAESTRA (TIMELINE PROCESS RIBBON)
-   ========================================================================== */
-.timeline-master-container {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 100%;
-  margin: 12px 0 28px 0;
-  padding: 8px 0;
+#wp-villalba-timeline .tl-bg-glow {
+  position: absolute !important;
+  border-radius: 50% !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
 }
-
-/* Grilla de Filas (5 Columnas) */
-.timeline-row {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 18px;
-  min-height: 215px;
+#wp-villalba-timeline .tl-bg-glow-top {
+  right: -140px !important;
+  top: -200px !important;
+  width: 540px !important;
+  height: 540px !important;
+  background: radial-gradient(circle, rgba(25, 63, 137, 0.08) 0%, rgba(2, 132, 199, 0) 70%) !important;
 }
-
-.timeline-row-top {
-  align-items: stretch;
-  padding-bottom: 16px;
+#wp-villalba-timeline .tl-bg-glow-bottom {
+  left: -160px !important;
+  bottom: -240px !important;
+  width: 500px !important;
+  height: 500px !important;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.09) 0%, rgba(14, 165, 233, 0) 70%) !important;
 }
-
-.timeline-row-bottom {
-  align-items: stretch;
-  padding-top: 16px;
+#wp-villalba-timeline .tl-header {
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+  gap: 24px !important;
+  flex-wrap: wrap !important;
 }
-
-.timeline-spacer {
-  visibility: hidden;
-  height: 10px;
+#wp-villalba-timeline .tl-header-left {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
 }
-
-/* TARJETAS DE CONTENIDO (TIMELINE CARDS) */
-.timeline-card {
-  background: var(--card-bg);
-  border: 2px solid var(--card-border);
-  border-radius: 14px;
-  padding: 18px 16px;
-  box-shadow: var(--card-shadow);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-  cursor: pointer;
-  position: relative;
-  outline: none;
-  height: 100%;
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transform: none !important; /* Estructura geométrica 100% inmóvil */
+#wp-villalba-timeline .tl-eyebrow {
+  font-family: var(--tl-font-sans) !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  color: var(--tl-cerulean) !important;
+  line-height: 1.4 !important;
 }
-
-.timeline-card:hover,
-.timeline-card.is-active {
-  transform: none !important;
-  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.18), 0 8px 24px rgba(15, 23, 42, 0.1);
-  border-color: currentColor;
+#wp-villalba-timeline .tl-main-title {
+  font-family: var(--tl-font-sans) !important;
+  font-size: clamp(36px, 4.2vw, 58px) !important;
+  font-weight: 900 !important;
+  line-height: 1.04 !important;
+  letter-spacing: -0.035em !important;
+  color: var(--tl-navy) !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
-
-.timeline-card:focus,
-.timeline-card:focus-visible {
+#wp-villalba-timeline .tl-header-right {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  justify-content: space-between !important;
+  gap: 18px !important;
+}
+#wp-villalba-timeline .tl-brand-mark {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  text-align: right !important;
+}
+#wp-villalba-timeline .tl-brand-logo {
+  height: 48px !important;
+  width: auto !important;
+  max-width: none !important;
+  display: block !important;
+  object-fit: contain !important;
+  margin: 0 !important;
+}
+#wp-villalba-timeline .tl-brand-text {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+}
+#wp-villalba-timeline .tl-brand-name {
+  font-family: var(--tl-font-sans) !important;
+  font-size: 13.5px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--tl-navy) !important;
+  line-height: 1.25 !important;
+}
+#wp-villalba-timeline .tl-brand-slogan {
+  font-family: var(--tl-font-sans) !important;
+  font-size: 11.5px !important;
+  font-weight: 500 !important;
+  color: var(--tl-text-muted) !important;
+  line-height: 1.3 !important;
+}
+#wp-villalba-timeline .tl-carousel-controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+#wp-villalba-timeline .tl-range-indicator {
+  font-family: var(--tl-font-sans) !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: var(--tl-navy) !important;
+  min-width: 84px !important;
+  text-align: right !important;
+  font-feature-settings: "tnum" on, "zero" on !important;
+}
+#wp-villalba-timeline .tl-nav-btn {
+  width: 52px !important;
+  height: 52px !important;
+  min-width: 52px !important;
+  min-height: 52px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: var(--tl-font-sans) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  user-select: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease !important;
+}
+#wp-villalba-timeline .tl-nav-prev {
+  border: 1.5px solid #cbd5e1 !important;
+  background: #ffffff !important;
+  color: var(--tl-navy) !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05) !important;
+}
+#wp-villalba-timeline .tl-nav-prev:hover:not(.is-disabled) {
+  border-color: var(--tl-cerulean) !important;
+  color: var(--tl-cerulean) !important;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.14) !important;
+}
+#wp-villalba-timeline .tl-nav-next {
+  border: none !important;
+  background: linear-gradient(135deg, var(--tl-navy) 0%, var(--tl-cerulean) 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 16px rgba(2, 132, 199, 0.25) !important;
+}
+#wp-villalba-timeline .tl-nav-next:hover:not(.is-disabled) {
+  box-shadow: 0 8px 20px rgba(2, 132, 199, 0.36) !important;
+}
+#wp-villalba-timeline .tl-nav-btn.is-disabled {
+  opacity: 0.35 !important;
+  cursor: default !important;
+  pointer-events: none !important;
+  box-shadow: none !important;
+}
+#wp-villalba-timeline .tl-viewport {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 100% !important;
+  min-height: 405px !important;
+  padding-top: 6px !important;
+  overflow: hidden !important;
+}
+#wp-villalba-timeline .tl-track-line-bg {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 20px !important;
+  height: 4px !important;
+  border-radius: 999px !important;
+  background: #dbeafe !important;
+}
+#wp-villalba-timeline .tl-track-line-fill {
+  position: absolute !important;
+  left: 0 !important;
+  top: 20px !important;
+  height: 4px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(90deg, var(--tl-navy) 0%, var(--tl-cerulean) 55%, var(--tl-cyan) 100%) !important;
+  width: 30%;
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+#wp-villalba-timeline .tl-items-track {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: 28px !important;
+  transform: translateX(0px);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  will-change: transform;
+}
+#wp-villalba-timeline .tl-item {
+  flex: 0 0 calc((100% - 84px) / 4) !important;
+  min-width: 240px !important;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  padding-bottom: 16px !important;
+  transition: opacity 0.28s ease !important;
+  cursor: pointer !important;
+}
+#wp-villalba-timeline .tl-items-track:hover .tl-item:not(:hover),
+#wp-villalba-timeline .tl-item.is-dimmed {
+  opacity: 0.42 !important;
+}
+#wp-villalba-timeline .tl-item-watermark {
+  position: absolute !important;
+  top: 32px !important;
+  right: 6px !important;
+  font-family: var(--tl-font-sans) !important;
+  font-size: 112px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  color: transparent !important;
+  -webkit-text-stroke: 1.5px rgba(25, 63, 137, 0.14) !important;
+  letter-spacing: -0.04em !important;
+  font-feature-settings: "tnum" on, "zero" on !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  transition: -webkit-text-stroke-color 0.28s ease !important;
+}
+#wp-villalba-timeline .tl-item:hover .tl-item-watermark,
+#wp-villalba-timeline .tl-item.is-hovered .tl-item-watermark {
+  -webkit-text-stroke-color: rgba(2, 132, 199, 0.3) !important;
+}
+#wp-villalba-timeline .tl-node-wrap {
+  position: relative !important;
+  height: 30px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+#wp-villalba-timeline .tl-node-dot {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  border: 6px solid var(--tl-cerulean) !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(25, 63, 137, 0.18) !important;
+  transition: transform 0.28s ease, background-color 0.28s ease, border-color 0.28s ease !important;
+  cursor: pointer !important;
+}
+#wp-villalba-timeline .tl-item:hover .tl-node-dot,
+#wp-villalba-timeline .tl-item.is-hovered .tl-node-dot {
+  background: var(--tl-cyan) !important;
+  border-color: var(--tl-navy) !important;
+  transform: scale(1.22) !important;
+  animation: tlPulseBeacon 1.3s infinite !important;
+}
+@keyframes tlPulseBeacon {
+  0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.55); }
+  100% { box-shadow: 0 0 0 16px rgba(14, 165, 233, 0); }
+}
+#wp-villalba-timeline .tl-year-btn {
+  position: relative !important;
+  align-self: flex-start !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  font-family: var(--tl-font-sans) !important;
+  font-size: 42px !important;
+  font-weight: 900 !important;
+  line-height: 1.1 !important;
+  color: var(--tl-navy) !important;
+  letter-spacing: -0.03em !important;
+  font-feature-settings: "tnum" on, "zero" on !important;
+  text-decoration: underline dotted !important;
+  text-decoration-color: var(--tl-cerulean) !important;
+  text-underline-offset: 8px !important;
+  transition: color 0.22s ease, text-decoration-color 0.22s ease !important;
+}
+#wp-villalba-timeline .tl-item:hover .tl-year-btn,
+#wp-villalba-timeline .tl-item.is-hovered .tl-year-btn,
+#wp-villalba-timeline .tl-year-btn:hover,
+#wp-villalba-timeline .tl-year-btn:focus-visible {
+  color: var(--tl-cerulean) !important;
+  text-decoration-color: var(--tl-cyan) !important;
   outline: none !important;
 }
-
-.timeline-row-bottom .timeline-card:hover,
-.timeline-row-bottom .timeline-card.is-active {
-  transform: none !important;
+#wp-villalba-timeline .tl-item-title {
+  position: relative !important;
+  font-family: var(--tl-font-sans) !important;
+  font-size: 21px !important;
+  font-weight: 800 !important;
+  color: var(--tl-text-primary) !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.25 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
-
-.timeline-card.step-1 { border-color: rgba(25, 63, 137, 0.25); }
-.timeline-card.step-2 { border-color: rgba(29, 88, 168, 0.25); }
-.timeline-card.step-3 { border-color: rgba(2, 132, 199, 0.25); }
-.timeline-card.step-4 { border-color: rgba(14, 165, 233, 0.25); }
-.timeline-card.step-5 { border-color: rgba(99, 102, 241, 0.25); }
-
-.timeline-card.step-1:hover, .timeline-card.step-1.is-active { border-color: var(--step-1); }
-.timeline-card.step-2:hover, .timeline-card.step-2.is-active { border-color: var(--step-2); }
-.timeline-card.step-3:hover, .timeline-card.step-3.is-active { border-color: var(--step-3); }
-.timeline-card.step-4:hover, .timeline-card.step-4.is-active { border-color: var(--step-4); }
-.timeline-card.step-5:hover, .timeline-card.step-5.is-active { border-color: var(--step-5); }
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+#wp-villalba-timeline .tl-item-desc {
+  position: relative !important;
+  font-family: var(--tl-font-sans) !important;
+  font-size: 14.5px !important;
+  font-weight: 400 !important;
+  line-height: 1.55 !important;
+  color: var(--tl-text-secondary) !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
-
-.card-phase-badge {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 9999px;
-  color: #ffffff;
-  letter-spacing: 0.05em;
+#wp-villalba-timeline .tl-tag-pill {
+  position: relative !important;
+  align-self: flex-start !important;
+  padding: 6px 14px !important;
+  border-radius: 999px !important;
+  font-family: var(--tl-font-sans) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  line-height: 1.2 !important;
 }
-
-.badge-step-1 { background-color: var(--step-1); }
-.badge-step-2 { background-color: var(--step-2); }
-.badge-step-3 { background-color: var(--step-3); }
-.badge-step-4 { background-color: var(--step-4); }
-.badge-step-5 { background-color: var(--step-5); }
-
-.card-year-tag {
-  font-family: var(--font-heading);
-  font-size: 0.88rem;
-  font-weight: 800; /* Inter ExtraBold */
-  color: var(--text-muted);
-  letter-spacing: -0.01em;
+#wp-villalba-timeline .tl-tag-I {
+  background: var(--tl-tag-ind-bg) !important;
+  color: var(--tl-tag-ind-fg) !important;
 }
-
-.card-title {
-  font-family: var(--font-heading);
-  font-size: 1.05rem;
-  font-weight: 900; /* Inter Black */
-  letter-spacing: -0.015em;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  line-height: 1.25;
+#wp-villalba-timeline .tl-tag-C {
+  background: var(--tl-tag-com-bg) !important;
+  color: var(--tl-tag-com-fg) !important;
 }
-
-.title-step-1 { color: var(--step-1); }
-.title-step-2 { color: var(--step-2); }
-.title-step-3 { color: var(--step-3); }
-.title-step-4 { color: var(--step-4); }
-.title-step-5 { color: var(--step-5); }
-
-.card-desc {
-  font-size: 0.82rem;
-  line-height: 1.45;
-  color: var(--text-secondary);
-  margin-bottom: 12px;
+#wp-villalba-timeline .tl-tag-L {
+  background: var(--tl-tag-log-bg) !important;
+  color: var(--tl-tag-log-fg) !important;
 }
-
-.card-footer-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding-top: 8px;
-  border-top: 1px dashed var(--card-border);
-  font-size: 0.72rem;
-  font-family: var(--font-mono);
-  color: var(--text-muted);
+#wp-villalba-timeline .tl-hover-popover {
+  position: absolute !important;
+  top: 92px !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 15 !important;
+  background: #ffffff !important;
+  border: 1.5px solid rgba(2, 132, 199, 0.38) !important;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  box-shadow: 0 20px 42px rgba(15, 23, 42, 0.14), 0 4px 12px rgba(2, 132, 199, 0.1) !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transform: translateY(12px) scale(0.96) !important;
+  transform-origin: top left !important;
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
-
-/* ==========================================================================
-   PISTA CENTRAL CONTINUA EN DEGRADÉ (THE RIBBON BAR)
-   ========================================================================== */
-.timeline-ribbon-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 56px;
-  border-radius: 9999px;
-  background: var(--ribbon-gradient);
-  box-shadow: 0 8px 24px rgba(25, 63, 137, 0.28);
-  position: relative;
-  padding: 0 14px;
+#wp-villalba-timeline .tl-item:hover .tl-hover-popover,
+#wp-villalba-timeline .tl-item.is-hovered .tl-hover-popover {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
 }
-
-/* Segmentos / Nodos */
-.ribbon-node {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  height: 100%;
-  cursor: pointer;
-  outline: none;
+#wp-villalba-timeline .tl-pop-photo {
+  position: relative !important;
+  height: 136px !important;
+  width: 100% !important;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
+  border-bottom: 1px solid #dbeafe !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  color: var(--tl-navy) !important;
+  overflow: hidden !important;
 }
-
-.ribbon-node .node-year {
-  color: #ffffff;
-  font-family: var(--font-heading);
-  font-size: 1.35rem;
-  font-weight: 900; /* Inter Black */
-  letter-spacing: -0.015em;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
-  user-select: none;
-  transition: text-shadow 0.2s ease;
-  transform: none !important; /* Cero desplazamiento */
+#wp-villalba-timeline .tl-pop-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
 }
-
-.ribbon-node:hover .node-year,
-.ribbon-node.is-active .node-year,
-.ribbon-node:focus-visible .node-year {
-  transform: none !important;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 2px 8px rgba(0, 0, 0, 0.6);
+#wp-villalba-timeline .tl-pop-photo-label {
+  font-family: var(--tl-font-sans) !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  color: var(--tl-royal) !important;
 }
-
-/* Separadores Circulares (White Dots) */
-.node-separator {
-  width: 24px;
-  height: 24px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.22);
-  flex-shrink: 0;
-  z-index: 2;
-  transition: box-shadow 0.2s ease;
-  transform: none !important;
-  pointer-events: none; /* No interrumpe el barrido continuo */
+#wp-villalba-timeline .tl-pop-body {
+  padding: 14px 16px 16px 16px !important;
 }
-
-.node-separator:hover {
-  transform: none !important;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 3px 8px rgba(0, 0, 0, 0.3);
+#wp-villalba-timeline .tl-pop-kicker {
+  font-family: var(--tl-font-sans) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--tl-cerulean) !important;
+  font-feature-settings: "tnum" on, "zero" on !important;
 }
-
-/* Punteros / Flechas Indicadoras Triangulares */
-.node-arrow {
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  z-index: 5;
-  transition: filter 0.2s ease;
-  transform: none !important; /* Inmóviles geométricamente */
-  pointer-events: none; /* No intercepta el barrido horizontal */
+#wp-villalba-timeline .tl-pop-text {
+  margin-top: 6px !important;
+  font-family: var(--tl-font-sans) !important;
+  font-size: 13.5px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: var(--tl-text-primary) !important;
 }
-
-/* Flechas hacia arriba (Hitos 1, 3, 5) */
-.node-arrow.arrow-up {
-  bottom: 100%;
-  border-bottom-width: 14px;
-  border-bottom-style: solid;
+#wp-villalba-timeline .tl-footer-hint {
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding-top: 4px !important;
 }
-
-/* Flechas hacia abajo (Hitos 2, 4) */
-.node-arrow.arrow-down {
-  top: 100%;
-  border-top-width: 14px;
-  border-top-style: solid;
+#wp-villalba-timeline .tl-hint-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-family: var(--tl-font-sans) !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  color: var(--tl-text-muted) !important;
 }
-
-/* Color exacto para cada flecha */
-.ribbon-node.step-1 .node-arrow.arrow-up { border-bottom-color: var(--step-1); }
-.ribbon-node.step-2 .node-arrow.arrow-down { border-top-color: var(--step-2); }
-.ribbon-node.step-3 .node-arrow.arrow-up { border-bottom-color: var(--step-3); }
-.ribbon-node.step-4 .node-arrow.arrow-down { border-top-color: var(--step-4); }
-.ribbon-node.step-5 .node-arrow.arrow-up { border-bottom-color: var(--step-5); }
-
-.ribbon-node:hover .node-arrow.arrow-up,
-.ribbon-node.is-active .node-arrow.arrow-up,
-.ribbon-node:hover .node-arrow.arrow-down,
-.ribbon-node.is-active .node-arrow.arrow-down {
-  transform: none !important;
-  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.85));
+#wp-villalba-timeline .tl-hint-item svg {
+  color: var(--tl-cerulean) !important;
+  flex-shrink: 0 !important;
 }
-
-/* ==========================================================================
-   PANEL EXPANDIBLE DE FICHA TÉCNICA
-   ========================================================================== */
-.step-detail-panel {
-  background: var(--panel-bg);
-  border: 1px solid var(--panel-border);
-  border-radius: 14px;
-  padding: 20px 24px;
-  margin-bottom: 0;
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.02);
-  height: 245px;
-  min-height: 245px;
-  max-height: 245px;
-  overflow: hidden;
-  box-sizing: border-box;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+#wp-villalba-timeline .tl-detail-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 30 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  background: #ffffff !important;
+  border: 1.5px solid #e2e8f0 !important;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.14) !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity 0.35s ease, visibility 0.35s ease !important;
 }
-
-.detail-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 52px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--card-border);
-  margin-bottom: 16px;
+#wp-villalba-timeline .tl-detail-overlay.is-open {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
 }
-
-.detail-tag {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--accent-corporate);
-  letter-spacing: 0.08em;
-  display: block;
-  margin-bottom: 2px;
+#wp-villalba-timeline .tl-ov-visual {
+  flex: 0 0 46% !important;
+  position: relative !important;
+  overflow: hidden !important;
+  background: linear-gradient(145deg, #eff6ff 0%, #dbeafe 55%, #e0f2fe 100%) !important;
+  border-right: 1px solid #dbeafe !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 36px !important;
 }
-
-.detail-title {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 900; /* Inter Black */
-  letter-spacing: -0.02em;
-  color: var(--accent-corporate);
-  line-height: 1.25;
+#wp-villalba-timeline .tl-ov-brand {
+  position: absolute !important;
+  top: 32px !important;
+  left: 36px !important;
+  right: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
 }
-
-.detail-meta-pill {
-  background: rgba(25, 63, 137, 0.08);
-  color: var(--accent-corporate);
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
-  font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 9999px;
+#wp-villalba-timeline .tl-ov-logo {
+  height: 44px !important;
+  width: auto !important;
+  max-width: none !important;
+  display: block !important;
+  object-fit: contain !important;
+  margin: 0 !important;
 }
-
-.detail-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+#wp-villalba-timeline .tl-ov-brand-copy {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
 }
-
-.detail-box {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 10px;
-  padding: 14px 16px;
-  height: 125px;
-  min-height: 125px;
-  max-height: 125px;
-  overflow: hidden;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
+#wp-villalba-timeline .tl-ov-company {
+  font-family: var(--tl-font-sans) !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--tl-navy) !important;
+  line-height: 1.25 !important;
 }
-
-.detail-subhead {
-  font-family: var(--font-heading);
-  font-size: 0.82rem;
-  font-weight: 800; /* Inter ExtraBold */
-  color: var(--accent-corporate);
-  margin-bottom: 6px;
-  letter-spacing: -0.01em;
+#wp-villalba-timeline .tl-ov-slogan {
+  font-family: var(--tl-font-sans) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  color: var(--tl-text-secondary) !important;
+  line-height: 1.3 !important;
 }
-
-.detail-text {
-  font-size: 0.8rem;
-  line-height: 1.45;
-  color: var(--text-secondary);
+#wp-villalba-timeline .tl-ov-img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: none !important;
+  z-index: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  transform: scale(1.06);
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
-
-/* ==========================================================================
-   RESPONSIVIDAD (PANTALLAS MEDIANAS Y MÓVILES)
-   ========================================================================== */
-@media (max-width: 1024px) {
-  .page-sheet {
-    padding: 10px 12px;
-    margin: 0 auto;
+#wp-villalba-timeline .tl-detail-overlay.is-open .tl-ov-img.has-img {
+  display: block !important;
+  transform: scale(1);
+}
+#wp-villalba-timeline .tl-ov-visual.has-photo::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(180deg, rgba(10, 24, 48, 0.05) 45%, rgba(10, 24, 48, 0.55) 100%) !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+}
+#wp-villalba-timeline .tl-ov-watermark {
+  position: absolute !important;
+  left: 28px !important;
+  bottom: -24px !important;
+  z-index: 3 !important;
+  font-family: var(--tl-font-sans) !important;
+  font-size: 240px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  color: transparent !important;
+  -webkit-text-stroke: 2px rgba(25, 63, 137, 0.16) !important;
+  letter-spacing: -0.04em !important;
+  font-feature-settings: "tnum" on, "zero" on !important;
+  pointer-events: none !important;
+  user-select: none !important;
+}
+#wp-villalba-timeline .tl-ov-visual.has-photo .tl-ov-watermark {
+  -webkit-text-stroke: 2.5px rgba(255, 255, 255, 0.65) !important;
+}
+#wp-villalba-timeline .tl-ov-photo-stage {
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 12px !important;
+  color: var(--tl-navy) !important;
+  transform: scale(1.08);
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+#wp-villalba-timeline .tl-ov-visual.has-photo .tl-ov-photo-stage {
+  display: none !important;
+}
+#wp-villalba-timeline .tl-detail-overlay.is-open .tl-ov-photo-stage {
+  transform: scale(1);
+}
+#wp-villalba-timeline .tl-ov-photo-label {
+  font-family: var(--tl-font-sans) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  color: var(--tl-royal) !important;
+}
+#wp-villalba-timeline .tl-ov-content {
+  flex: 1 !important;
+  position: relative !important;
+  padding: 48px 56px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  gap: 16px !important;
+  transform: translateX(32px);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+#wp-villalba-timeline .tl-detail-overlay.is-open .tl-ov-content {
+  transform: translateX(0);
+}
+#wp-villalba-timeline .tl-ov-close {
+  position: absolute !important;
+  top: 28px !important;
+  right: 32px !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  border: 1.5px solid #cbd5e1 !important;
+  background: #ffffff !important;
+  color: var(--tl-navy) !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease !important;
+}
+#wp-villalba-timeline .tl-ov-close:hover {
+  border-color: var(--tl-cerulean) !important;
+  color: var(--tl-cerulean) !important;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15) !important;
+}
+#wp-villalba-timeline .tl-ov-year {
+  font-family: var(--tl-font-sans) !important;
+  font-size: clamp(52px, 5vw, 82px) !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  color: var(--tl-cerulean) !important;
+  letter-spacing: -0.04em !important;
+  font-feature-settings: "tnum" on, "zero" on !important;
+}
+#wp-villalba-timeline .tl-ov-title {
+  font-family: var(--tl-font-sans) !important;
+  font-size: clamp(26px, 2.5vw, 36px) !important;
+  font-weight: 900 !important;
+  line-height: 1.12 !important;
+  color: var(--tl-navy) !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#wp-villalba-timeline .tl-ov-desc {
+  font-family: var(--tl-font-sans) !important;
+  font-size: 16.5px !important;
+  font-weight: 500 !important;
+  line-height: 1.58 !important;
+  color: var(--tl-text-secondary) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#wp-villalba-timeline .tl-ov-detail {
+  font-family: var(--tl-font-sans) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.62 !important;
+  color: var(--tl-text-primary) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#wp-villalba-timeline .tl-ov-nav {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  margin-top: 8px !important;
+}
+#wp-villalba-timeline .tl-ov-count {
+  font-family: var(--tl-font-sans) !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: var(--tl-navy) !important;
+  font-feature-settings: "tnum" on, "zero" on !important;
+}
+@media (max-width: 1180px) {
+  #wp-villalba-timeline .tl-item {
+    flex: 0 0 calc((100% - 56px) / 3) !important;
   }
-
-  .timeline-row {
-    gap: 10px;
+}
+@media (max-width: 900px) {
+  #wp-villalba-timeline .tl-canvas {
+    padding: 28px 22px !important;
+    min-height: auto !important;
   }
-
-  .timeline-card {
-    padding: 12px 10px;
+  #wp-villalba-timeline .tl-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
   }
-
-  .detail-grid {
-    grid-template-columns: repeat(2, 1fr);
+  #wp-villalba-timeline .tl-header-right {
+    width: 100% !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
   }
-
-  .ribbon-node .node-year {
-    font-size: 1.1rem;
+  #wp-villalba-timeline .tl-item {
+    flex: 0 0 calc((100% - 28px) / 2) !important;
+  }
+  #wp-villalba-timeline .tl-detail-overlay {
+    flex-direction: column !important;
+  }
+  #wp-villalba-timeline .tl-ov-visual {
+    flex: 0 0 210px !important;
+    border-right: none !important;
+    border-bottom: 1px solid #dbeafe !important;
+  }
+  #wp-villalba-timeline .tl-ov-watermark {
+    font-size: 130px !important;
+    bottom: -10px !important;
+  }
+  #wp-villalba-timeline .tl-ov-content {
+    padding: 28px 24px !important;
   }
 }
-
-@media (max-width: 768px) {
-  .infographic-intro {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .timeline-master-container {
-    overflow-x: auto;
-    padding-bottom: 20px;
-  }
-
-  .timeline-row,
-  .timeline-ribbon-bar {
-    min-width: 850px;
-  }
-
-  .detail-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ==========================================================================
-   ENTORNO DE IMPRESIÓN Y EXPORTACIÓN PDF A4 (@media print)
-   ========================================================================== */
-@media print {
-  @page {
-    size: A4 landscape;
-    margin: 6mm;
-  }
-
-  body {
-    background: #ffffff !important;
-    color: #000000 !important;
-    padding: 0 !important;
-  }
-
-  .no-print {
-    display: none !important;
-  }
-
-  .page-sheet {
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-  }
-
-  .timeline-card,
-  .timeline-master-container,
-  .step-detail-panel {
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-  }
-
-  * {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+@media (max-width: 600px) {
+  #wp-villalba-timeline .tl-item {
+    flex: 0 0 100% !important;
+    min-width: 100% !important;
   }
 }
