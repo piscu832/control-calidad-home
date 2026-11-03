@@ -10,18 +10,22 @@
  *    o usa directamente el shortcode [linea_tiempo_villalba].
  */
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 function villalba_render_linea_tiempo_shortcode() {
     $embed_file = get_stylesheet_directory() . '/templates/wordpress_embed.html';
     
-    // Si el archivo HTML existe en el tema, lo carga directamente:
-    if (file_exists($embed_file)) {
+    // Si el archivo HTML existe en el tema, lo carga de forma segura:
+    if (file_exists($embed_file) && is_readable($embed_file)) {
         return file_get_contents($embed_file);
     }
     
     // De lo contrario, se puede incluir el archivo subido a wp-content/uploads/
     $upload_dir = wp_upload_dir();
     $uploaded_embed = $upload_dir['basedir'] . '/linea-de-tiempo/wordpress_embed.html';
-    if (file_exists($uploaded_embed)) {
+    if (file_exists($uploaded_embed) && is_readable($uploaded_embed)) {
         return file_get_contents($uploaded_embed);
     }
 

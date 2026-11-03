@@ -136,8 +136,9 @@
       }
       var popImg = itemEls[currentIdx] ? itemEls[currentIdx].querySelector(".tl-pop-img") : null;
       var imgSrc = popImg ? popImg.getAttribute("src") : "";
+      var isSafeImg = imgSrc && (/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(imgSrc) || /^Im\u00e1genes Hitos\/[A-Za-z0-9_.\-]+\.(jpg|jpeg|png|webp|jfif)$/i.test(imgSrc));
       if (ovImg && ovVisual) {
-        if (imgSrc) {
+        if (isSafeImg) {
           ovImg.setAttribute("src", imgSrc);
           ovImg.setAttribute("alt", cur.year + " - " + cur.title);
           ovImg.classList.add("has-img");
@@ -181,8 +182,16 @@
         render();
       });
     });
+    var lastActionTs = 0;
+    function allowAction() {
+      var now = Date.now();
+      if (80 > now - lastActionTs) return false;
+      lastActionTs = now;
+      return true;
+    }
     if (btnPrev) {
       btnPrev.addEventListener("click", function() {
+        if (!allowAction()) return;
         if (state.offset > 0) {
           state.offset -= 1;
           state.hover = -1;
@@ -192,6 +201,7 @@
     }
     if (btnNext) {
       btnNext.addEventListener("click", function() {
+        if (!allowAction()) return;
         var maxOff = getMaxOffset();
         if (maxOff > state.offset) {
           state.offset += 1;
@@ -205,6 +215,7 @@
     }
     if (ovPrev) {
       ovPrev.addEventListener("click", function() {
+        if (!allowAction()) return;
         if (state.open > 0) {
           state.open -= 1;
           render();
@@ -213,6 +224,7 @@
     }
     if (ovNext) {
       ovNext.addEventListener("click", function() {
+        if (!allowAction()) return;
         if (milestones.length - 1 > state.open) {
           state.open += 1;
           render();

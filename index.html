@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; frame-src 'self'; object-src 'none'; base-uri 'self';">
   <title>Portal de Control Técnico y Metrología | VILLALBA HNOS. IMPLANTES S.A.</title>
   <meta name="description" content="Portal central de infografías técnicas, blueprints metrológicos y hojas de control de calidad de planta.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1149,7 +1150,7 @@
 
           <!-- ACCIONES DE ACCESO -->
           <div class="card-actions">
-            <a href="PROYECTOS/TÉCNICOS/Hip-lock/index.html" class="btn-action-primary" target="_blank" title="Abrir la infografía técnica interactiva completa">
+            <a href="PROYECTOS/TÉCNICOS/Hip-lock/index.html" class="btn-action-primary" target="_blank" rel="noopener noreferrer" title="Abrir la infografía técnica interactiva completa">
               <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
               </svg>
@@ -1192,7 +1193,7 @@
           <span id="modalDocTitle">Previsualización de Documento</span>
         </div>
         <div class="modal-header-actions">
-          <a id="modalExternalLink" href="#" target="_blank" class="btn-action-secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;">
+          <a id="modalExternalLink" href="#" target="_blank" rel="noopener noreferrer" class="btn-action-secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;">
             <span>Abrir en nueva pestaña</span>
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
           </a>
@@ -1248,9 +1249,13 @@
       applyTheme(isBlueprint ? 'light' : 'blueprint');
     });
 
-    // BÚSQUEDA EN TIEMPO REAL (HOJAS TÉCNICAS)
+    // BÚSQUEDA EN TIEMPO REAL (HOJAS TÉCNICAS) CON LÍMITE ANTI-SPAM
     function handleSearch() {
-      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const searchEl = document.getElementById('searchInput');
+      if (searchEl.value.length > 120) {
+        searchEl.value = searchEl.value.slice(0, 120);
+      }
+      const query = searchEl.value.trim().toLowerCase();
       const allCards = document.querySelectorAll('.tech-card');
       let visibleCount = 0;
 
@@ -1272,14 +1277,27 @@
       noResults.style.display = visibleCount === 0 ? 'block' : 'none';
     }
 
-    // MODAL DE PREVISUALIZACIÓN EMBEBIDA
+    // MODAL DE PREVISUALIZACIÓN EMBEBIDA CON VALIDACIÓN DE RUTA SEGURA (ANTI-XSS / ANTI-OPEN-REDIRECT)
     const modal = document.getElementById('previewModal');
     const iframe = document.getElementById('previewIframe');
     const modalTitle = document.getElementById('modalDocTitle');
     const modalLink = document.getElementById('modalExternalLink');
 
+    function isSafeInternalUrl(url) {
+      if (typeof url !== 'string') return false;
+      const trimmed = url.trim();
+      if (/^(javascript|data|vbscript|file|http|https):/i.test(trimmed) || trimmed.startsWith('//') || trimmed.includes('..')) {
+        return false;
+      }
+      return /^PROYECTOS\/[A-Za-z0-9ÁÉÍÓÚáéíóúÑñ _\-/]+\.html$/i.test(trimmed);
+    }
+
     function openPreviewModal(url, title) {
-      modalTitle.textContent = title;
+      if (!isSafeInternalUrl(url)) {
+        console.warn('URL de previsualización bloqueada por política de seguridad.');
+        return;
+      }
+      modalTitle.textContent = String(title || '').slice(0, 140);
       modalLink.href = url;
       iframe.src = url;
       modal.classList.add('open');

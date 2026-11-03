@@ -289,64 +289,104 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6. Persistencia en LocalStorage para inspectores de planta
+  // 6. Persistencia en LocalStorage para inspectores de planta (con sanitización y límites anti-spam)
   const STORAGE_KEY = 'hip_lock_qc_state_v1';
   const sigField = document.getElementById('inspector-signature');
   const qtyConforme = document.getElementById('qty-conforme');
   const qtyNoConforme = document.getElementById('qty-no-conforme');
   const obsField = document.querySelector('.obs-lines');
+  const traceInspectorInput = document.getElementById('trace-inspector-input');
+  const traceOcInput = document.getElementById('trace-oc-input');
 
+  function sanitizePlainText(str, maxLen) {
+    if (typeof str !== 'string') return '';
+    return str.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '').slice(0, maxLen);
+  }
+
+  function sanitizeQty(val) {
+    const num = parseInt(String(val).replace(/\D/g, ''), 10);
+    if (isNaN(num) || num < 0) return '0';
+    return String(Math.min(num, 999999));
+  }
+
+  function enforceContentEditablePlainText(el, maxLen) {
+    if (!el) return;
+    el.addEventListener('paste', (e) => {
+      e.preventDefault();
+      const pasted = (e.clipboardData || window.clipboardData).getData('text/plain');
+      const clean = sanitizePlainText(pasted, maxLen);
+      const current = el.innerText || '';
+      const remaining = Math.max(0, maxLen - current.length);
+      document.execCommand('insertText', false, clean.slice(0, remaining));
+    });
+    el.addEventListener('input', () => {
+      if (el.innerText.length > maxLen) {
+        el.innerText = sanitizePlainText(el.innerText, maxLen);
+      }
+    });
+  }
+
+  enforceContentEditablePlainText(obsField, 1500);
+  enforceContentEditablePlainText(sigField, 120);
+  enforceContentEditablePlainText(traceInspectorInput, 80);
+  enforceContentEditablePlainText(traceOcInput, 60);
+
+  let saveTimer = null;
   function saveState() {
-    const state = {
-      checks: Array.from(checkboxes).map(c => c.checked),
-      qtyConforme: qtyConforme ? qtyConforme.value : '1',
-      qtyNoConforme: qtyNoConforme ? qtyNoConforme.value : '0',
-      obs: obsField ? obsField.innerText : '',
-      signature: sigField ? sigField.innerText : '',
-      sigDate: inspectorDateInput ? inspectorDateInput.value : '29/09/2026',
-      sigTime: inspectorTimeInput ? inspectorTimeInput.value : '10:45',
-      traceDate: traceDateInput ? traceDateInput.value : '29/09/2026'
-    };
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    } catch (e) {
-      console.warn('LocalStorage no disponible');
-    }
+    if (saveTimer) clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      const state = {
+        checks: Array.from(checkboxes).map(c => Boolean(c.checked)),
+        qtyConforme: qtyConforme ? sanitizeQty(qtyConforme.value) : '1',
+        qtyNoConforme: qtyNoConforme ? sanitizeQty(qtyNoConforme.value) : '0',
+        obs: obsField ? sanitizePlainText(obsField.innerText, 1500) : '',
+        signature: sigField ? sanitizePlainText(sigField.innerText, 120) : '',
+        sigDate: inspectorDateInput ? sanitizePlainText(inspectorDateInput.value, 10) : '29/09/2026',
+        sigTime: inspectorTimeInput ? sanitizePlainText(inspectorTimeInput.value, 5) : '10:45',
+        traceDate: traceDateInput ? sanitizePlainText(traceDateInput.value, 10) : '29/09/2026'
+      };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        console.warn('LocalStorage no disponible');
+      }
+    }, 120);
   }
 
   function loadState() {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
+      if (saved && saved.length <= 16384) {
         const state = JSON.parse(saved);
-        if (state.checks) {
+        if (!state || typeof state !== 'object' || Array.isArray(state)) return;
+        if (Array.isArray(state.checks)) {
           checkboxes.forEach((cb, idx) => {
-            if (state.checks[idx] !== undefined) {
+            if (typeof state.checks[idx] === 'boolean') {
               cb.checked = state.checks[idx];
             }
           });
         }
         if (state.qtyConforme !== undefined && qtyConforme) {
-          qtyConforme.value = state.qtyConforme;
+          qtyConforme.value = sanitizeQty(state.qtyConforme);
         }
         if (state.qtyNoConforme !== undefined && qtyNoConforme) {
-          qtyNoConforme.value = state.qtyNoConforme;
+          qtyNoConforme.value = sanitizeQty(state.qtyNoConforme);
         }
-        if (state.obs && obsField) {
-          obsField.innerText = state.obs;
+        if (typeof state.obs === 'string' && obsField) {
+          obsField.textContent = sanitizePlainText(state.obs, 1500);
         }
-        if (state.signature && sigField) {
-          sigField.innerText = state.signature;
+        if (typeof state.signature === 'string' && sigField) {
+          sigField.textContent = sanitizePlainText(state.signature, 120);
         }
-        if (state.sigDate && inspectorDateInput) {
-          inspectorDateInput.value = state.sigDate;
+        if (typeof state.sigDate === 'string' && inspectorDateInput) {
+          inspectorDateInput.value = sanitizePlainText(state.sigDate, 10).replace(/[^0-9\/]/g, '');
           syncSigTextToNativeDate();
         }
-        if (state.sigTime && inspectorTimeInput) {
-          inspectorTimeInput.value = state.sigTime;
+        if (typeof state.sigTime === 'string' && inspectorTimeInput) {
+          inspectorTimeInput.value = sanitizePlainText(state.sigTime, 5).replace(/[^0-9:]/g, '');
         }
-        if (state.traceDate && traceDateInput) {
-          traceDateInput.value = state.traceDate;
+        if (typeof state.traceDate === 'string' && traceDateInput) {
+          traceDateInput.value = sanitizePlainText(state.traceDate, 10).replace(/[^0-9\/]/g, '');
           syncTextToNativeDate();
         }
       }
@@ -419,8 +459,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  function isAllowedBlueprintPath(fileUrl) {
+    if (typeof fileUrl !== 'string') return false;
+    const trimmed = fileUrl.trim();
+    if (/^(javascript|data|vbscript|file|http|https):/i.test(trimmed) || trimmed.startsWith('//') || trimmed.includes('..')) {
+      return false;
+    }
+    return /^Planos por talle\/Plano Control - Tallo Hip-Lock (5|6,25|7,5|8,75|10|11,25|12,5|13,75|15|16,25|17,5)\.pdf$/.test(trimmed);
+  }
+
   function updateBlueprintDocument(fileUrl) {
-    if (!fileUrl) return;
+    if (!isAllowedBlueprintPath(fileUrl)) {
+      console.warn('Ruta de plano bloqueada por política de seguridad:', fileUrl);
+      return;
+    }
     const cleanUrl = encodeURI(fileUrl);
 
     // Recrear el iframe para forzar al visor PDF nativo del navegador a refrescar el documento sin retención de caché
@@ -467,13 +519,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const p2OcVal = document.getElementById('p2-oc-val');
   const p2DateVal = document.getElementById('p2-date-val');
   const p2InspectorVal = document.getElementById('p2-inspector-val');
-  const traceInspectorInput = document.getElementById('trace-inspector-input');
-  const traceOcInput = document.getElementById('trace-oc-input');
 
   function syncTraceabilityToP2() {
-    if (p2DateVal && traceDateInput) p2DateVal.textContent = traceDateInput.value.trim() || '-';
-    if (p2InspectorVal && traceInspectorInput) p2InspectorVal.textContent = traceInspectorInput.innerText.trim() || '-';
-    if (p2OcVal && traceOcInput) p2OcVal.textContent = traceOcInput.innerText.trim() || '-';
+    if (p2DateVal && traceDateInput) p2DateVal.textContent = sanitizePlainText(traceDateInput.value.trim(), 10) || '-';
+    if (p2InspectorVal && traceInspectorInput) p2InspectorVal.textContent = sanitizePlainText(traceInspectorInput.innerText.trim(), 80) || '-';
+    if (p2OcVal && traceOcInput) p2OcVal.textContent = sanitizePlainText(traceOcInput.innerText.trim(), 60) || '-';
   }
 
   if (traceDateInput) traceDateInput.addEventListener('input', syncTraceabilityToP2);
@@ -503,9 +553,27 @@ document.addEventListener('DOMContentLoaded', () => {
       const file = e.target.files && e.target.files[0];
       if (!file) return;
 
-      const fileName = file.name;
-      const isPdf = file.type === 'application/pdf' || fileName.toLowerCase().endsWith('.pdf');
-      const isImage = file.type.startsWith('image/') || /\.(jpg|jpeg|png|webp|jfif|bmp)$/i.test(fileName);
+      const MAX_FILE_SIZE_BYTES = 15 * 1024 * 1024; // 15 MB límite anti-DoS
+      const MAX_PDF_PAGES = 10; // Límite de páginas para evitar agotamiento de memoria
+      const fileName = sanitizePlainText(file.name, 120);
+      const isSvg = file.type === 'image/svg+xml' || /\.svgz?$/i.test(fileName);
+      const isPdf = !isSvg && (file.type === 'application/pdf' || /\.pdf$/i.test(fileName));
+      const isSafeRasterImage = !isSvg && (
+        /^image\/(jpeg|png|webp|bmp)$/i.test(file.type) ||
+        /\.(jpg|jpeg|png|webp|jfif|bmp)$/i.test(fileName)
+      );
+
+      if (file.size > MAX_FILE_SIZE_BYTES) {
+        alert('El archivo excede el tamaño máximo permitido de 15 MB.');
+        inputRemitoFile.value = '';
+        return;
+      }
+
+      if (!isPdf && !isSafeRasterImage) {
+        alert('Formato no permitido por seguridad. Adjunte únicamente archivos PDF o imágenes rasterizadas (JPG, PNG, WEBP, BMP).');
+        inputRemitoFile.value = '';
+        return;
+      }
 
       if (remitoChipName) {
         remitoChipName.textContent = fileName;
@@ -522,11 +590,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (remitoDisplayWrapper) remitoDisplayWrapper.innerHTML = '';
 
-      if (isImage) {
+      if (isSafeRasterImage) {
         const reader = new FileReader();
         reader.onload = (event) => {
+          const resultStr = String(event.target.result || '');
+          if (!/^data:image\/(jpeg|png|webp|bmp);base64,/i.test(resultStr)) {
+            alert('El contenido de la imagen no es válido.');
+            return;
+          }
           const img = document.createElement('img');
-          img.src = event.target.result;
+          img.src = resultStr;
           img.alt = 'Documento Remito / Despacho';
           img.className = 'remito-sheet-img';
           if (remitoDisplayWrapper) {
@@ -542,9 +615,10 @@ document.addEventListener('DOMContentLoaded', () => {
           if (window.pdfjsLib) {
             try {
               window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-              const pdf = await window.pdfjsLib.getDocument({ data: typedArray }).promise;
+              const pdf = await window.pdfjsLib.getDocument({ data: typedArray, isEvalSupported: false }).promise;
               if (remitoDisplayWrapper) remitoDisplayWrapper.innerHTML = '';
-              for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+              const pagesToRender = Math.min(pdf.numPages, MAX_PDF_PAGES);
+              for (let pageNum = 1; pageNum <= pagesToRender; pageNum++) {
                 const page = await pdf.getPage(pageNum);
                 const viewport = page.getViewport({ scale: 1.8 });
                 const canvas = document.createElement('canvas');
@@ -564,12 +638,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         };
         reader.readAsArrayBuffer(file);
-      } else {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          renderPdfFallback(file, event.target.result);
-        };
-        reader.readAsDataURL(file);
       }
 
       syncTraceabilityToP2();
